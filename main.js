@@ -103,9 +103,21 @@ const layerToggles = document.getElementById('layer-toggles');
 
 slider.addEventListener('input', (e) => updateYear(e.target.value));
 
+document.querySelectorAll('.slider-labels span').forEach((label, index) => {
+    label.addEventListener('click', () => {
+        slider.value = index;
+        updateYear(index);
+    });
+});
+
 function updateYear(index) {
     const year = years[index];
     yearDisplay.innerText = year;
+
+    // Update nodes
+    document.querySelectorAll('.node').forEach((n, i) => {
+        n.classList.toggle('active', i == index);
+    });
 
     manifest.layers.forEach(l => {
         map.setLayoutProperty(`layer-${l.layer}`, 'visibility', 'none');
@@ -140,11 +152,14 @@ function updateYear(index) {
         });
 
         Object.entries(nameGroups).forEach(([name, layers]) => {
-            layers.forEach(l => map.setLayoutProperty(`layer-${l.layer}`, 'visibility', 'visible'));
+            const isEraChange = catName === 'Era Changes';
+            layers.forEach(l => {
+                map.setLayoutProperty(`layer-${l.layer}`, 'visibility', isEraChange ? 'none' : 'visible');
+            });
 
             const item = document.createElement('div');
             item.className = 'layer-item';
-            item.innerHTML = `<input type="checkbox" checked> <span>${name}</span>`;
+            item.innerHTML = `<input type="checkbox" ${isEraChange ? '' : 'checked'}> <span>${name}</span>`;
             item.querySelector('input').addEventListener('change', (e) => {
                 layers.forEach(l => {
                     map.setLayoutProperty(`layer-${l.layer}`, 'visibility', e.target.checked ? 'visible' : 'none');
