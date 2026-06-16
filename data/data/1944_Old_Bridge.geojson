@@ -1,7 +1,0 @@
-{
-"type": "FeatureCollection",
-"name": "1944_Old_Bridge",
-"features": [
-{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 43.1365412, 36.3454281 ], [ 43.1410543, 36.3477194 ] ] ] } }
-]
-}
