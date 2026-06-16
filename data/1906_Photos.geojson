@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "1906_Photos",
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "Photos": "/Users/abdullahbasharmohammed/Documents/Master/Old city of Mosul Maps/Old Photos/Deutschlands Kulturerbe digital 1906/Yazidi church near Mosul..jpg", "Descriptio": null }, "geometry": { "type": "Point", "coordinates": [ 43.136246, 36.3337694 ] } },
+{ "type": "Feature", "properties": { "id": 2, "Photos": "/Users/abdullahbasharmohammed/Documents/Master/Old city of Mosul Maps/Old Photos/Gertrude Bell Archive 1909/Mar Tuma (the Church of St. Thomas the Apostle) - View Of Exterior And Cemetery.png", "Descriptio": "كنيسة مارتوما (الصورة توضح المقبرة داخل الكنيسة)" }, "geometry": { "type": "Point", "coordinates": [ 43.1250207, 36.3406611 ] } },
+{ "type": "Feature", "properties": { "id": 3, "Photos": "/Users/abdullahbasharmohammed/Documents/Master/Old city of Mosul Maps/Old Photos/Gertrude Bell Archive 1909/View Over Mosul And Tigris, Showing Funerary Monuments To Left Of Photograph. Tomb At Extreme Left Of Photograph Is The Tomb of Imam Yahya Abu al-", "Descriptio": "صورة مأخوذة من اعلى قلعة باشطابيا بأتجاه مرقد يحيى ابو القاسم و قلعة قره سراي" }, "geometry": { "type": "Point", "coordinates": [ 43.1214953, 36.3552203 ] } },
+{ "type": "Feature", "properties": { "id": 4, "Photos": "/Users/abdullahbasharmohammed/Documents/Master/Old city of Mosul Maps/Old Photos/Gertrude Bell Archive 1909/View of Mosul from across water, bridge of boats in foreground.png", "Descriptio": "منظر من على جسر القوارب بأتجاه باب الجسر" }, "geometry": { "type": "Point", "coordinates": [ 43.1388504, 36.3452221 ] } },
+{ "type": "Feature", "properties": { "id": 5, "Photos": "/Users/abdullahbasharmohammed/Documents/Master/Old city of Mosul Maps/Old Photos/Gertrude Bell Archive 1909/Tomb of Imam Yahya Abu al-Qasim - Exterior Showing Pyramidal Dome.png", "Descriptio": "مرقد الامام يحى ابو القاسم" }, "geometry": { "type": "Point", "coordinates": [ 43.1222997, 36.354693 ] } }
+]
+}

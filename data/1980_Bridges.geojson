@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "1980_Bridges",
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "Name": "الجسر الحديدي" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 43.1365268, 36.3452634 ], [ 43.1394404, 36.3467385 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 2, "Name": "الجسر الثاني (الحرية)" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 43.1413121, 36.3389427 ], [ 43.1446945, 36.3409783 ], [ 43.1446945, 36.3409783 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 3, "Name": "الجسر الثالث" }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 43.1113023, 36.3595573 ], [ 43.1141631, 36.3615678 ], [ 43.1172563, 36.3637141 ], [ 43.1177824, 36.3640718 ] ] ] } }
+]
+}
