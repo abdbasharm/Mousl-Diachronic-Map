@@ -1,0 +1,7 @@
+{
+"type": "FeatureCollection",
+"name": "1906_Bridge",
+"features": [
+{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 43.1376867, 36.3445769 ], [ 43.1391556, 36.3453897 ] ] ] } }
+]
+}

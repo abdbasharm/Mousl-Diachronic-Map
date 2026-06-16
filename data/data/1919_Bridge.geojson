@@ -1,0 +1,7 @@
+{
+"type": "FeatureCollection",
+"name": "1919_Bridge",
+"features": [
+{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 43.1374226, 36.3445691 ], [ 43.1379977, 36.3445792 ], [ 43.1386636, 36.3447407 ], [ 43.139047, 36.3449525 ], [ 43.1394606, 36.3454267 ], [ 43.140177, 36.3465467 ] ] ] } }
+]
+}

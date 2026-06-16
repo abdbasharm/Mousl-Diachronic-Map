@@ -1,0 +1,7 @@
+{
+"type": "FeatureCollection",
+"name": "1778__Bridge",
+"features": [
+{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 43.137304, 36.3444925 ], [ 43.1376773, 36.3446513 ], [ 43.1381378, 36.3451516 ] ] ] } }
+]
+}

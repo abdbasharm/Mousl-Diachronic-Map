@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "1778_Gates",
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "Building N": "الباب العمادي" }, "geometry": { "type": "Point", "coordinates": [ 43.1184935, 36.3515706 ] } },
+{ "type": "Feature", "properties": { "id": 2, "Building N": "باب سنجار" }, "geometry": { "type": "Point", "coordinates": [ 43.1166292, 36.3446815 ] } },
+{ "type": "Feature", "properties": { "id": 3, "Building N": "باب البيض" }, "geometry": { "type": "Point", "coordinates": [ 43.1257377, 36.3355657 ] } },
+{ "type": "Feature", "properties": { "id": 4, "Building N": "باب جديد" }, "geometry": { "type": "Point", "coordinates": [ 43.130883, 36.3341001 ] } },
+{ "type": "Feature", "properties": { "id": 5, "Building N": "باب لكش" }, "geometry": { "type": "Point", "coordinates": [ 43.1349075, 36.3387628 ] } },
+{ "type": "Feature", "properties": { "id": 6, "Building N": "باب الطوب" }, "geometry": { "type": "Point", "coordinates": [ 43.1373674, 36.3429955 ] } },
+{ "type": "Feature", "properties": { "id": 7, "Building N": "باب الجسر" }, "geometry": { "type": "Point", "coordinates": [ 43.1372794, 36.344505 ] } }
+]
+}
