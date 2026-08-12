@@ -1,5 +1,9 @@
 {
   "years": [
+    637,
+    912,
+    1096,
+    1127,
     1778,
     1838,
     1852,
@@ -12,6 +16,48 @@
     2020
   ],
   "layers": [
+    {
+      "file": "1096_City_Borders.geojson",
+      "layer": "1096_City_Borders",
+      "years": [
+        1096
+      ]
+    },
+    {
+      "file": "1096_City_walls.geojson",
+      "layer": "1096_City_walls",
+      "years": [
+        1096
+      ]
+    },
+    {
+      "file": "1096_Heritage_Buildings.geojson",
+      "layer": "1096_Heritage_Buildings",
+      "years": [
+        1096
+      ]
+    },
+    {
+      "file": "1127_City_Borders.geojson",
+      "layer": "1127_City_Borders",
+      "years": [
+        1127
+      ]
+    },
+    {
+      "file": "1127_City_walls.geojson",
+      "layer": "1127_City_walls",
+      "years": [
+        1127
+      ]
+    },
+    {
+      "file": "1127_Heritage_Buildings.geojson",
+      "layer": "1127_Heritage_Buildings",
+      "years": [
+        1127
+      ]
+    },
     {
       "file": "1778_Agriculture_Fields.geojson",
       "layer": "1778_Agriculture_Fields",
@@ -43,6 +89,13 @@
     {
       "file": "1778_Heritage_Buildings.geojson",
       "layer": "1778_Heritage_Buildings",
+      "years": [
+        1778
+      ]
+    },
+    {
+      "file": "1778_Heritage_Buildings_Points.geojson",
+      "layer": "1778_Heritage_Buildings_Points",
       "years": [
         1778
       ]
@@ -209,13 +262,6 @@
       ]
     },
     {
-      "file": "1906_Roads.geojson",
-      "layer": "1906_Roads",
-      "years": [
-        1906
-      ]
-    },
-    {
       "file": "1907_Cemetery.geojson",
       "layer": "1907_Cemetery",
       "years": [
@@ -260,13 +306,6 @@
     {
       "file": "1919_Bridge.geojson",
       "layer": "1919_Bridge",
-      "years": [
-        1919
-      ]
-    },
-    {
-      "file": "1919_Roads.geojson",
-      "layer": "1919_Roads",
       "years": [
         1919
       ]
@@ -545,6 +584,71 @@
       ]
     },
     {
+      "file": "637_City_Borders.geojson",
+      "layer": "637_City_Borders",
+      "years": [
+        637
+      ]
+    },
+    {
+      "file": "637_City_Walls.geojson",
+      "layer": "637_City_Walls",
+      "years": [
+        637
+      ]
+    },
+    {
+      "file": "637_Heritage_Buildings.geojson",
+      "layer": "637_Heritage_Buildings",
+      "years": [
+        637
+      ]
+    },
+    {
+      "file": "637_Heritage_Buildings_Points.geojson",
+      "layer": "637_Heritage_Buildings_Points",
+      "years": [
+        637
+      ]
+    },
+    {
+      "file": "637_Misr_Walls.geojson",
+      "layer": "637_Misr_Walls",
+      "years": [
+        637
+      ]
+    },
+    {
+      "file": "912_City_Borders.geojson",
+      "layer": "912_City_Borders",
+      "years": [
+        912
+      ]
+    },
+    {
+      "file": "912_City_walls.geojson",
+      "layer": "912_City_walls",
+      "years": [
+        912
+      ]
+    },
+    {
+      "file": "912_Heritage_Buildings.geojson",
+      "layer": "912_Heritage_Buildings",
+      "years": [
+        912
+      ]
+    },
+    {
+      "file": "Al_Hur_River.geojson",
+      "layer": "Al_Hur_River",
+      "years": [
+        912,
+        1096,
+        1127
+      ]
+    },
+    {
       "file": "1919_Building_Blocks.geojson",
       "layer": "1919_Building_Blocks",
       "years": [
@@ -552,31 +656,17 @@
       ]
     },
     {
-      "file": "Roads_2020.geojson",
-      "layer": "Roads_2020",
+      "file": "River_Islands.geojson",
+      "layer": "River_Islands",
       "years": [
-        2020
+        1852
       ]
     },
     {
-      "file": "Roads_1919.geojson",
-      "layer": "Roads_1919",
+      "file": "1919_Roads.geojson",
+      "layer": "1919_Roads",
       "years": [
         1919
-      ]
-    },
-    {
-      "file": "Roads_1906.geojson",
-      "layer": "Roads_1906",
-      "years": [
-        1906
-      ]
-    },
-    {
-      "file": "Roads_1944.geojson",
-      "layer": "Roads_1944",
-      "years": [
-        1944
       ]
     },
     {
@@ -612,43 +702,10 @@
       ]
     },
     {
-      "file": "evolution_1778_to_1852.geojson",
-      "layer": "evolution_1778_to_1852",
+      "file": "1906_Roads.geojson",
+      "layer": "1906_Roads",
       "years": [
-        1778,
-        1852
-      ]
-    },
-    {
-      "file": "evolution_1944_to_1966.geojson",
-      "layer": "evolution_1944_to_1966",
-      "years": [
-        1944,
-        1966
-      ]
-    },
-    {
-      "file": "evolution_1966_to_1988.geojson",
-      "layer": "evolution_1966_to_1988",
-      "years": [
-        1966,
-        1988
-      ]
-    },
-    {
-      "file": "evolution_1988_to_2003.geojson",
-      "layer": "evolution_1988_to_2003",
-      "years": [
-        1988,
-        2003
-      ]
-    },
-    {
-      "file": "evolution_2003_to_2020.geojson",
-      "layer": "evolution_2003_to_2020",
-      "years": [
-        2003,
-        2020
+        1906
       ]
     }
   ]

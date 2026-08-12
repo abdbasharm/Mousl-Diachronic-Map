@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mosul: Diachronic Mapping</title>
-    <meta name="description" content="Interactive diachronic urban mapping of Old Mosul city — space syntax, analytics, and 3D tours across centuries.">
+    <meta name="description" content="Interactive diachronic urban mapping of Old Mosul city — morphometrics, spatial analytics, and 3D terrain across centuries.">
     <link href="lib/maplibre-gl.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,45 +22,52 @@
     <!-- ═══════════════════════════════════════════ SIDEBAR ═══ -->
     <div id="sidebar">
         <div class="sidebar-header">
-            <h1>Mosul Evolution</h1>
-            <p class="subtitle">Diachronic Urban Mapping Project</p>
+            <div class="research-badge">MASTER'S THESIS GIS PLATFORM</div>
+            <h1>Urban Morphology of Mosul</h1>
+            <p class="subtitle">Diachronic Spatial Analysis &amp; Morphometrics (637–2020 CE)</p>
         </div>
 
         <!-- macOS Segmented Tab Bar -->
-        <div class="mac-tabs" role="tablist">
-            <button class="mac-tab active" data-tab="tab-layers"   role="tab" aria-selected="true"  id="btn-tab-layers">Layers</button>
-            <button class="mac-tab"        data-tab="tab-syntax"   role="tab" aria-selected="false" id="btn-tab-syntax">Syntax</button>
-            <button class="mac-tab"        data-tab="tab-analytics" role="tab" aria-selected="false" id="btn-tab-analytics">Analytics</button>
-            <button class="mac-tab"        data-tab="tab-tours"    role="tab" aria-selected="false" id="btn-tab-tours">3D Tour</button>
+        <div class="mac-tabs" role="tablist" style="grid-template-columns: repeat(2, 1fr);">
+            <button class="mac-tab active" data-tab="tab-layers" role="tab" aria-selected="true"  id="btn-tab-layers">Layers &amp; Map</button>
+            <button class="mac-tab"        data-tab="tab-syntax" role="tab" aria-selected="false" id="btn-tab-syntax">Morphometrics</button>
         </div>
 
         <!-- ── TAB 1 : LAYERS ── -->
         <div id="tab-layers" class="tab-panel active" role="tabpanel">
 
-            <button id="compare-btn" class="mac-btn-modern">⇄ Compare Mode: OFF</button>
+            <div style="display:flex;gap:8px;margin-bottom:12px;">
+                <button id="compare-btn" class="mac-btn-modern" style="flex:1;">⇄ Compare Eras</button>
+                <button id="research-meta-btn" class="mac-btn-modern" style="flex:1;" title="View Thesis Citation &amp; Methodology">🎓 Citation</button>
+            </div>
 
             <div id="compare-section" style="display:none;" class="compare-panel">
-                <div class="stat-label">Compare Map Year</div>
+                <div class="stat-label" style="margin-bottom:8px;">Compare Map Era</div>
+                <div class="compare-nav-buttons" style="display:flex;gap:6px;margin-bottom:10px;">
+                    <button id="compare-prev-btn" class="mac-btn-modern active" style="flex:1;padding:8px 6px;font-size:0.75rem;margin:0;">◄ Previous</button>
+                    <button id="compare-next-btn" class="mac-btn-modern" style="flex:1;padding:8px 6px;font-size:0.75rem;margin:0;">Future ►</button>
+                </div>
+                <div class="stat-label" style="font-size:0.65rem;margin-bottom:4px;color:var(--text-muted);">Or Choose Specific Map Year:</div>
                 <select id="compare-year-select" class="mac-select"></select>
             </div>
 
             <div class="stats-container">
                 <div class="stat-card">
-                    <div class="stat-label">Building Area</div>
+                    <div class="stat-label">Building Footprint</div>
                     <div id="stat-buildings" class="stat-value">-- km²</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Road Length</div>
+                    <div class="stat-label">Road Network</div>
                     <div id="stat-roads" class="stat-value">-- km</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Growth Factor</div>
+                    <div class="stat-label">Growth Ratio</div>
                     <div id="stat-growth" class="stat-value">-- x</div>
                 </div>
             </div>
 
             <div id="layer-section">
-                <div class="stat-label">Visible Layers</div>
+                <div class="stat-label">Visible Vector Layers</div>
                 <div id="layer-toggles" class="layer-list"></div>
             </div>
 
@@ -68,7 +75,7 @@
                 <div class="stat-label">3D Terrain Settings</div>
                 <div class="layer-item" style="margin-bottom:12px;">
                     <input type="checkbox" id="terrain-toggle" checked>
-                    <span>3D Terrain (DEM)</span>
+                    <span>3D Terrain Model (DEM)</span>
                 </div>
                 <div class="stat-label" style="display:flex;justify-content:space-between;margin-bottom:6px;">
                     <span>Elevation Exaggeration</span>
@@ -78,83 +85,37 @@
             </div>
         </div>
 
-        <!-- ── TAB 2 : SPACE SYNTAX ── -->
+        <!-- ── TAB 2 : MORPHOMETRICS ── -->
         <div id="tab-syntax" class="tab-panel" role="tabpanel">
-            <button id="syntax-toggle" class="mac-btn-modern" style="margin-top: 8px; margin-bottom: 16px;">🗺 Walkability Heatmap: OFF</button>
+            <h3 class="panel-title">Morphological Analysis Mode</h3>
+            
+            <div class="metric-selector-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <button class="metric-btn active" id="mode-fractal-btn" data-mode="fractal">
+                    <span class="m-icon">🌀</span>
+                    <span class="m-title">Fractal (D_f)</span>
+                </button>
+                <button class="metric-btn" id="mode-normal-btn" data-mode="normal">
+                    <span class="m-icon">🏛</span>
+                    <span class="m-title">Standard 3D</span>
+                </button>
+            </div>
 
-            <h3 class="panel-title">Space Syntax &amp; Walkability</h3>
-            <p class="panel-desc">The Permeability Index (PermIdx) measures spatial integration — how well each urban block is connected to the wider city network. Higher values indicate major movement corridors and pedestrian arteries.</p>
-
-            <div id="syntax-legend-container" class="syntax-legend-box" style="display:none;">
-                <div class="stat-label" style="margin-bottom:8px;">Permeability Index (Integration)</div>
-                <div class="syntax-legend-bar"></div>
+            <div id="syntax-legend-container" class="syntax-legend-box" style="margin-top:16px;">
+                <div class="stat-label" id="syntax-legend-title" style="margin-bottom:8px;">Fractal Complexity (D_f)</div>
+                <div class="syntax-legend-bar" style="background: linear-gradient(to right, #312e81, #6366f1, #a855f7, #ec4899, #f43f5e);"></div>
                 <div class="syntax-legend-labels">
-                    <span style="color:#4299e1;">Low<br><small>Isolated</small></span>
-                    <span style="color:#48bb78;">Medium</span>
-                    <span style="color:#ecc94b;">High</span>
-                    <span style="color:#f56565;">Max<br><small>Arteries</small></span>
+                    <span style="color:#6366f1;">Low<br><small>Simple</small></span>
+                    <span style="color:#a855f7;">Medium</span>
+                    <span style="color:#ec4899;">High</span>
+                    <span style="color:#f43f5e;">Peak<br><small>Dense Core</small></span>
                 </div>
             </div>
 
-            <div class="stat-card" style="margin-top:20px;">
-                <div class="stat-label">Walkability Insight</div>
+            <div class="stat-card" style="margin-top:16px;">
+                <div class="stat-label">Morphological Analysis</div>
                 <div id="syntax-insight-text" class="insight-text">
-                    Activate the heatmap to reveal spatial patterns. Integrated corridors link historical gates to commercial centres, reflecting the organically-evolved Mosul city core.
+                    Fractal dimension metrics (D_f) analyze the structural self-similarity and density complexity of historical Mosul urban fabrics.
                 </div>
-            </div>
-        </div>
-
-        <!-- ── TAB 3 : ANALYTICS ── -->
-        <div id="tab-analytics" class="tab-panel" role="tabpanel">
-            <h3 class="panel-title">Quantitative Analytics</h3>
-            <p class="panel-desc">Chronological metrics computed from GeoJSON geometry. Click a chart node to jump to that era on the map.</p>
-
-            <div class="chart-wrapper">
-                <div class="stat-label">Building Area Over Time (km²)</div>
-                <div class="chart-canvas-container">
-                    <canvas id="densityChart"></canvas>
-                </div>
-            </div>
-
-            <div class="chart-wrapper" style="margin-top:20px;">
-                <div class="stat-label">Road Network Length Over Time (km)</div>
-                <div class="chart-canvas-container">
-                    <canvas id="roadsChart"></canvas>
-                </div>
-            </div>
-
-            <div class="analytics-tip">💡 Hover charts to see exact values. Click any data point to navigate the map timeline.</div>
-        </div>
-
-        <!-- ── TAB 4 : 3D TOUR ── -->
-        <div id="tab-tours" class="tab-panel" role="tabpanel">
-            <h3 class="panel-title">Diachronic 3D Cinematic Tour</h3>
-            <p class="panel-desc">Automated orbital flights animating the evolution of Mosul's urban fabric across centuries.</p>
-
-            <div class="stat-label" style="margin-bottom:6px;">Flight Path</div>
-            <select id="tour-route-select" class="mac-select" style="margin-bottom:16px;">
-                <option value="general">🕌 Full Urban Evolution (1778–2020)</option>
-                <option value="river">🌊 Riverfront &amp; Bridges Tour</option>
-                <option value="core">🕍 Historic Core — Al-Nuri &amp; Souks</option>
-            </select>
-
-            <div class="tour-controls-grid">
-                <button id="tour-play-btn" class="tour-btn tour-play">▶ Play</button>
-                <button id="tour-stop-btn" class="tour-btn tour-stop" disabled>■ Stop</button>
-            </div>
-
-            <div style="margin-top:20px;border-top:1px solid var(--glass-border);padding-top:16px;">
-                <div class="stat-label" style="display:flex;justify-content:space-between;margin-bottom:6px;">
-                    <span>Flight Speed</span>
-                    <span id="tour-speed-val" style="color:var(--accent);font-weight:600;">Normal</span>
-                </div>
-                <input type="range" id="tour-speed-slider" min="1" max="3" step="1" value="2" style="width:100%;">
-            </div>
-
-            <div id="tour-card" class="stat-card tour-status-card" style="display:none;margin-top:16px;">
-                <div class="stat-label" id="tour-card-header">Now Playing</div>
-                <div id="tour-current-scene" class="tour-scene-title">Scene: --</div>
-                <div id="tour-current-desc" class="tour-scene-desc">--</div>
             </div>
         </div>
     </div>
@@ -185,12 +146,95 @@
 
     <!-- Timeline -->
     <div id="timeline-container">
-        <div id="current-year" class="year-display">--</div>
-        <div class="slider-wrapper">
-            <div id="slider-nodes" class="slider-nodes"></div>
-            <input type="range" id="timeline-slider" min="0" max="0" step="1" value="0">
+        <div class="timeline-top-bar">
+            <div id="current-year" class="year-display">637</div>
+            <div id="current-era-badge" class="era-badge" title="Islamic establishment and Atabeg expansion">Islamic &amp; Atabeg</div>
+            <button id="map-source-btn" class="source-info-btn" title="View Archival Source of Current Map">ℹ️ Map Source</button>
         </div>
-        <div id="slider-labels" class="slider-labels"></div>
+        <div id="era-groups-container" class="era-groups-container"></div>
+        <input type="range" id="timeline-slider" min="0" max="13" step="1" value="0">
+    </div>
+
+    <!-- Map Source Modal Window -->
+    <div id="map-source-window" class="mac-window source-window">
+        <div class="mac-titlebar">
+            <div class="mac-buttons">
+                <span class="mac-btn close-btn" id="source-close-btn"></span>
+                <span class="mac-btn minimize-btn"></span>
+                <span class="mac-btn zoom-btn"></span>
+            </div>
+            <span id="source-window-title" class="mac-title">📜 Map Source &amp; Citation</span>
+        </div>
+        <div class="mac-body source-body">
+            <div id="source-year-badge" class="source-era-badge">Era: --</div>
+            <h2 id="source-title" class="source-heading">Map Title</h2>
+            <div class="source-grid">
+                <div class="source-item">
+                    <span class="source-label">Cartographer / Author:</span>
+                    <span id="source-author" class="source-value">--</span>
+                </div>
+                <div class="source-item">
+                    <span class="source-label">Archival Repository:</span>
+                    <span id="source-repo" class="source-value">--</span>
+                </div>
+                <div class="source-item">
+                    <span class="source-label">Publication / Date:</span>
+                    <span id="source-date" class="source-value">--</span>
+                </div>
+            </div>
+            <div class="source-desc-box">
+                <div class="source-label">Historical Notes &amp; Description:</div>
+                <p id="source-desc" class="source-desc-text">--</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Academic Research Citation & Metadata Modal -->
+    <div id="research-citation-window" class="mac-window source-window" style="max-width:680px;">
+        <div class="mac-titlebar">
+            <div class="mac-buttons">
+                <span class="mac-btn close-btn" id="citation-close-btn"></span>
+                <span class="mac-btn minimize-btn"></span>
+                <span class="mac-btn zoom-btn"></span>
+            </div>
+            <span class="mac-title">🎓 Research Methodology &amp; Academic Citation</span>
+        </div>
+        <div class="mac-body source-body">
+            <div class="source-era-badge" style="background:rgba(0,229,255,0.15);color:var(--accent-cyan);border-color:rgba(0,229,255,0.3);">Master's Thesis Research Project</div>
+            <h2 class="source-heading">Diachronic Urban Mapping &amp; Morphological Analysis of Old Mosul</h2>
+            <p class="panel-desc" style="margin-top:8px;">This web-GIS platform presents research digitizing, reconstructing, and analyzing the urban fabric of Old Mosul across 14 historical eras spanning 637 CE to 2020 CE.</p>
+
+            <div class="source-grid" style="grid-template-columns: repeat(2, 1fr);margin-top:16px;">
+                <div class="source-item">
+                    <span class="source-label">Primary Methodology:</span>
+                    <span class="source-value">Space Syntax (Rₙ), Fractal Dimension (D_f), GIS Vectorization</span>
+                </div>
+                <div class="source-item">
+                    <span class="source-label">Coordinate Reference System:</span>
+                    <span class="source-value">WGS84 / EPSG:4326 (GeoJSON RFC7946)</span>
+                </div>
+                <div class="source-item">
+                    <span class="source-label">Dataset Layers:</span>
+                    <span class="source-value">96 Vector Layers Across 14 Chronological Eras</span>
+                </div>
+                <div class="source-item">
+                    <span class="source-label">3D Terrain Baseline:</span>
+                    <span class="source-value">High-Resolution Old Mosul DEM</span>
+                </div>
+            </div>
+
+            <div class="source-desc-box" style="margin-top:16px;">
+                <div class="source-label">BibTeX Citation:</div>
+                <pre class="citation-code">@mastersthesis{MosulUrbanMorphology2026,
+  author       = {Bashar Mohammed, Abdullah},
+  title        = {Diachronic Spatial Analysis and Morphological Evolution of the Old City of Mosul},
+  school       = {Master's Program in Urban Architecture},
+  year         = {2026},
+  type         = {Master's Thesis},
+  note         = {Interactive GIS Platform \& Space Syntax Analysis}
+}</pre>
+            </div>
+        </div>
     </div>
 
     <!-- macOS Photo Popup -->
@@ -211,7 +255,6 @@
 
     <script src="lib/maplibre-gl.js"></script>
     <script src="lib/turf.min.js"></script>
-    <script src="lib/chart.umd.min.js"></script>
     <script src="main.js?v=9.2"></script>
 </body>
 

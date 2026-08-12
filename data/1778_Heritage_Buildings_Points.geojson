@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "1778_Heritage_Buildings_Points",
+"features": [
+{ "type": "Feature", "properties": { "id": 24, "Building N": "مرقد يحيى ابن القاسم" }, "geometry": { "type": "Point", "coordinates": [ 43.1231128, 36.3544841 ] } },
+{ "type": "Feature", "properties": { "id": 25, "Building N": "مشهد الامام الباهر" }, "geometry": { "type": "Point", "coordinates": [ 43.1206724, 36.3444579 ] } },
+{ "type": "Feature", "properties": { "id": 26, "Building N": "مرقد الامام عون الدين" }, "geometry": { "type": "Point", "coordinates": [ 43.1307873, 36.3387947 ] } },
+{ "type": "Feature", "properties": { "id": 27, "Building N": "مرقد زيد بن علي" }, "geometry": { "type": "Point", "coordinates": [ 43.1267207, 36.3356469 ] } }
+]
+}

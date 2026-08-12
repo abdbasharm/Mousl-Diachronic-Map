@@ -1,0 +1,20 @@
+{
+"type": "FeatureCollection",
+"name": "637_Heritage_Buildings_Points",
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "Building N": "مار إيشوعياب" }, "geometry": { "type": "Point", "coordinates": [ 43.1296167, 36.3488791 ] } },
+{ "type": "Feature", "properties": { "id": 2, "Building N": "كنيسة الطاهرة السريانية الكاثوليكية" }, "geometry": { "type": "Point", "coordinates": [ 43.1324989, 36.3447433 ] } },
+{ "type": "Feature", "properties": { "id": 3, "Building N": "دير الأعلى" }, "geometry": { "type": "Point", "coordinates": [ 43.1195789, 36.3567724 ] } },
+{ "type": "Feature", "properties": { "id": 4, "Building N": "كنيسة مار توما للسريان الكاثوليك" }, "geometry": { "type": "Point", "coordinates": [ 43.1257264, 36.3408172 ] } },
+{ "type": "Feature", "properties": { "id": 5, "Building N": "مسجد بنو سبت الصيرفي" }, "geometry": { "type": "Point", "coordinates": [ 43.1243657, 36.339982 ] } },
+{ "type": "Feature", "properties": { "id": 6, "Building N": "مسجد تل العبادة" }, "geometry": { "type": "Point", "coordinates": [ 43.121059, 36.3462076 ] } },
+{ "type": "Feature", "properties": { "id": 7, "Building N": "مسجد أبو حاضير" }, "geometry": { "type": "Point", "coordinates": [ 43.1265101, 36.3431926 ] } },
+{ "type": "Feature", "properties": { "id": 8, "Building N": "قبر العنز" }, "geometry": { "type": "Point", "coordinates": [ 43.1325716, 36.3338898 ] } },
+{ "type": "Feature", "properties": { "id": 9, "Building N": "مسجد الحر بن يوسف" }, "geometry": { "type": "Point", "coordinates": [ 43.1333692, 36.3444604 ] } },
+{ "type": "Feature", "properties": { "id": 10, "Building N": "المسجد الثقيف" }, "geometry": { "type": "Point", "coordinates": [ 43.1227728, 36.3459056 ] } },
+{ "type": "Feature", "properties": { "id": 11, "Building N": "مسجد سعيد بن عبد الملك" }, "geometry": { "type": "Point", "coordinates": [ 43.131862, 36.3440678 ] } },
+{ "type": "Feature", "properties": { "id": 12, "Building N": "قصر المنقوشة" }, "geometry": { "type": "Point", "coordinates": [ 43.1334801, 36.343386 ] } },
+{ "type": "Feature", "properties": { "id": 13, "Building N": "الجامع الأموي ودار الإمارة" }, "geometry": { "type": "Point", "coordinates": [ 43.1316191, 36.3462861 ] } },
+{ "type": "Feature", "properties": { "id": 14, "Building N": "كنيسة شمعون الصفا" }, "geometry": { "type": "Point", "coordinates": [ 43.1261414, 36.3378201 ] } }
+]
+}

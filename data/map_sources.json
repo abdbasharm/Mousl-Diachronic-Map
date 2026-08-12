@@ -1,0 +1,128 @@
+{
+  "637": {
+    "year": "637",
+    "era": "Atabeg Era (c. 1239 AD)",
+    "title": "Historical Reconstruction of Mosul under Badr al-Din Lu'lu'",
+    "author": "Historical & Archaeological Survey Records",
+    "source": "Mosul Historical Society & Ibn Shaddad Text Reconstructions",
+    "date": "637 AD",
+    "description": "Historical mapping of medieval Mosul under Atabeg rule, detailing the citadel (Qala'at al-Mawsil), city walls, historic gates, and early Islamic heritage monuments."
+  },
+  "912": {
+    "year": "912",
+    "era": "Safavid / Early Ottoman Transition (c. 1506 AD)",
+    "title": "Mosul City Borders & Fortification Walls in 912 AD",
+    "author": "Regional Ottoman Cadastral Records & Historical Reconstructions",
+    "source": "Topkapi Palace Archives & Mosul Historical Surveys",
+    "date": "912 AD",
+    "description": "Mapping of medieval Mosul city boundaries, defensive walls, gates, and major religious heritage complexes."
+  },
+  "1096": {
+    "year": "1096",
+    "era": "Middle Ottoman Era (c. 1685 AD)",
+    "title": "Plan of Mosul Fortress & City Walls",
+    "author": "Ottoman Military Surveyors & Imperial Engineers",
+    "source": "Prime Ministry Ottoman Archives (BOA), Istanbul",
+    "date": "1096 AD",
+    "description": "Mid-Ottoman era survey showing inner city quarters, defensive parapets, gate positions, and religious heritage landmarks."
+  },
+  "1127": {
+    "year": "1127",
+    "era": "Jalili Era Beginnings (c. 1715 AD)",
+    "title": "Survey of Mosul City Walls & Urban Quarters",
+    "author": "Ottoman Provincial Mapmakers & Municipal Surveyors",
+    "source": "Mosul Vilayet Archives",
+    "date": "1127 AD",
+    "description": "18th-century mapping of Mosul's expanding urban core prior to the major 1743 siege of Nadir Shah."
+  },
+  "1778": {
+    "year": "1778",
+    "era": "Late 18th Century (1192 AH)",
+    "title": "Plan von Mosul (Voyage en Arabie et en d'autres pays)",
+    "author": "Carsten Niebuhr",
+    "source": "Royal Library of Copenhagen / National Library of France",
+    "date": "Copenhagen, 1778",
+    "description": "First scientific European survey map of Mosul. Features precise geometric measurements of the city wall circuit, 12 historic city gates, and riverfront topology."
+  },
+  "1838": {
+    "year": "1838",
+    "era": "Early 19th Century",
+    "title": "Plan von Mossul und Umgebung",
+    "author": "Helmuth von Moltke (Prussian Military Mission)",
+    "source": "Prussian Topographical Bureau / Berlin State Library",
+    "date": "Berlin, 1838",
+    "description": "Topographical military map detailing urban density, road networks, surrounding agricultural fields, and strategic height elevations."
+  },
+  "1852": {
+    "year": "1852",
+    "era": "Mid 19th Century — Felix Jones",
+    "title": "Vestiges of Assyria (Sheet 3: Plan of Nineveh & Mosul)",
+    "author": "Commander Felix Jones (Royal Navy / East India Company)",
+    "source": "British Library, London (IOR/X/3273)",
+    "date": "London, 1852",
+    "description": "Benchmark high-precision survey of Old Mosul. Details individual building blocks, narrow alleyways (Aha'iq), souk corridors, mosques, and churches."
+  },
+  "1906": {
+    "year": "1906",
+    "era": "Late Ottoman Era (1323 AH)",
+    "title": "Map of Mosul City 1323 AH (Dalil Musul al-Siyahi)",
+    "author": "Mosul Municipal Council & Ottoman Engineers",
+    "source": "Mosul Central Library Archives",
+    "date": "Mosul, 1323 AH / 1906 AD",
+    "description": "Late Ottoman administrative map illustrating public squares, government buildings (Sarai), market areas, cemeteries, and historic city walls."
+  },
+  "1919": {
+    "year": "1919",
+    "era": "Post-WWI & RAF Aerial Survey",
+    "title": "Mosul Town & Environs (Mesopotamian Expeditionary Force)",
+    "author": "Survey of India & Royal Air Force (RAF) Photogrammetry",
+    "source": "National Archives, Kew (WO 303 / AIR 5)",
+    "date": "London & Baghdad, 1919",
+    "description": "Combined ground and aerial reconnaissance map produced immediately after World War I, detailing initial modern road cuts and pontoon bridge locations."
+  },
+  "1944": {
+    "year": "1944",
+    "era": "Mid 20th Century Kingdom of Iraq",
+    "title": "Mosul City Cadastral & Urban Plan",
+    "author": "Directorate General of Survey, Kingdom of Iraq",
+    "source": "Iraqi National Archives, Baghdad",
+    "date": "Baghdad, 1944",
+    "description": "Official cadastral plan documenting major modern infrastructure interventions, including the construction of Niniveh Street and modern railway connections."
+  },
+  "1966": {
+    "year": "1966",
+    "era": "Declassified CORONA Satellite Imagery",
+    "title": "CORONA Reconnaissance Satellite Map (DZB004032)",
+    "author": "US National Reconnaissance Office (NRO) / USGS",
+    "source": "USGS EarthExplorer (Entity ID: DS1036-2170DF024)",
+    "date": "Washington D.C., 19 September 1966",
+    "description": "High-resolution 2-meter satellite imagery capturing Old Mosul prior to major modern urban redevelopments and residential expansions."
+  },
+  "1988": {
+    "year": "1988",
+    "era": "1980s Municipal Survey & HEXAGON Satellite",
+    "title": "Mosul Urban Planning Bureau & Declassified HEXAGON Satellite Survey",
+    "author": "US NRO / Iraqi Ministry of Planning & Municipal Bureau",
+    "source": "USGS EarthExplorer & Mosul Municipality",
+    "date": "1980–1988",
+    "description": "Comprehensive mapping of modern road networks, concrete bridge connections across the Tigris, and urban expansion outside the historical wall line."
+  },
+  "2003": {
+    "year": "2003",
+    "era": "Pre-Conflict GIS Masterplan",
+    "title": "DigitalGlobe QuickBird-2 Satellite Survey & GIS Footprints",
+    "author": "DigitalGlobe / Mosul University Urban Planning Dept.",
+    "source": "Mosul Urban Planning Department Archives",
+    "date": "2003",
+    "description": "Pre-conflict digital GIS vector baseline detailing all building footprints, heritage monuments, and transportation infrastructure in Old Mosul."
+  },
+  "2020": {
+    "year": "2020",
+    "era": "UNESCO Post-Conflict Heritage Reconstruction",
+    "title": "UNESCO Revive the Spirit of Mosul Urban Heritage Map",
+    "author": "UNESCO / UN-Habitat / Mosul Heritage Initiative",
+    "source": "UNESCO Mosul Damage Assessment & Vector Survey",
+    "date": "Paris & Mosul, 2020",
+    "description": "Post-conflict damage assessment and vector reconstruction survey, documenting current building blocks, restored landmarks, and modern urban layout."
+  }
+}

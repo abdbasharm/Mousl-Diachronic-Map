@@ -4,10 +4,58 @@
    ═══════════════════════════════════════════════════════════ */
 
 // ── Timeline years ──────────────────────────────────────────
-const years = [1778, 1838, 1852, 1906, 1919, 1944, 1966, 1988, 2003, 2020];
+const years = [637, 912, 1096, 1127, 1778, 1838, 1852, 1906, 1919, 1944, 1966, 1988, 2003, 2020];
 
-// ── Global state ────────────────────────────────────────────
+function formatYearLabel(y) {
+    return `${y}`;
+}
+
+// ── Era Groups Definition ─────────────────────────────────────
+const eraGroups = [
+    {
+        id: "atabeg",
+        name: "Islamic & Atabeg",
+        fullName: "Islamic establishment and Atabeg expansion",
+        years: [637, 912, 1096, 1127]
+    },
+    {
+        id: "early-ottoman",
+        name: "Early Ottoman",
+        fullName: "Early Ottoman period",
+        years: [1778]
+    },
+    {
+        id: "middle-ottoman",
+        name: "Middle Ottoman",
+        fullName: "Middle Ottoman period",
+        years: [1838, 1852]
+    },
+    {
+        id: "late-ottoman",
+        name: "Late Ottoman",
+        fullName: "Late Ottoman period",
+        years: [1906]
+    },
+    {
+        id: "royal",
+        name: "Royal Period",
+        fullName: "Royal period",
+        years: [1919, 1944]
+    },
+    {
+        id: "modern",
+        name: "Modern Expansion",
+        fullName: "Modern expansion",
+        years: [1966, 1988, 2003, 2020]
+    }
+];
+
+function getEraGroupForYear(year) {
+    const numYear = Number(year);
+    return eraGroups.find(g => g.years.some(y => Number(y) === numYear)) || eraGroups[0];
+}
 let manifest = null;
+let mapSources = {};
 let loadedLayersData = [];
 const stats = {};               // { year: { buildings, roads } }
 
@@ -45,6 +93,8 @@ const slider       = document.getElementById('timeline-slider');
 const yearDisplay  = document.getElementById('current-year');
 const layerToggles = document.getElementById('layer-toggles');
 const compareBtn   = document.getElementById('compare-btn');
+const terrainToggle = document.getElementById('terrain-toggle');
+const terrainExaggeration = document.getElementById('terrain-exaggeration');
 const compareSection = document.getElementById('compare-section');
 const compareSelect  = document.getElementById('compare-year-select');
 
@@ -77,7 +127,8 @@ function getLayerPriority(n) {
     if (l.includes('road')||l.includes('rounds'))                                     return 50;
     if (l.includes('railway'))                                                         return 40;
     if (l.includes('cemetery')||l.includes('landscape')||l.includes('field')||l.includes('agriculture')) return 30;
-    if ((l.includes('river')||l.includes('water')||l.includes('island'))&&!l.includes('road')) return 20;
+    if (l.includes('island'))                                                          return 25;
+    if ((l.includes('river')||l.includes('water')||l.includes('hur'))&&!l.includes('road')) return 20;
     return 10;
 }
 
@@ -140,20 +191,35 @@ function computeSpaceSyntax() {
             return isBld && item.layerInfo.years.includes(year);
         });
 
-        // Find road layers for this year
+        // Find road layers for this year (strictly line layers)
         const roadLayers = loadedLayersData.filter(item => {
             const nl = item.layerInfo.layer.toLowerCase();
-            const isRd = nl.includes('road') || nl.includes('rounds');
+            const isRd = (nl.includes('road') || nl.includes('rounds')) && !nl.startsWith('roads_') && !nl.startsWith('roads-');
             return isRd && item.layerInfo.years.includes(year);
         });
 
         if (buildingLayers.length === 0 || roadLayers.length === 0) return;
 
-        // Merge all road features for this year
+        // Merge all LineString road features for this year
         let roadFeatures = [];
         roadLayers.forEach(rl => {
             if (rl.data && rl.data.features) {
-                roadFeatures = roadFeatures.concat(rl.data.features);
+                rl.data.features.forEach(f => {
+                    if (!f || !f.geometry) return;
+                    const gtype = f.geometry.type;
+                    if (gtype === 'LineString') {
+                        roadFeatures.push(f);
+                    } else if (gtype === 'MultiLineString') {
+                        try {
+                            const flat = turf.flatten(f);
+                            if (flat && flat.features) {
+                                flat.features.forEach(ff => roadFeatures.push(ff));
+                            }
+                        } catch (_) {
+                            roadFeatures.push(f);
+                        }
+                    }
+                });
             }
         });
 
@@ -176,10 +242,12 @@ function computeSpaceSyntax() {
         // Map road connectivity to building block PermIdx
         buildingLayers.forEach(bl => {
             if (!bl.data || !bl.data.features) return;
+            
+            // First pass: assign simulated PermIdx only to features missing research data
             bl.data.features.forEach(f => {
                 if (!f.geometry) return;
 
-                // Keep original research data if it was in the file originally (not simulated)
+                // Keep original research data if present
                 if (f.properties && f.properties.PermIdx !== undefined && f.properties.PermIdx !== null && !f.properties.isSimulated) {
                     return;
                 }
@@ -220,13 +288,13 @@ function computeSpaceSyntax() {
                 let basePerm = 3000 + conn * 2500;
 
                 // Distance decay: drop permeability if building block is deep inside/isolated (above 200m from roads)
-                const distanceDecay = Math.max(0.2, 1 - (minBldDist / 0.2)); 
+                const distanceDecay = Math.max(0.2, 1 - (minBldDist / 0.2));
 
                 // Al-Nuri historic core premium (decaying over 1km)
                 const corePt = turf.point([43.128, 36.335]);
                 let distToCore = 1.0;
                 try { distToCore = turf.distance(bldPt, corePt, { units: 'kilometers' }); } catch (_) {}
-                const corePremium = Math.max(0, 12000 * (1 - distToCore / 1.0)); 
+                const corePremium = Math.max(0, 12000 * (1 - distToCore / 1.0));
 
                 // Bridge/riverfront corridor premium (decaying over 600m)
                 const bridgePt = turf.point([43.138, 36.338]);
@@ -238,7 +306,28 @@ function computeSpaceSyntax() {
 
                 if (!f.properties) f.properties = {};
                 f.properties.PermIdx = Math.max(1000, Math.min(26000, permIdx));
+                f.properties.isSimulated = true;
             });
+
+            // Second pass: normalize ALL PermIdx values in this layer to NormPermIdx (0-100)
+            // This ensures both research data and simulated data use the same color scale
+            const allPermVals = bl.data.features
+                .map(f => f.properties && f.properties.PermIdx)
+                .filter(v => typeof v === 'number' && !isNaN(v));
+            
+            if (allPermVals.length > 0) {
+                const pMin = Math.min(...allPermVals);
+                const pMax = Math.max(...allPermVals);
+                const pSpan = pMax > pMin ? pMax - pMin : 1;
+                
+                bl.data.features.forEach(f => {
+                    if (!f.properties) return;
+                    const pv = f.properties.PermIdx;
+                    if (typeof pv === 'number' && !isNaN(pv)) {
+                        f.properties.NormPermIdx = parseFloat(((pv - pMin) / pSpan * 100).toFixed(2));
+                    }
+                });
+            }
 
             // Push updated geometry back to MapLibre sources
             const sourceId = `source-${bl.layerInfo.layer}`;
@@ -255,51 +344,91 @@ function computeSpaceSyntax() {
 // ════════════════════════════════════════════════════════════
 // SPACE SYNTAX — colour expression builders
 // ════════════════════════════════════════════════════════════
-const SYNTAX_COLOR_EXPR = [
-    'case',
-    ['has', 'PermIdx'],
-    [
-        'interpolate', ['linear'], ['get', 'PermIdx'],
-        0,     '#2563eb',   // deep blue  — isolated
-        5000,  '#0ea5e9',   // sky blue
-        10000, '#10b981',   // emerald
-        15000, '#eab308',   // yellow
-        20000, '#f97316',   // orange
-        25000, '#ef4444'    // red        — highest integration
-    ],
-    '#06b6d4'               // fallback (no PermIdx) — cyan
-];
+// Normal building colour expression (status-aware)
+let currentAnalysisMode = 'normal'; // 'fractal', 'normal'
 
 // Normal building colour expression (status-aware)
 const BUILDING_COLOR_NORMAL = [
     'match', ['coalesce', ['get', 'Status'], ''],
     'Lost_or_Road_Cut', '#ef4444',
     'Survived',         '#fbbf24',
-    '#06b6d4'
+    '#d97706'
 ];
 
+function getLayerMorphologyColorExpr(layerItem) {
+    if (currentAnalysisMode === 'normal') return BUILDING_COLOR_NORMAL;
+    if (!layerItem || !layerItem.data || !layerItem.data.features) return BUILDING_COLOR_NORMAL;
+
+    if (currentAnalysisMode === 'syntax') {
+        // Check if this layer has any NormPermIdx (research data or post-computed)
+        const hasNorm = layerItem.data.features.some(
+            f => f.properties && typeof f.properties.NormPermIdx === 'number'
+        );
+        if (!hasNorm) return BUILDING_COLOR_NORMAL;
+
+        // Use NormPermIdx (always 0–100) — safe, no ascending order errors
+        return [
+            'case',
+            ['has', 'NormPermIdx'],
+            [
+                'interpolate', ['linear'], ['get', 'NormPermIdx'],
+                0,   '#1e3a5f',  // dark navy — lowest integration (isolated)
+                15,  '#2563eb',  // royal blue
+                30,  '#0ea5e9',  // sky blue — secondary alley
+                50,  '#10b981',  // emerald green — local street
+                70,  '#f59e0b',  // amber — commercial connector
+                85,  '#ef4444',  // red — primary movement artery
+                100, '#7f1d1d'   // deep crimson — peak integration hub
+            ],
+            '#d97706' // fallback: no data
+        ];
+    } else if (currentAnalysisMode === 'fractal') {
+        const hasNorm = layerItem.data.features.some(
+            f => f.properties && typeof f.properties.NormFractalIdx === 'number'
+        );
+        if (!hasNorm) return BUILDING_COLOR_NORMAL;
+
+        return [
+            'case',
+            ['has', 'NormFractalIdx'],
+            [
+                'interpolate', ['linear'], ['get', 'NormFractalIdx'],
+                0,   '#312e81',  // deep indigo — low fractal complexity
+                25,  '#6366f1',  // violet
+                50,  '#a855f7',  // purple / magenta
+                75,  '#ec4899',  // pink
+                100, '#f43f5e'   // rose red — peak structural fractal complexity
+            ],
+            '#8b5cf6' // fallback: no fractal data
+        ];
+    }
+
+    return BUILDING_COLOR_NORMAL;
+}
+
 function getBuildingColorExpr() {
-    return isSpaceSyntaxActive ? SYNTAX_COLOR_EXPR : BUILDING_COLOR_NORMAL;
+    return BUILDING_COLOR_NORMAL;
 }
 
 function updateBuildingHeatmapColors() {
-    manifest.layers.forEach(l => {
-        const id  = `layer-${l.layer}`;
-        const nl  = l.layer.toLowerCase();
+    loadedLayersData.forEach(item => {
+        const id = `layer-${item.layerInfo.layer}`;
+        const nl = item.layerInfo.layer.toLowerCase();
         const isBld = (nl.includes('building') || nl.includes('block'))
                    && !nl.includes('heritage') && !nl.includes('photo')
                    && !nl.includes('point');
         if (!isBld) return;
 
+        const expr = getLayerMorphologyColorExpr(item);
+
         const mainLayer    = map.getLayer(id);
         const compareLayer = mapCompare ? mapCompare.getLayer(id) : null;
 
-        // Guard: setPaintProperty on wrong layer type throws in MapLibre
         if (mainLayer && mainLayer.type === 'fill-extrusion') {
-            map.setPaintProperty(id, 'fill-extrusion-color', getBuildingColorExpr());
+            map.setPaintProperty(id, 'fill-extrusion-color', expr);
         }
         if (compareLayer && compareLayer.type === 'fill-extrusion') {
-            mapCompare.setPaintProperty(id, 'fill-extrusion-color', getBuildingColorExpr());
+            mapCompare.setPaintProperty(id, 'fill-extrusion-color', expr);
         }
     });
 }
@@ -309,12 +438,14 @@ function updateBuildingHeatmapColors() {
 // ════════════════════════════════════════════════════════════
 function getPhotoUrl(p) {
     if (!p) return '';
-    const idx = p.toLowerCase().indexOf('old photos');
+    let clean = p.replace(/\\/g, '/');
+    const idx = clean.toLowerCase().indexOf('old photos');
     if (idx !== -1) {
-        let rel = p.slice(idx).replace(/\\/g, '/');
-        return encodeURI(rel);
+        clean = clean.slice(idx);
+    } else if (!clean.startsWith('http://') && !clean.startsWith('https://') && !clean.startsWith('/')) {
+        clean = 'Old Photos/' + clean;
     }
-    return p;
+    return encodeURI(clean);
 }
 
 function showPhotoWindow(feature, coords) {
@@ -399,9 +530,17 @@ macWindow.querySelector('.zoom-btn')    .addEventListener('click', e => { e.stop
 // ════════════════════════════════════════════════════════════
 // MAP INIT
 // ════════════════════════════════════════════════════════════
+if (maplibregl.getRTLTextPluginStatus && maplibregl.getRTLTextPluginStatus() === 'unavailable') {
+    maplibregl.setRTLTextPlugin(
+        'https://unpkg.com/@mapbox/mapbox-gl-rtl-text@0.2.3/mapbox-gl-rtl-text.min.js',
+        null,
+        true // Lazy load RTL plugin for Arabic text rendering
+    );
+}
+
 const map = new maplibregl.Map({
     container: 'map',
-    style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+    style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
     center: [43.128, 36.335],
     zoom: 14.5,
     pitch: 50,
@@ -410,14 +549,64 @@ const map = new maplibregl.Map({
 
 const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12 });
 
-// ── Timeline slider init ─────────────────────────────────
-slider.max = years.length - 1;
+// ── Era Timeline UI Initialization ────────────────────────
+function initTimelineUI() {
+    slider.max = years.length - 1;
 
-const sliderNodes = document.getElementById('slider-nodes');
-sliderNodes.innerHTML = years.map((y, i) => `<div class="node ${i===0?'active':''}" data-index="${i}"></div>`).join('');
+    const container = document.getElementById('era-groups-container');
+    if (!container) return;
 
-const sliderLabels = document.getElementById('slider-labels');
-sliderLabels.innerHTML = years.map((y, i) => `<span data-index="${i}">${y}</span>`).join('');
+    let globalIdx = 0;
+    let html = '';
+
+    eraGroups.forEach((group, groupIdx) => {
+        const firstIdx = globalIdx;
+        html += `
+        <div class="era-card-group ${groupIdx === 0 ? 'active-era' : ''}" data-era-id="${group.id}" data-first-idx="${firstIdx}">
+            <div class="era-pill" title="${group.fullName}" data-first-idx="${firstIdx}">${group.name}</div>
+            <div class="era-stem"></div>
+            <div class="era-track-wrapper">
+                ${group.years.length > 1 ? '<div class="era-line"></div>' : ''}
+                ${group.years.map(y => {
+                    const idx = globalIdx++;
+                    return `
+                    <div class="node-cell" data-index="${idx}" title="${group.fullName} (${y})">
+                        <div class="node ${idx === 0 ? 'active' : ''}" data-index="${idx}"></div>
+                        <span class="year-num ${idx === 0 ? 'active-year' : ''}" data-index="${idx}">${y}</span>
+                    </div>
+                    `;
+                }).join('')}
+            </div>
+        </div>
+        `;
+
+        if (groupIdx < eraGroups.length - 1) {
+            html += `<div class="era-divider"></div>`;
+        }
+    });
+
+    container.innerHTML = html;
+
+    document.querySelectorAll('.era-pill').forEach(pill => {
+        pill.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = parseInt(pill.dataset.firstIdx);
+            slider.value = idx;
+            updateYear(idx);
+        });
+    });
+
+    document.querySelectorAll('.node-cell').forEach(cell => {
+        cell.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = parseInt(cell.dataset.index);
+            slider.value = idx;
+            updateYear(idx);
+        });
+    });
+}
+
+initTimelineUI();
 
 // ════════════════════════════════════════════════════════════
 // MAP LOAD — add sources, layers, terrain
@@ -441,43 +630,17 @@ map.on('load', async () => {
         }
     });
 
-    // Manifest + layers
+    // Manifest + layers + map sources
     const ts = new Date().getTime();
+    await loadMapSources();
     manifest = await (await fetch(`data/manifest.json?t=${ts}`)).json();
 
     const rawLayers = [];
     await Promise.all(manifest.layers.map(async info => {
         const data = await (await fetch(`data/${info.file}?t=${ts}`)).json();
 
-        // Post-process building blocks to ensure PermIdx is always populated for Space Syntax Walkability Heatmap
-        const nl = info.layer.toLowerCase();
-        const isBld = (nl.includes('building') || nl.includes('block'))
-                   && !nl.includes('heritage') && !nl.includes('photo')
-                   && !nl.includes('point');
-        if (isBld && data.features) {
-            data.features.forEach(f => {
-                if (!f.properties) f.properties = {};
-                if (f.properties.PermIdx === undefined || f.properties.PermIdx === null) {
-                    let coord = [43.130, 36.340];
-                    if (f.geometry && f.geometry.coordinates) {
-                        if (f.geometry.type === 'Polygon' && f.geometry.coordinates[0] && f.geometry.coordinates[0][0]) {
-                            coord = f.geometry.coordinates[0][0];
-                        } else if (f.geometry.type === 'MultiPolygon' && f.geometry.coordinates[0] && f.geometry.coordinates[0][0] && f.geometry.coordinates[0][0][0]) {
-                            coord = f.geometry.coordinates[0][0][0];
-                        }
-                    }
-                    const dx = coord[0] - 43.130;
-                    const dy = coord[1] - 36.340;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    const hash = Math.abs(Math.sin(coord[0] * 12.9898 + coord[1] * 78.233) * 43758.5453);
-                    const noise = hash - Math.floor(hash);
-                    let base = 22000 - (dist * 120000);
-                    let permIdx = base + (noise * 6000 - 3000);
-                    f.properties.PermIdx = Math.max(1000, Math.min(26000, permIdx));
-                    f.properties.isSimulated = true; // Set simulated flag
-                }
-            });
-        }
+        // (Space Syntax PermIdx assignment and normalization handled by computeSpaceSyntax() below,
+        //  after all road layers are also loaded — this avoids incorrect early simulation)
 
         rawLayers.push({ layerInfo: info, data });
         loadedLayersData.push({ layerInfo: info, data });
@@ -497,7 +660,7 @@ map.on('load', async () => {
 
     updateYear(0);
     computeSpaceSyntax(); // Calculate road-network space syntax walkability on-the-fly
-    initCharts();         // Analytics charts
+    updateBuildingHeatmapColors();
     setupMeasureWidget(); // Measurement tool
 });
 
@@ -510,9 +673,11 @@ function addLayerToMap(targetMap, layerInfo, data) {
     const n        = layerInfo.layer.toLowerCase();
 
     const isRoad      = n.includes('road') || n.includes('rounds');
-    const isWater     = (n.includes('river') || n.includes('water') || n.includes('island')) && !isRoad;
+    const isIsland    = n.includes('island');
+    const isWater     = (n.includes('river') || n.includes('water') || n.includes('hur')) && !isIsland && !isRoad;
     const isBridge    = n.includes('bridge');
-    const isWall      = n.includes('wall') || n.includes('gate') || n.includes('border') || n.includes('boarder') || n.includes('entrance');
+    const isBorder    = n.includes('border') || n.includes('boarder');
+    const isWall      = (n.includes('wall') || n.includes('gate') || n.includes('entrance')) && !isBorder;
     const isPhoto     = n.includes('photo');
     const isHeritage  = (n.includes('heritage') || n.includes('landmark') || (n.includes('building') && n.includes('point'))) && !isPhoto;
     const isBuilding  = (n.includes('building') || n.includes('block')) && !isHeritage && !isPhoto;
@@ -522,9 +687,10 @@ function addLayerToMap(targetMap, layerInfo, data) {
 
     // Default colour
     let color = '#94a3b8';
-    if (isBuilding)  color = '#06b6d4';
+    if (isBuilding)  color = '#d97706';
     if (isRoad)      color = '#fbbf24';
     if (isWater)     color = '#38bdf8';
+    if (isIsland)    color = '#e2e8f0';
     if (isBridge)    color = '#ef4444';
     if (isWall)      color = '#f43f5e';
     if (isHeritage)  color = '#c084fc';
@@ -612,6 +778,31 @@ function addLayerToMap(targetMap, layerInfo, data) {
                     'circle-stroke-color': '#fff', 'circle-pitch-alignment': 'map'
                 }
             });
+            if (targetMap === map) {
+                map.on('mouseenter', layerId, e => {
+                    map.getCanvas().style.cursor = 'pointer';
+                    const f = e.features[0]; if (!f) return;
+                    const p = f.properties || {};
+                    const name = p['Building N'] || p['Building_N'] || p['Building N '] || p.Name || p.name || p.NAME || p.Label || p.id || '';
+                    if (name) {
+                        const coords = f.geometry.type === 'Point' ? f.geometry.coordinates.slice() : e.lngLat;
+                        popup.setLngLat(coords).setHTML(`<b>${name}</b>`).addTo(map);
+                    }
+                });
+                map.on('mousemove', layerId, e => {
+                    const f = e.features[0]; if (!f) return;
+                    const p = f.properties || {};
+                    const name = p['Building N'] || p['Building_N'] || p['Building N '] || p.Name || p.name || p.NAME || p.Label || p.id || '';
+                    if (name) {
+                        const coords = f.geometry.type === 'Point' ? f.geometry.coordinates.slice() : e.lngLat;
+                        popup.setLngLat(coords);
+                    }
+                });
+                map.on('mouseleave', layerId, () => {
+                    map.getCanvas().style.cursor = '';
+                    popup.remove();
+                });
+            }
         }
     } else if (geomType === 'LineString' || geomType === 'MultiLineString') {
         targetMap.addLayer({
@@ -633,35 +824,26 @@ function addLayerToMap(targetMap, layerInfo, data) {
                     'fill-extrusion-color': getBuildingColorExpr(),
                     'fill-extrusion-height': [
                         'case',
-                        ['has', 'PermIdx'],     ['interpolate', ['linear'], ['get', 'PermIdx'], 0, 5, 20000, 18],
-                        ['has', 'Complexity'],  ['interpolate', ['linear'], ['get', 'Complexity'], 0, 5, 2, 20],
-                        12
+                        ['has', 'height'],     ['get', 'height'],
+                        ['has', 'Complexity'], ['interpolate', ['linear'], ['get', 'Complexity'], 0, 6, 2, 14],
+                        8
                     ],
                     'fill-extrusion-base': 0,
                     'fill-extrusion-opacity': 0.85
                 }
             });
-            // Building hover tooltip (PermIdx) – main map only
-            if (targetMap === map) {
-                map.on('mouseenter', layerId, e => {
-                    if (!isSpaceSyntaxActive) return;
-                    const f = e.features[0]; if (!f) return;
-                    map.getCanvas().style.cursor = 'pointer';
-                    const pi = f.properties.PermIdx;
-                    const html = pi != null
-                        ? `<b>Permeability Index</b><br>${Math.round(pi).toLocaleString()}`
-                        : '<b>No PermIdx data</b>';
-                    popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
-                });
-                map.on('mousemove', layerId, e => {
-                    if (!isSpaceSyntaxActive) return;
-                    popup.setLngLat(e.lngLat);
-                });
-                map.on('mouseleave', layerId, () => {
-                    map.getCanvas().style.cursor = '';
-                    popup.remove();
-                });
-            }
+
+        } else if (isBorder) {
+            // City Borders: Flat ground boundary fill (not extruded to wall height)
+            targetMap.addLayer({
+                id: layerId, type: 'fill', source: sourceId,
+                layout: { visibility: 'none' },
+                paint: {
+                    'fill-color': colorExpr,
+                    'fill-opacity': 0.25,
+                    'fill-outline-color': '#f43f5e'
+                }
+            });
         } else if (isWall) {
             targetMap.addLayer({
                 id: layerId, type: 'fill-extrusion', source: sourceId,
@@ -705,8 +887,8 @@ function addLayerToMap(targetMap, layerInfo, data) {
                 layout: { visibility: 'none' },
                 paint: {
                     'fill-color': colorExpr,
-                    'fill-opacity': isWater ? 0.65 : (isOpenSpace ? 0.35 : 0.7),
-                    'fill-outline-color': isOpenSpace ? 'transparent' : 'rgba(255,255,255,0.2)'
+                    'fill-opacity': isIsland ? 0.95 : (isWater ? 0.65 : (isOpenSpace ? 0.35 : 0.7)),
+                    'fill-outline-color': isIsland ? '#cbd5e1' : (isOpenSpace ? 'transparent' : 'rgba(255,255,255,0.2)')
                 }
             });
         }
@@ -751,12 +933,38 @@ function setCompareLayerVisibility(layerId, vis) {
 // ════════════════════════════════════════════════════════════
 function updateYear(index) {
     const year = years[index];
-    yearDisplay.innerText = year;
+    yearDisplay.innerText = formatYearLabel(year);
 
-    document.querySelectorAll('.node').forEach((n, i) => n.classList.toggle('active', i === index));
+    const activeGroup = getEraGroupForYear(year);
+    const badgeEl = document.getElementById('current-era-badge');
+    if (badgeEl) {
+        badgeEl.innerText = activeGroup.name;
+        badgeEl.title = activeGroup.fullName;
+    }
+
+    document.querySelectorAll('.era-card-group').forEach(el => {
+        el.classList.toggle('active-era', el.dataset.eraId === activeGroup.id);
+    });
+
+    document.querySelectorAll('.node').forEach((n) => {
+        const i = parseInt(n.dataset.index);
+        n.classList.toggle('active', i === index);
+    });
+
+    document.querySelectorAll('.year-num').forEach((s) => {
+        const i = parseInt(s.dataset.index);
+        s.classList.toggle('active-year', i === index);
+    });
+
+    const winEl = document.getElementById('map-source-window');
+    if (winEl && winEl.classList.contains('show')) {
+        populateMapSourceData(year);
+    }
 
     if (isCompareModeActive) {
-        populateCompareYears(year);
+        const currentIdx = index;
+        selectedCompareYear = currentIdx > 0 ? years[currentIdx - 1] : years[currentIdx + 1];
+        populateCompareUI(year);
         updateCompareLayout();
     }
 
@@ -764,7 +972,8 @@ function updateYear(index) {
     manifest.layers.forEach(l => setLayerVisibility(`layer-${l.layer}`, 'none'));
 
     // Relevant layers for this year
-    const relevant = manifest.layers.filter(l => l.years && l.years.includes(year));
+    const numYear = Number(year);
+    const relevant = manifest.layers.filter(l => l.years && l.years.some(y => Number(y) === numYear));
 
     // Group by category
     const catGroups = {
@@ -836,9 +1045,8 @@ function updateYear(index) {
         document.getElementById('stat-growth').innerText    = '-- x';
     }
 
-    // Keep chart needle in sync
-    if (window.densityChart && window.roadsChart) {
-        syncChartsToYear(year);
+    if (isSpaceSyntaxActive) {
+        updateBuildingHeatmapColors();
     }
 }
 
@@ -847,64 +1055,141 @@ function updateYear(index) {
 // ════════════════════════════════════════════════════════════
 slider.addEventListener('input', e => updateYear(parseInt(e.target.value)));
 
-document.querySelectorAll('.slider-labels span').forEach(label => {
-    label.addEventListener('click', () => {
-        const idx = parseInt(label.dataset.index);
-        slider.value = idx;
-        updateYear(idx);
+// ════════════════════════════════════════════════════════════
+// MAP SOURCES HELPERS & LISTENERS
+// ════════════════════════════════════════════════════════════
+async function loadMapSources() {
+    try {
+        const ts = new Date().getTime();
+        mapSources = await (await fetch(`data/map_sources.json?t=${ts}`)).json();
+    } catch (e) {
+        console.warn('Could not load map_sources.json', e);
+    }
+}
+
+function populateMapSourceData(year) {
+    const yearKey = String(year);
+    const src = mapSources[yearKey] || {
+        year: formatYearLabel(year),
+        era: `Era ${formatYearLabel(year)}`,
+        title: `Map of Mosul (${formatYearLabel(year)})`,
+        author: "Unknown / Unspecified Cartographer",
+        source: "Archival Record",
+        date: `${formatYearLabel(year)}`,
+        description: "No detailed source notes provided for this map year yet. You can add them in MAP_SOURCES.md or map_sources.json."
+    };
+
+    const badgeEl  = document.getElementById('source-year-badge');
+    const titleEl  = document.getElementById('source-title');
+    const authorEl = document.getElementById('source-author');
+    const repoEl   = document.getElementById('source-repo');
+    const dateEl   = document.getElementById('source-date');
+    const descEl   = document.getElementById('source-desc');
+
+    if (badgeEl)  badgeEl.innerText  = `Era: ${src.year} ${src.era ? `(${src.era})` : ''}`;
+    if (titleEl)  titleEl.innerText  = src.title || `Map of Mosul (${formatYearLabel(year)})`;
+    if (authorEl) authorEl.innerText = src.author || 'Unspecified';
+    if (repoEl)   repoEl.innerText   = src.source || 'Unspecified';
+    if (dateEl)   dateEl.innerText   = src.date || `${formatYearLabel(year)}`;
+    if (descEl)   descEl.innerText   = src.description || '';
+}
+
+function showMapSource(year) {
+    populateMapSourceData(year);
+    const winEl = document.getElementById('map-source-window');
+    if (winEl) {
+        winEl.classList.add('show');
+    }
+}
+
+const mapSourceBtn   = document.getElementById('map-source-btn');
+const sourceCloseBtn = document.getElementById('source-close-btn');
+
+if (mapSourceBtn) {
+    mapSourceBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const activeYear = years[parseInt(slider.value)] || years[0];
+        showMapSource(activeYear);
     });
-});
-
-document.querySelectorAll('.node').forEach(node => {
-    node.addEventListener('click', () => {
-        const idx = parseInt(node.dataset.index);
-        slider.value = idx;
-        updateYear(idx);
+}
+if (sourceCloseBtn) {
+    sourceCloseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const winEl = document.getElementById('map-source-window');
+        if (winEl) winEl.classList.remove('show');
     });
+}
+
+// ════════════════════════════════════════════════════════════
+// RESEARCH CITATION MODAL
+// ════════════════════════════════════════════════════════════
+const researchMetaBtn  = document.getElementById('research-meta-btn');
+const citationCloseBtn = document.getElementById('citation-close-btn');
+
+if (researchMetaBtn) {
+    researchMetaBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const winEl = document.getElementById('research-citation-window');
+        if (winEl) winEl.classList.add('show');
+    });
+}
+if (citationCloseBtn) {
+    citationCloseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const winEl = document.getElementById('research-citation-window');
+        if (winEl) winEl.classList.remove('show');
+    });
+}
+
+// Close modals on Escape key or outside click
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.source-window.show').forEach(win => win.classList.remove('show'));
+    }
 });
 
 // ════════════════════════════════════════════════════════════
-// MAP EVENTS
+// MORPHOMETRIC ANALYSIS MODE SELECTOR
 // ════════════════════════════════════════════════════════════
-map.on('click', () => {
-    if (clickedPhotoThisTurn) { clickedPhotoThisTurn = false; return; }
-    if (isPhotoWindowPinned)  unpinPhotoWindow();
-});
-map.on('move', () => {
-    if (macWindow.style.display === 'flex') positionPhotoWindow();
-    if (isCompareModeActive && mapCompare) syncMove(map, mapCompare);
-});
+const modeSyntaxBtn  = document.getElementById('mode-syntax-btn');
+const modeFractalBtn = document.getElementById('mode-fractal-btn');
+const modeNormalBtn  = document.getElementById('mode-normal-btn');
 
-// ════════════════════════════════════════════════════════════
-// TERRAIN UI
-// ════════════════════════════════════════════════════════════
-const terrainToggle      = document.getElementById('terrain-toggle');
-const terrainExaggeration = document.getElementById('terrain-exaggeration');
-const exaggerationVal    = document.getElementById('exaggeration-val');
+function setMorphologyMode(mode) {
+    currentAnalysisMode = mode;
+    [modeSyntaxBtn, modeFractalBtn, modeNormalBtn].forEach(btn => {
+        if (btn) btn.classList.remove('active');
+    });
 
-terrainToggle.addEventListener('change', e => {
-    const ex = parseFloat(terrainExaggeration.value);
-    if (e.target.checked) {
-        map.setTerrain({ source: 'terrain-source', exaggeration: ex });
-        map.setLayoutProperty('hillshade-layer', 'visibility', 'visible');
-        if (mapCompare) {
-            mapCompare.setTerrain({ source: 'terrain-source', exaggeration: ex });
-            mapCompare.setLayoutProperty('hillshade-layer', 'visibility', 'visible');
-        }
+    const legendTitle   = document.getElementById('syntax-legend-title');
+    const legendBox     = document.getElementById('syntax-legend-container');
+    const insightText   = document.getElementById('syntax-insight-text');
+
+    if (mode === 'syntax') {
+        if (modeSyntaxBtn) modeSyntaxBtn.classList.add('active');
+        isSpaceSyntaxActive = true;
+        if (legendTitle) legendTitle.innerText = 'Space Syntax Integration (Rₙ)';
+        if (legendBox) legendBox.style.display = 'block';
+        if (insightText) insightText.innerText = 'Space Syntax integration metrics (Rₙ) model pedestrian movement potential and commercial centrality across historical Mosul urban fabrics.';
+    } else if (mode === 'fractal') {
+        if (modeFractalBtn) modeFractalBtn.classList.add('active');
+        isSpaceSyntaxActive = true;
+        if (legendTitle) legendTitle.innerText = 'Fractal Dimension Complexity (D_f)';
+        if (legendBox) legendBox.style.display = 'block';
+        if (insightText) insightText.innerText = 'Fractal dimension metrics (D_f) analyze the self-similarity and structural complexity of Mosul\'s dense historical building blocks.';
     } else {
-        map.setTerrain(null);
-        map.setLayoutProperty('hillshade-layer', 'visibility', 'none');
-        if (mapCompare) { mapCompare.setTerrain(null); mapCompare.setLayoutProperty('hillshade-layer', 'visibility', 'none'); }
+        if (modeNormalBtn) modeNormalBtn.classList.add('active');
+        isSpaceSyntaxActive = false;
+        if (legendBox) legendBox.style.display = 'none';
+        if (insightText) insightText.innerText = 'Standard 3D extrusion mode showing realistic architectural building heights and historical fabric status.';
     }
-});
-terrainExaggeration.addEventListener('input', e => {
-    const v = parseFloat(e.target.value);
-    exaggerationVal.innerText = `${v.toFixed(1)}x`;
-    if (terrainToggle.checked) {
-        map.setTerrain({ source: 'terrain-source', exaggeration: v });
-        if (mapCompare) mapCompare.setTerrain({ source: 'terrain-source', exaggeration: v });
-    }
-});
+
+    updateBuildingHeatmapColors();
+}
+
+if (modeSyntaxBtn)  modeSyntaxBtn.addEventListener('click', () => setMorphologyMode('syntax'));
+if (modeFractalBtn) modeFractalBtn.addEventListener('click', () => setMorphologyMode('fractal'));
+if (modeNormalBtn)  modeNormalBtn.addEventListener('click', () => setMorphologyMode('normal'));
 
 // ════════════════════════════════════════════════════════════
 // SIDEBAR TABS
@@ -917,40 +1202,10 @@ document.querySelectorAll('.mac-tab').forEach(btn => {
         const activePanelId = btn.dataset.tab;
         document.getElementById(activePanelId).classList.add('active');
 
-        // 1. Auto-activate Space Syntax walkability heatmap when opening the Syntax tab
         if (activePanelId === 'tab-syntax') {
-            if (!isSpaceSyntaxActive) {
-                isSpaceSyntaxActive = true;
-                syntaxToggle.classList.add('active');
-                syntaxToggle.innerText = '🗺 Walkability Heatmap: ON';
-                syntaxLegend.style.display = 'block';
-                syntaxInsight.innerText = SYNTAX_INSIGHTS[Math.floor(Math.random() * SYNTAX_INSIGHTS.length)];
-                updateBuildingHeatmapColors();
-            }
+            setMorphologyMode('fractal');
         } else {
-            // Deactivate heatmap when switching away to restore normal building colors
-            if (isSpaceSyntaxActive) {
-                isSpaceSyntaxActive = false;
-                syntaxToggle.classList.remove('active');
-                syntaxToggle.innerText = '🗺 Walkability Heatmap: OFF';
-                syntaxLegend.style.display = 'none';
-                syntaxInsight.innerText = 'Activate the heatmap to reveal spatial patterns. Integrated corridors link historical gates to commercial centres, reflecting the organically-evolved Mosul city core.';
-                updateBuildingHeatmapColors();
-            }
-        }
-
-        // 2. Force Chart.js charts to resize and layout correctly when revealing the Analytics tab
-        if (activePanelId === 'tab-analytics') {
-            setTimeout(() => {
-                if (window.densityChart) {
-                    window.densityChart.resize();
-                    window.densityChart.update();
-                }
-                if (window.roadsChart) {
-                    window.roadsChart.resize();
-                    window.roadsChart.update();
-                }
-            }, 50);
+            setMorphologyMode('normal');
         }
     });
 });
@@ -970,60 +1225,108 @@ const transitionsData = [
     { from: 1944, to: 2020, layer: '1944_2020_Changes' }
 ];
 
-function getAvailableCompareYears(currentYear) {
-    const list = [];
-    transitionsData.forEach(t => {
-        if (t.from === currentYear) list.push({ year: t.to,   layer: t.layer, direction: 'forward' });
-        if (t.to   === currentYear) list.push({ year: t.from, layer: t.layer, direction: 'backward' });
-    });
-    return list;
+let selectedCompareYear = null;
+
+function populateCompareUI(currentYear) {
+    const numCurrentYear = Number(currentYear);
+    const currentIdx = years.indexOf(numCurrentYear);
+    const prevYear = currentIdx > 0 ? years[currentIdx - 1] : null;
+    const nextYear = currentIdx < years.length - 1 ? years[currentIdx + 1] : null;
+
+    const prevBtn = document.getElementById('compare-prev-btn');
+    const nextBtn = document.getElementById('compare-next-btn');
+
+    if (prevBtn) {
+        if (prevYear) {
+            prevBtn.style.display = 'flex';
+            prevBtn.innerText = `◄ Previous (${prevYear})`;
+            prevBtn.dataset.year = prevYear;
+        } else {
+            prevBtn.style.display = 'none';
+        }
+    }
+
+    if (nextBtn) {
+        if (nextYear) {
+            nextBtn.style.display = 'flex';
+            nextBtn.innerText = `Future (${nextYear}) ►`;
+            nextBtn.dataset.year = nextYear;
+        } else {
+            nextBtn.style.display = 'none';
+        }
+    }
+
+    if (!selectedCompareYear || !years.map(Number).includes(Number(selectedCompareYear)) || Number(selectedCompareYear) === numCurrentYear) {
+        selectedCompareYear = prevYear ? prevYear : nextYear;
+    }
+
+    if (compareSelect) {
+        const otherYears = years.filter(y => Number(y) !== numCurrentYear);
+        compareSelect.innerHTML = otherYears.map(y => {
+            let label = `${y}`;
+            if (Number(y) === Number(prevYear)) label += ' (Previous Era)';
+            else if (Number(y) === Number(nextYear)) label += ' (Future Era)';
+            return `<option value="${y}" ${Number(y) === Number(selectedCompareYear) ? 'selected' : ''}>${label}</option>`;
+        }).join('');
+    }
+
+    if (prevBtn) prevBtn.classList.toggle('active', Number(selectedCompareYear) === Number(prevYear));
+    if (nextBtn) nextBtn.classList.toggle('active', Number(selectedCompareYear) === Number(nextYear));
 }
 
-function populateCompareYears(year) {
-    const available = getAvailableCompareYears(year).sort((a, b) => a.year - b.year);
-    compareSelect.innerHTML = available.length
-        ? available.map(t => `<option value="${t.year}">${t.year} (${t.direction === 'forward' ? 'future' : 'past'})</option>`).join('')
-        : `<option value="">No transitions available</option>`;
+function setMapYearLayers(targetMap, year) {
+    if (!targetMap || !manifest || !manifest.layers) return;
+    const numYear = Number(year);
+    if (isNaN(numYear)) return;
+
+    const isCompare = (targetMap === mapCompare);
+    const setVisFunc = isCompare ? setCompareLayerVisibility : setLayerVisibility;
+
+    manifest.layers.forEach(l => setVisFunc(`layer-${l.layer}`, 'none'));
+
+    const relevant = manifest.layers.filter(l => l.years && l.years.some(y => Number(y) === numYear));
+    relevant.forEach(l => {
+        const cat = getLayerCategory(l.layer);
+        if (cat !== 'Era Changes') {
+            setVisFunc(`layer-${l.layer}`, 'visible');
+        }
+    });
+
+    updateBuildingHeatmapColors();
 }
 
 function updateCompareLayout() {
     if (!isCompareModeActive) return;
-    const currentYear  = years[parseInt(slider.value)];
-    const selectedYear = parseInt(compareSelect.value);
-    if (isNaN(selectedYear)) return;
+    const currentYear = Number(years[parseInt(slider.value)]);
+    const currentIdx = years.indexOf(currentYear);
+    const prevYear = currentIdx > 0 ? years[currentIdx - 1] : null;
+    const nextYear = currentIdx < years.length - 1 ? years[currentIdx + 1] : null;
 
-    const activeTransition = getAvailableCompareYears(currentYear).find(t => t.year === selectedYear);
-    if (!activeTransition) return;
-
-    manifest.layers.forEach(l => setLayerVisibility(`layer-${l.layer}`, 'none'));
-    setLayerVisibility(`layer-${activeTransition.layer}`, 'visible');
-
-    // Checkbox UI sync
-    document.querySelectorAll('.layer-item').forEach(item => {
-        const cb   = item.querySelector('input');
-        const span = item.querySelector('span');
-        if (!span || !cb) return;
-        const t = span.innerText.toLowerCase();
-        if (t.includes('building') || t.includes('road'))  cb.checked = false;
-        if (t.includes('urban growth'))                    cb.checked = true;
-    });
-
-    if (mapCompare) {
-        manifest.layers.forEach(l => setCompareLayerVisibility(`layer-${l.layer}`, 'none'));
-        manifest.layers
-            .filter(l => l.years && l.years.includes(selectedYear))
-            .forEach(l => {
-                const nl = l.layer.toLowerCase();
-                const isBld = nl.includes('building') || nl.includes('block');
-                const isRd  = nl.includes('road') || nl.includes('rounds');
-                const isHer = nl.includes('heritage');
-                const isPh  = nl.includes('photo');
-                if ((isBld || isRd) && !isHer && !isPh) setCompareLayerVisibility(`layer-${l.layer}`, 'visible');
-            });
+    if (!selectedCompareYear || Number(selectedCompareYear) === currentYear) {
+        selectedCompareYear = prevYear ? prevYear : nextYear;
     }
 
-    document.getElementById('map-a-label').innerText = `Left Map: ${currentYear} (Changes vs ${selectedYear})`;
-    document.getElementById('map-b-label').innerText = `Right Map: ${selectedYear} (Building Fabric)`;
+    const prevBtn = document.getElementById('compare-prev-btn');
+    const nextBtn = document.getElementById('compare-next-btn');
+    if (prevBtn) prevBtn.classList.toggle('active', Number(selectedCompareYear) === Number(prevYear));
+    if (nextBtn) nextBtn.classList.toggle('active', Number(selectedCompareYear) === Number(nextYear));
+
+    if (compareSelect && parseInt(compareSelect.value) !== Number(selectedCompareYear)) {
+        compareSelect.value = selectedCompareYear;
+    }
+
+    setMapYearLayers(map, currentYear);
+
+    if (mapCompare) {
+        setMapYearLayers(mapCompare, selectedCompareYear);
+    }
+
+    let relText = '';
+    if (Number(selectedCompareYear) === Number(prevYear)) relText = ' (Previous Era)';
+    else if (Number(selectedCompareYear) === Number(nextYear)) relText = ' (Future Era)';
+
+    document.getElementById('map-a-label').innerText = `Left Map: ${currentYear}`;
+    document.getElementById('map-b-label').innerText = `Right Map: ${selectedCompareYear}${relText}`;
 }
 
 compareBtn.addEventListener('click', () => {
@@ -1033,10 +1336,14 @@ compareBtn.addEventListener('click', () => {
     document.body.classList.toggle('compare-mode', isCompareModeActive);
 
     if (isCompareModeActive) {
+        const currentYear = years[parseInt(slider.value)];
+        const currentIdx = years.indexOf(currentYear);
+        selectedCompareYear = currentIdx > 0 ? years[currentIdx - 1] : years[currentIdx + 1];
+
         compareSection.style.display = 'block';
         document.getElementById('map-a-label').style.display = 'block';
         document.getElementById('map-b-label').style.display = 'block';
-        populateCompareYears(years[parseInt(slider.value)]);
+        populateCompareUI(currentYear);
         if (!mapCompare) initCompareMap();
         else {
             map.resize(); mapCompare.resize();
@@ -1052,7 +1359,33 @@ compareBtn.addEventListener('click', () => {
     }
 });
 
-compareSelect.addEventListener('change', updateCompareLayout);
+const prevBtn = document.getElementById('compare-prev-btn');
+const nextBtn = document.getElementById('compare-next-btn');
+
+if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+        const y = parseInt(prevBtn.dataset.year);
+        if (y) {
+            selectedCompareYear = y;
+            updateCompareLayout();
+        }
+    });
+}
+
+if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+        const y = parseInt(nextBtn.dataset.year);
+        if (y) {
+            selectedCompareYear = y;
+            updateCompareLayout();
+        }
+    });
+}
+
+compareSelect.addEventListener('change', e => {
+    selectedCompareYear = parseInt(e.target.value);
+    updateCompareLayout();
+});
 
 function syncMove(src, tgt) {
     if (isSyncing) return;
@@ -1064,7 +1397,7 @@ function syncMove(src, tgt) {
 function initCompareMap() {
     mapCompare = new maplibregl.Map({
         container: 'map-compare',
-        style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+        style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
         center: map.getCenter(), zoom: map.getZoom(), pitch: map.getPitch(), bearing: map.getBearing()
     });
 
@@ -1073,13 +1406,20 @@ function initCompareMap() {
             if (isCompareModeActive) syncMove(mapCompare, map);
         });
 
+        if (!map._hasCompareSync) {
+            map._hasCompareSync = true;
+            map.on('move', () => {
+                if (isCompareModeActive && mapCompare) syncMove(map, mapCompare);
+            });
+        }
+
         mapCompare.addSource('terrain-source', {
             type: 'raster-dem',
             tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
             encoding: 'terrarium', tileSize: 256, maxzoom: 15
         });
-        const ex = parseFloat(terrainExaggeration.value);
-        if (terrainToggle.checked) {
+        const ex = terrainExaggeration ? parseFloat(terrainExaggeration.value) || 1.5 : 1.5;
+        if (!terrainToggle || terrainToggle.checked) {
             mapCompare.setTerrain({ source: 'terrain-source', exaggeration: ex });
             mapCompare.addLayer({
                 id: 'hillshade-layer', type: 'hillshade', source: 'terrain-source',
@@ -1113,149 +1453,22 @@ const SYNTAX_INSIGHTS = [
     'Post-conflict fabric (2020) shows fragmented integration reflecting wartime damage.'
 ];
 
-syntaxToggle.addEventListener('click', () => {
-    isSpaceSyntaxActive = !isSpaceSyntaxActive;
-    syntaxToggle.classList.toggle('active', isSpaceSyntaxActive);
-    syntaxToggle.innerText = isSpaceSyntaxActive ? '🗺 Walkability Heatmap: ON' : '🗺 Walkability Heatmap: OFF';
-    syntaxLegend.style.display = isSpaceSyntaxActive ? 'block' : 'none';
+if (syntaxToggle) {
+    syntaxToggle.addEventListener('click', () => {
+        isSpaceSyntaxActive = !isSpaceSyntaxActive;
+        syntaxToggle.classList.toggle('active', isSpaceSyntaxActive);
+        syntaxToggle.innerText = isSpaceSyntaxActive ? '🗺 Walkability Heatmap: ON' : '🗺 Walkability Heatmap: OFF';
+        if (syntaxLegend) syntaxLegend.style.display = isSpaceSyntaxActive ? 'block' : 'none';
 
-    if (isSpaceSyntaxActive) {
-        syntaxInsight.innerText = SYNTAX_INSIGHTS[Math.floor(Math.random() * SYNTAX_INSIGHTS.length)];
-    } else {
-        syntaxInsight.innerText = 'Activate the heatmap to reveal spatial patterns. Integrated corridors link historical gates to commercial centres, reflecting the organically-evolved Mosul city core.';
-    }
-
-    updateBuildingHeatmapColors();
-});
-
-// ════════════════════════════════════════════════════════════
-// QUANTITATIVE ANALYTICS CHARTS
-// ════════════════════════════════════════════════════════════
-function initCharts() {
-    if (typeof Chart === 'undefined') {
-        console.error('Chart.js UMD module is not loaded. Analytics charts initialization aborted.');
-        return;
-    }
-
-    // Build chronological arrays
-    const labels = years.map(String);
-    const buildingData = years.map(y => stats[y] ? parseFloat(stats[y].buildings.toFixed(3)) : 0);
-    const roadsData    = years.map(y => stats[y] ? parseFloat(stats[y].roads.toFixed(2))     : 0);
-
-    const CHART_DEFAULTS = {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: { duration: 600, easing: 'easeInOutQuart' },
-        plugins: {
-            legend: { display: false },
-            tooltip: {
-                backgroundColor: 'rgba(15,23,42,0.95)',
-                borderColor: 'rgba(245,158,11,0.5)',
-                borderWidth: 1,
-                titleColor: '#f59e0b',
-                bodyColor: '#f8fafc',
-                padding: 10,
-                callbacks: {
-                    title: ctx => `Year: ${ctx[0].label}`,
-                    label: ctx => ` ${ctx.parsed.y.toFixed(2)}`
-                }
+        if (syntaxInsight) {
+            if (isSpaceSyntaxActive) {
+                syntaxInsight.innerText = SYNTAX_INSIGHTS[Math.floor(Math.random() * SYNTAX_INSIGHTS.length)];
+            } else {
+                syntaxInsight.innerText = 'Activate the heatmap to reveal spatial patterns. Integrated corridors link historical gates to commercial centres, reflecting the organically-evolved Mosul city core.';
             }
-        },
-        scales: {
-            x: {
-                ticks: { color: '#64748b', font: { size: 10 } },
-                grid:  { color: 'rgba(255,255,255,0.04)' }
-            },
-            y: {
-                ticks: { color: '#64748b', font: { size: 10 } },
-                grid:  { color: 'rgba(255,255,255,0.06)' },
-                beginAtZero: true
-            }
-        },
-        onClick(evt, elements, chart) {
-            if (!elements.length) return;
-            const idx = elements[0].index;
-            slider.value = idx;
-            updateYear(idx);
-        },
-        onHover(evt, elements, chart) {
-            chart.canvas.style.cursor = elements.length ? 'pointer' : 'default';
         }
-    };
 
-    // Scriptable gradient — chartArea guard prevents crash on first render
-    const buildingGradient = (context) => {
-        const chart = context.chart;
-        const { ctx, chartArea } = chart;
-        if (!chartArea) return 'rgba(245,158,11,0.35)';
-        const g = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-        g.addColorStop(0, 'rgba(245,158,11,0.55)');
-        g.addColorStop(1, 'rgba(245,158,11,0.02)');
-        return g;
-    };
-    const roadsGradient = (context) => {
-        const chart = context.chart;
-        const { ctx, chartArea } = chart;
-        if (!chartArea) return 'rgba(6,182,212,0.35)';
-        const g = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-        g.addColorStop(0, 'rgba(6,182,212,0.55)');
-        g.addColorStop(1, 'rgba(6,182,212,0.02)');
-        return g;
-    };
-
-    window.densityChart = new Chart(document.getElementById('densityChart'), {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                data: buildingData,
-                borderColor: '#f59e0b',
-                backgroundColor: buildingGradient,
-                borderWidth: 2.5,
-                tension: 0.4,
-                pointBackgroundColor: '#f59e0b',
-                pointRadius: 5,
-                pointHoverRadius: 8,
-                fill: true
-            }]
-        },
-        options: { ...CHART_DEFAULTS }
-    });
-
-    window.roadsChart = new Chart(document.getElementById('roadsChart'), {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                data: roadsData,
-                borderColor: '#06b6d4',
-                backgroundColor: roadsGradient,
-                borderWidth: 2.5,
-                tension: 0.4,
-                pointBackgroundColor: '#06b6d4',
-                pointRadius: 5,
-                pointHoverRadius: 8,
-                fill: true
-            }]
-        },
-        options: { ...CHART_DEFAULTS }
-    });
-
-    // Highlight the active year node on initial render
-    const initialIndex = parseInt(slider.value) || 0;
-    syncChartsToYear(years[initialIndex]);
-}
-
-function syncChartsToYear(year) {
-    const idx = years.indexOf(year);
-    if (idx === -1) return;
-    [window.densityChart, window.roadsChart].forEach(chart => {
-        if (!chart) return;
-        chart.data.datasets[0].pointRadius = chart.data.labels.map((_, i) => i === idx ? 9 : 5);
-        chart.data.datasets[0].pointBackgroundColor = chart.data.labels.map((_, i) =>
-            i === idx ? '#fff' : (chart.canvas.id === 'densityChart' ? '#f59e0b' : '#06b6d4')
-        );
-        chart.update('none');
+        updateBuildingHeatmapColors();
     });
 }
 
@@ -1402,130 +1615,3 @@ function setupMeasureWidget() {
         }
     });
 }
-
-// ════════════════════════════════════════════════════════════
-// DIACHRONIC 3D CINEMATIC TOUR
-// ════════════════════════════════════════════════════════════
-const TOUR_ROUTES = {
-    general: [
-        { center: [43.128, 36.335], zoom: 13.5, pitch: 60, bearing: 0,    yearIdx: 0,  scene: '1778 — Early Mosul', desc: 'Niebhur\'s Mosul: a dense medieval city enclosed by walls, hugging the western bank of the Tigris.' },
-        { center: [43.130, 36.338], zoom: 14.5, pitch: 55, bearing: -30,  yearIdx: 2,  scene: '1852 — Ottoman Era',  desc: 'Jones & Floyer mapping reveals souq lanes and the Friday Mosque as the city\'s spatial anchor.' },
-        { center: [43.131, 36.336], zoom: 15.0, pitch: 65, bearing: -80,  yearIdx: 3,  scene: '1906 — Late Ottoman', desc: 'Population growth and new khans expand the urban edge while the historic core remains intact.' },
-        { center: [43.132, 36.335], zoom: 14.8, pitch: 50, bearing: 40,   yearIdx: 5,  scene: '1944 — WWII Era',    desc: 'Aerial photography reveals a first wave of road widening cutting through historic fabric.' },
-        { center: [43.125, 36.332], zoom: 14.2, pitch: 45, bearing: -20,  yearIdx: 7,  scene: '1988 — Ba\'ath Era',  desc: 'Large road arteries and planned residential blocks impose a new orthogonal order on the old city.' },
-        { center: [43.120, 36.330], zoom: 13.8, pitch: 55, bearing: 10,   yearIdx: 9,  scene: '2020 — Post-Conflict', desc: 'The aftermath of urban warfare: demolished buildings, cleared plots, and reconstruction efforts begin.' }
-    ],
-    river: [
-        { center: [43.150, 36.350], zoom: 13.5, pitch: 60, bearing: 90,   yearIdx: 0,  scene: '1778 — Pontoon Bridge', desc: 'The ancient floating bridge connecting Mosul to Nineveh on the eastern bank.' },
-        { center: [43.145, 36.340], zoom: 14.5, pitch: 60, bearing: 120,  yearIdx: 2,  scene: '1852 — Bridge & River', desc: 'The Tigris as a commercial highway. Boatmen and merchants define the riverside economy.' },
-        { center: [43.140, 36.338], zoom: 15.0, pitch: 65, bearing: 150,  yearIdx: 5,  scene: '1944 — Old Iron Bridge', desc: 'The old iron bridge built under the British Mandate, modernising the river crossing.' },
-        { center: [43.135, 36.335], zoom: 14.8, pitch: 55, bearing: -150, yearIdx: 7,  scene: '1988 — Multiple Bridges', desc: 'New concrete bridges expand the road network\'s capacity as the city grows eastward.' },
-        { center: [43.130, 36.332], zoom: 14.0, pitch: 50, bearing: -120, yearIdx: 9,  scene: '2020 — Reconstruction', desc: 'Bridges targeted during conflict are rebuilt, reconnecting a fragmented urban region.' }
-    ],
-    core: [
-        { center: [43.131, 36.344], zoom: 16.0, pitch: 70, bearing: 0,    yearIdx: 0,  scene: '1778 — Al-Nuri Core',  desc: 'The leaning minaret of the Great Al-Nuri Mosque stands at the city\'s geometric and spiritual centre.' },
-        { center: [43.131, 36.344], zoom: 16.2, pitch: 75, bearing: 60,   yearIdx: 2,  scene: '1852 — Souqs & Khans', desc: 'Dense souq lanes radiate from the mosque, packed with artisans, traders, and coffee houses.' },
-        { center: [43.131, 36.344], zoom: 15.8, pitch: 70, bearing: 120,  yearIdx: 5,  scene: '1944 — Urban Pressure', desc: 'Encroachment and informal building begin to compress the historic alleyway network.' },
-        { center: [43.131, 36.344], zoom: 16.0, pitch: 75, bearing: 180,  yearIdx: 9,  scene: '2020 — Destruction',   desc: 'ISIS destruction (2017) levelled the minaret and collapsed entire blocks. Voids mark the absence.' }
-    ]
-};
-
-const tourRouteSelect = document.getElementById('tour-route-select');
-const tourPlayBtn     = document.getElementById('tour-play-btn');
-const tourStopBtn     = document.getElementById('tour-stop-btn');
-const tourSpeedSlider = document.getElementById('tour-speed-slider');
-const tourSpeedVal    = document.getElementById('tour-speed-val');
-const tourCard        = document.getElementById('tour-card');
-const tourScene       = document.getElementById('tour-current-scene');
-const tourDesc        = document.getElementById('tour-current-desc');
-
-const SPEED_LABELS   = { '1': 'Slow', '2': 'Normal', '3': 'Fast' };
-const SPEED_DURATION = { '1': 5000,    '2': 3500,      '3': 2000 };
-
-tourSpeedSlider.addEventListener('input', () => {
-    tourSpeedVal.innerText = SPEED_LABELS[tourSpeedSlider.value];
-});
-
-function playTourStep() {
-    if (!tourActive) return;
-    const route    = TOUR_ROUTES[tourRouteSelect.value];
-    if (tourStepIndex >= route.length) {
-        stopTour();
-        return;
-    }
-
-    const step = route[tourStepIndex];
-    const dur  = SPEED_DURATION[tourSpeedSlider.value];
-
-    // Update map era
-    slider.value = step.yearIdx;
-    updateYear(step.yearIdx);
-
-    // Update tour card
-    tourCard.style.display = 'block';
-    tourScene.innerText = `Scene ${tourStepIndex + 1}/${route.length}: ${step.scene}`;
-    tourDesc.innerText  = step.desc;
-
-    // Fly camera
-    isProgrammaticFlight = true;
-    map.flyTo({
-        center:   step.center,
-        zoom:     step.zoom,
-        pitch:    step.pitch,
-        bearing:  step.bearing,
-        duration: dur,
-        essential: true
-    });
-    setTimeout(() => { isProgrammaticFlight = false; }, 50);
-
-    tourTimeout = setTimeout(() => {
-        tourStepIndex++;
-        playTourStep();
-    }, dur + 600);   // +600ms pause between scenes
-}
-
-function stopTour() {
-    tourActive = false;
-    clearTimeout(tourTimeout);
-    tourStepIndex = 0;
-    tourPlayBtn.disabled = false;
-    tourPlayBtn.innerText = '▶ Play';
-    tourStopBtn.disabled = true;
-    tourCard.style.display = 'none';
-    map.getCanvas().style.cursor = '';
-}
-
-tourPlayBtn.addEventListener('click', () => {
-    if (tourActive) return;
-
-    // Automatically exit Compare Mode if it's active
-    if (isCompareModeActive) {
-        isCompareModeActive = false;
-        compareBtn.classList.remove('active');
-        compareBtn.innerText = '⇄ Compare Mode: OFF';
-        document.body.classList.remove('compare-mode');
-        compareSection.style.display = 'none';
-        document.getElementById('map-a-label').style.display = 'none';
-        document.getElementById('map-b-label').style.display = 'none';
-        map.resize();
-    }
-
-    tourActive    = true;
-    tourStepIndex = 0;
-    tourPlayBtn.disabled = true;
-    tourPlayBtn.innerText = '▶ Playing…';
-    tourStopBtn.disabled = false;
-    playTourStep();
-});
-
-tourStopBtn.addEventListener('click', stopTour);
-
-// ════════════════════════════════════════════════════════════
-// CLEANUP — stop tour if user interacts with the map manually
-// (movestart + e.originalEvent ensures we only stop when
-//  the user drags/zooms/rotates the map manually, avoiding
-//  spurious tour cancellations during programmatic flyTo)
-// ════════════════════════════════════════════════════════════
-map.on('movestart', e => {
-    if (tourActive && !isProgrammaticFlight) stopTour();
-});
