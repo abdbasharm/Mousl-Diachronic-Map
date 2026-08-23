@@ -454,15 +454,22 @@ function showPhotoWindow(feature, coords) {
     activePhotoCoords  = coords;
     hasBeenDragged     = false;
 
-    const props    = feature.properties;
-    const imgUrl   = getPhotoUrl(props.Photos || props.photo || '');
-    const filename = (props.Photos || props.photo || '').split('/').pop().replace(/\.[^/.]+$/, '') || 'Historic Photograph';
+    const props     = feature.properties || {};
+    const photoPath = props.Photos || props.photo || props.Photo || props.PHOTO || '';
+    const imgUrl    = getPhotoUrl(photoPath);
+    const caption   = props.Descriptio || props.descriptio || props.description || props.Description || props.desc || '';
 
-    document.getElementById('mac-img').src         = imgUrl;
-    document.getElementById('mac-title').innerText  = filename;
-    document.getElementById('mac-caption').innerText = props.Descriptio || props.description || props.desc || filename;
+    const imgEl     = document.getElementById('mac-img');
+    const captionEl = document.getElementById('mac-caption');
+
+    if (imgEl) imgEl.src = imgUrl;
+    if (captionEl) {
+        captionEl.innerText = caption;
+        captionEl.style.display = caption ? 'block' : 'none';
+    }
 
     macWindow.style.display = 'flex';
+    macWindow.classList.remove('dragging');
     positionPhotoWindow();
     requestAnimationFrame(() => macWindow.classList.add('show'));
 }
@@ -486,7 +493,9 @@ function positionPhotoWindow() {
 
     macWindow.style.left = `${left}px`;
     macWindow.style.top  = `${top}px`;
-    macWindow.style.transformOrigin = `${rect.left + px.x - left}px ${rect.top + px.y - top}px`;
+    const originX = Math.max(0, Math.min(W, rect.left + px.x - left));
+    const originY = Math.max(0, Math.min(H, rect.top + px.y - top));
+    macWindow.style.transformOrigin = `${originX}px ${originY}px`;
 }
 
 function hidePhotoWindow() {
@@ -494,38 +503,52 @@ function hidePhotoWindow() {
     macWindow.classList.remove('show');
     activePhotoFeature = null;
     activePhotoCoords  = null;
-    setTimeout(() => { if (!macWindow.classList.contains('show')) macWindow.style.display = 'none'; }, 400);
+    setTimeout(() => { if (!macWindow.classList.contains('show')) macWindow.style.display = 'none'; }, 300);
 }
 
 function pinPhotoWindow()   { isPhotoWindowPinned = true;  macWindow.classList.add('pinned'); }
 function unpinPhotoWindow() {
     isPhotoWindowPinned = false;
-    macWindow.classList.remove('pinned', 'show');
+    macWindow.classList.remove('pinned', 'show', 'dragging');
     macWindow.style.pointerEvents = 'none';
     activePhotoFeature = null;
     activePhotoCoords  = null;
-    setTimeout(() => { if (!macWindow.classList.contains('show')) macWindow.style.display = 'none'; }, 400);
+    setTimeout(() => { if (!macWindow.classList.contains('show')) macWindow.style.display = 'none'; }, 300);
 }
 
-// Photo window drag
-const titleBar = macWindow.querySelector('.mac-titlebar');
-titleBar.addEventListener('mousedown', e => {
-    if (!macWindow.classList.contains('pinned')) return;
-    isDragging = true; hasBeenDragged = true;
-    dragStartX = e.clientX; dragStartY = e.clientY;
-    windowStartX = parseInt(macWindow.style.left) || 0;
-    windowStartY = parseInt(macWindow.style.top)  || 0;
-    e.preventDefault();
-});
+// Photo window drag & controls
+const photoDragTarget = macWindow.querySelector('.mac-titlebar') || macWindow;
+if (photoDragTarget) {
+    photoDragTarget.addEventListener('mousedown', e => {
+        if (e.target.closest('#photo-close-btn')) return;
+        if (!macWindow.classList.contains('pinned')) return;
+        isDragging = true; hasBeenDragged = true;
+        macWindow.classList.add('dragging');
+        dragStartX = e.clientX; dragStartY = e.clientY;
+        windowStartX = parseInt(macWindow.style.left) || 0;
+        windowStartY = parseInt(macWindow.style.top)  || 0;
+        e.preventDefault();
+    });
+}
 document.addEventListener('mousemove', e => {
     if (!isDragging) return;
     macWindow.style.left = `${windowStartX + e.clientX - dragStartX}px`;
     macWindow.style.top  = `${windowStartY + e.clientY - dragStartY}px`;
 });
-document.addEventListener('mouseup', () => { isDragging = false; });
-macWindow.querySelector('.close-btn')   .addEventListener('click', e => { e.stopPropagation(); unpinPhotoWindow(); });
-macWindow.querySelector('.minimize-btn').addEventListener('click', e => { e.stopPropagation(); unpinPhotoWindow(); });
-macWindow.querySelector('.zoom-btn')    .addEventListener('click', e => { e.stopPropagation(); unpinPhotoWindow(); });
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+    macWindow.classList.remove('dragging');
+});
+const photoCloseBtn = document.getElementById('photo-close-btn');
+if (photoCloseBtn) {
+    photoCloseBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        unpinPhotoWindow();
+    });
+}
+macWindow.querySelector('.close-btn')?.addEventListener('click', e => { e.stopPropagation(); unpinPhotoWindow(); });
+macWindow.querySelector('.minimize-btn')?.addEventListener('click', e => { e.stopPropagation(); unpinPhotoWindow(); });
+macWindow.querySelector('.zoom-btn')?.addEventListener('click', e => { e.stopPropagation(); unpinPhotoWindow(); });
 
 // ════════════════════════════════════════════════════════════
 // MAP INIT
@@ -1572,8 +1595,15 @@ function setupMeasureWidget() {
     areaBtn .addEventListener('click', () => activateMode('area'));
     clearBtn.addEventListener('click', resetMeasure);
 
-    // Map click — add point
+    // Map click — handle photo unpin & measurement points
     map.on('click', e => {
+        if (clickedPhotoThisTurn) {
+            clickedPhotoThisTurn = false;
+            return;
+        }
+        if (isPhotoWindowPinned) {
+            unpinPhotoWindow();
+        }
         if (measureMode === 'none') return;
         // Prevent interaction conflicts with layers
         measureCoords.push([e.lngLat.lng, e.lngLat.lat]);

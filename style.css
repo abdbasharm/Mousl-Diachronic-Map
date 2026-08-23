@@ -829,10 +829,32 @@ h1 {
     border-right-color:  var(--panel-bg) !important;
 }
 
-/* ── macOS & Source Windows ── */
-.mac-window, .source-window {
+/* ── macOS Photo Window Elastic Pop Animation ── */
+@keyframes elasticPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.22) translateY(24px);
+    }
+    55% {
+        opacity: 1;
+        transform: scale(1.08) translateY(-8px);
+    }
+    75% {
+        transform: scale(0.96) translateY(3px);
+    }
+    90% {
+        transform: scale(1.02) translateY(-1px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.mac-window {
     position: fixed;
     z-index: 1000;
+    width: 380px;
     background: var(--glass-panel);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -840,6 +862,25 @@ h1 {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-float);
     overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.25) translateY(20px);
+    transition: opacity 0.22s ease-out, transform 0.22s ease-out;
+}
+
+.mac-window.show {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    animation: elasticPop 0.46s cubic-bezier(0.34, 1.75, 0.64, 1) forwards;
+}
+
+.mac-window.pinned {
+    box-shadow: 0 0 0 2px var(--accent-orange), var(--shadow-float);
+}
+
+.mac-window.dragging {
+    animation: none !important;
+    transition: none !important;
 }
 
 .mac-titlebar {
@@ -898,6 +939,40 @@ h1 {
     color: var(--text-body);
     line-height: 1.45;
     text-align: center;
+}
+
+/* Photo Popup Window Customization */
+.photo-popup-window .mac-body {
+    position: relative;
+    padding: 14px;
+}
+
+.photo-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 11px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.photo-close-btn:hover {
+    background: rgba(239, 68, 68, 0.85);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.08);
 }
 
 .source-window {
