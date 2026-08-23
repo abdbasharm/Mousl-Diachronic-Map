@@ -439,13 +439,18 @@ function updateBuildingHeatmapColors() {
 function getPhotoUrl(p) {
     if (!p) return '';
     let clean = p.replace(/\\/g, '/');
+    if (clean.startsWith('http://') || clean.startsWith('https://')) {
+        return clean;
+    }
     const idx = clean.toLowerCase().indexOf('old photos');
     if (idx !== -1) {
         clean = clean.slice(idx);
-    } else if (!clean.startsWith('http://') && !clean.startsWith('https://') && !clean.startsWith('/')) {
+    } else if (!clean.startsWith('/')) {
         clean = 'Old Photos/' + clean;
     }
-    return encodeURI(clean);
+    return clean.split('/')
+        .map(segment => encodeURIComponent(segment.normalize('NFC')))
+        .join('/');
 }
 
 function showPhotoWindow(feature, coords) {
