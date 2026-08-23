@@ -1,0 +1,7 @@
+{
+"type": "FeatureCollection",
+"name": "1852_Boats_bridge",
+"features": [
+{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 43.1379606, 36.343434 ], [ 43.1388573, 36.3437747 ], [ 43.1400769, 36.3446715 ] ] ] } }
+]
+}

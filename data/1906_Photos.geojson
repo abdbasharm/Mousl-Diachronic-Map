@@ -91,6 +91,96 @@
           36.3411786
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7,
+        "Photos": "Old Photos/Deutschlands Kulturerbe digital 1906/The minaret of a mosque in Mosul2.jpg",
+        "Descriptio": "\u0635\u0648\u0631\u0629 \u062a\u0648\u0636\u062d \u0628\u0627\u0628 \u0627\u0644\u0628\u064a\u0636 \u0648\u0645\u0646\u0627\u0631\u0629 \u062c\u0627\u0645\u0639 \u0627\u0644\u0632\u064a\u0648\u0627\u0646\u064a"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1244151,
+          36.3352429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "Photos": "Old Photos/Deutschlands Kulturerbe digital 1906/View of the city of Mosul. In the center of the image is a mosque with a minaret and domed structure..jpg",
+        "Descriptio": "\u0635\u0648\u0631\u0629 \u0645\u0646 \u062e\u0627\u0631\u062c \u0627\u0644\u0633\u0648\u0631 \u0628\u0623\u062a\u062c\u0627\u0647 \u062c\u0627\u0645\u0639 \u0627\u0644\u0628\u0627\u0634\u0627"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.136271,
+          36.3420203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "Photos": "Old Photos/Deutschlands Kulturerbe digital 1906/View of a mosque with a minaret and domed structure in Mosul..jpg",
+        "Descriptio": "\u0635\u0648\u0631\u0629 \u0645\u0646 \u062e\u0627\u0631\u062c \u0627\u0644\u0633\u0648\u0631 \u0628\u0623\u062a\u062c\u0627\u0647 \u062c\u0627\u0645\u0639 \u0627\u0644\u0628\u0627\u0634\u0627"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.13672,
+          36.3429929
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "Photos": "Old Photos/Deutschlands Kulturerbe digital 1906/Street scene in front of a city gate..jpg",
+        "Descriptio": "\u0635\u0648\u0631\u0629 \u062a\u0648\u0636\u062d \u0628\u0627\u0628 \u0633\u0646\u062c\u0627\u0631 \u0648\u0633\u0648\u0631 \u0627\u0644\u0645\u062f\u064a\u0646\u0629"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1162611,
+          36.3436544
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "Photos": "Old Photos/Gallica/13 cartes postales de Mossoul, don El Banna en 1923/[13_cartes_postales_de_Mossoul_[...]_btv1b53194864z_page-0009.jpg",
+        "Descriptio": "\u0635\u0648\u0631\u0629 \u0644\u0645\u0631\u0642\u062f \u0627\u0644\u0627\u0645\u0627\u0645 \u0639\u0648\u0646 \u0627\u0644\u062f\u064a\u0646 \u0627\u0628\u0646 \u0627\u0644\u062d\u0633\u0646"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1310382,
+          36.3388597
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": null,
+        "Photos": "Old Photos/Gallica/13 cartes postales de Mossoul, don El Banna en 1923/[13_cartes_postales_de_Mossoul_[...]_btv1b53194864z_page-0005.jpg",
+        "Descriptio": "\u0635\u0648\u0631\u0629 \u0645\u0646 \u0627\u0644\u0636\u0641\u0629 \u0627\u0644\u064a\u0633\u0631\u0649 \u064a\u0638\u0647\u0631 \u0641\u064a\u0647\u0627 \u062c\u0627\u0645\u0639 \u0627\u0644\u0627\u063a\u0648\u0627\u062a \u0648\u062c\u0627\u0645\u0639 \u0627\u0644\u0628\u0627\u0634\u0627"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1408408,
+          36.3459574
+        ]
+      }
     }
   ]
 }
