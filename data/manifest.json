@@ -192,6 +192,13 @@
       ]
     },
     {
+      "file": "1852_Photos.geojson",
+      "layer": "1852_Photos",
+      "years": [
+        1852
+      ]
+    },
+    {
       "file": "1852_River.geojson",
       "layer": "1852_River",
       "years": [
@@ -255,13 +262,6 @@
       ]
     },
     {
-      "file": "1906_River.geojson",
-      "layer": "1906_River",
-      "years": [
-        1906
-      ]
-    },
-    {
       "file": "1907_Cemetery.geojson",
       "layer": "1907_Cemetery",
       "years": [
@@ -297,8 +297,8 @@
       ]
     },
     {
-      "file": "1919_River1.geojson",
-      "layer": "1919_River1",
+      "file": "1919_Photos.geojson",
+      "layer": "1919_Photos",
       "years": [
         1919
       ]
@@ -332,6 +332,13 @@
       ]
     },
     {
+      "file": "1944_Heritage_Buildings.geojson",
+      "layer": "1944_Heritage_Buildings",
+      "years": [
+        1944
+      ]
+    },
+    {
       "file": "1944_Landscape.geojson",
       "layer": "1944_Landscape",
       "years": [
@@ -341,6 +348,13 @@
     {
       "file": "1944_Old_Bridge.geojson",
       "layer": "1944_Old_Bridge",
+      "years": [
+        1944
+      ]
+    },
+    {
+      "file": "1944_Photos.geojson",
+      "layer": "1944_Photos",
       "years": [
         1944
       ]
@@ -409,6 +423,13 @@
       ]
     },
     {
+      "file": "1966_1882_Photos.geojson",
+      "layer": "1966_1882_Photos",
+      "years": [
+        1966
+      ]
+    },
+    {
       "file": "1966_River.geojson",
       "layer": "1966_River",
       "years": [
@@ -444,6 +465,13 @@
       ]
     },
     {
+      "file": "1980_Photos.geojson",
+      "layer": "1980_Photos",
+      "years": [
+        1988
+      ]
+    },
+    {
       "file": "1980_Building_Blocks.geojson",
       "layer": "1980_Building_Blocks",
       "years": [
@@ -474,13 +502,6 @@
     {
       "file": "2003_Bridges.geojson",
       "layer": "2003_Bridges",
-      "years": [
-        2003
-      ]
-    },
-    {
-      "file": "2003_Building_Blocks.geojson",
-      "layer": "2003_Building_Blocks",
       "years": [
         2003
       ]
@@ -663,13 +684,6 @@
       ]
     },
     {
-      "file": "1919_Roads.geojson",
-      "layer": "1919_Roads",
-      "years": [
-        1919
-      ]
-    },
-    {
       "file": "1852_1906_Changes.geojson",
       "layer": "1852_1906_Changes",
       "years": [
@@ -702,10 +716,66 @@
       ]
     },
     {
+      "file": "1852_Boats_bridge.geojson",
+      "layer": "1852_Boats_bridge",
+      "years": [
+        1852
+      ]
+    },
+    {
+      "file": "1852_Agriculture_Land.geojson",
+      "layer": "1852_Agriculture_Land",
+      "years": [
+        1852
+      ]
+    },
+    {
+      "file": "1852_Open_Space.geojson",
+      "layer": "1852_Open_Space",
+      "years": [
+        1852
+      ]
+    },
+    {
+      "file": "1852_Landscape.geojson",
+      "layer": "1852_Landscape",
+      "years": [
+        1852
+      ]
+    },
+    {
+      "file": "1919_Roads.geojson",
+      "layer": "1919_Roads",
+      "years": [
+        1919
+      ]
+    },
+    {
+      "file": "1919_River1.geojson",
+      "layer": "1919_River1",
+      "years": [
+        1919
+      ]
+    },
+    {
       "file": "1906_Roads.geojson",
       "layer": "1906_Roads",
       "years": [
         1906
+      ]
+    },
+    {
+      "file": "1906_River.geojson",
+      "layer": "1906_River",
+      "years": [
+        1906
+      ]
+    },
+    {
+      "file": "2003_Building_Blocks.geojson",
+      "layer": "2003_Building_Blocks",
+      "years": [
+        2003
       ]
     }
   ]
