@@ -1,158 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mosul: Diachronic Mapping</title>
-    <meta name="description" content="Interactive diachronic urban mapping of Old Mosul city — morphometrics, spatial analytics, and 3D terrain across centuries.">
+    <title>الموصل: التطور العمراني عبر العصور | Mosul Diachronic Mapping</title>
+    <meta name="description" content="منصة التحليل المكاني والمورفولوجي والتطور العمراني لمدينة الموصل القديمة عبر 14 حقبة تاريخية (637–2020م)">
     <link href="lib/maplibre-gl.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=9.2">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=10.0">
 </head>
 
 <body>
     <div id="map"></div>
     <div id="map-compare"></div>
 
-    <div id="map-a-label" class="map-label" style="display:none;">Left Map: --</div>
-    <div id="map-b-label" class="map-label" style="display:none;">Right Map: --</div>
+    <div id="map-a-label" class="map-label" style="display:none;">الخريطة الرئيسية: --</div>
+    <div id="map-b-label" class="map-label" style="display:none;">خريطة المقارنة: --</div>
+
+    <!-- Top Right Language Switcher -->
+    <div class="top-nav-bar">
+        <button id="lang-toggle-btn" class="lang-toggle-btn" title="Switch Language / تغيير اللغة" aria-label="Switch Language">
+            <span class="lang-icon">🌐</span>
+            <span id="lang-btn-text">English</span>
+        </button>
+    </div>
 
     <!-- ═══════════════════════════════════════════ SIDEBAR ═══ -->
     <div id="sidebar">
         <div class="sidebar-header">
-            <div class="research-badge">MASTER'S THESIS GIS PLATFORM</div>
-            <h1>Urban Morphology of Mosul</h1>
-            <p class="subtitle">Diachronic Spatial Analysis &amp; Morphometrics (637–2020 CE)</p>
+            <div class="research-badge" data-i18n="thesisBadge">منصة نظم المعلومات الجغرافية لرسالة الماجستير</div>
+            <h1 data-i18n="appTitle">مورفولوجيا مدينة الموصل</h1>
+            <p class="subtitle" data-i18n="appSubtitle">التحليل المكاني والمورفولوجي عبر العصور (637–2020 م)</p>
         </div>
 
         <!-- macOS Segmented Tab Bar -->
         <div class="mac-tabs" role="tablist" style="grid-template-columns: repeat(2, 1fr);">
-            <button class="mac-tab active" data-tab="tab-layers" role="tab" aria-selected="true"  id="btn-tab-layers">Layers &amp; Map</button>
-            <button class="mac-tab"        data-tab="tab-syntax" role="tab" aria-selected="false" id="btn-tab-syntax">Morphometrics</button>
+            <button class="mac-tab active" data-tab="tab-layers" role="tab" aria-selected="true" id="btn-tab-layers" data-i18n="tabLayers">الطبقات والخريطة</button>
+            <button class="mac-tab" data-tab="tab-syntax" role="tab" aria-selected="false" id="btn-tab-syntax" data-i18n="tabMorpho">التحليل المورفولوجي</button>
         </div>
 
         <!-- ── TAB 1 : LAYERS ── -->
         <div id="tab-layers" class="tab-panel active" role="tabpanel">
 
             <div style="display:flex;gap:8px;margin-bottom:12px;">
-                <button id="compare-btn" class="mac-btn-modern" style="flex:1;">⇄ Compare Eras</button>
-                <button id="research-meta-btn" class="mac-btn-modern" style="flex:1;" title="View Thesis Citation &amp; Methodology">🎓 Citation</button>
+                <button id="compare-btn" class="mac-btn-modern" style="flex:1;" data-i18n="btnCompare">⇄ مقارنة الحقب</button>
+                <button id="research-meta-btn" class="mac-btn-modern" style="flex:1;" title="View Thesis Citation &amp; Methodology" data-i18n="btnCitation">🎓 توثيق واقتباس</button>
             </div>
 
             <div id="compare-section" style="display:none;" class="compare-panel">
-                <div class="stat-label" style="margin-bottom:8px;">Compare Map Era</div>
+                <div class="stat-label" style="margin-bottom:8px;" data-i18n="compareEraLabel">مقارنة حقب الخريطة</div>
                 <div class="compare-nav-buttons" style="display:flex;gap:6px;margin-bottom:10px;">
-                    <button id="compare-prev-btn" class="mac-btn-modern active" style="flex:1;padding:8px 6px;font-size:0.75rem;margin:0;">◄ Previous</button>
-                    <button id="compare-next-btn" class="mac-btn-modern" style="flex:1;padding:8px 6px;font-size:0.75rem;margin:0;">Future ►</button>
+                    <button id="compare-prev-btn" class="mac-btn-modern active" style="flex:1;padding:8px 6px;font-size:0.75rem;margin:0;" data-i18n="comparePrev">◄ السابقة</button>
+                    <button id="compare-next-btn" class="mac-btn-modern" style="flex:1;padding:8px 6px;font-size:0.75rem;margin:0;" data-i18n="compareNext">التالية ►</button>
                 </div>
-                <div class="stat-label" style="font-size:0.65rem;margin-bottom:4px;color:var(--text-muted);">Or Choose Specific Map Year:</div>
+                <div class="stat-label" style="font-size:0.65rem;margin-bottom:4px;color:var(--text-muted);" data-i18n="compareSelectYear">أو اختر سنة محددة:</div>
                 <select id="compare-year-select" class="mac-select"></select>
             </div>
 
-            <div class="stats-container">
+            <div class="stats-container" style="grid-template-columns: repeat(2, 1fr);">
                 <div class="stat-card">
-                    <div class="stat-label">Building Footprint</div>
-                    <div id="stat-buildings" class="stat-value">-- km²</div>
+                    <div class="stat-label" data-i18n="statBuildingsLabel">مساحة المباني</div>
+                    <div id="stat-buildings" class="stat-value">-- كم²</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Road Network</div>
-                    <div id="stat-roads" class="stat-value">-- km</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Growth Ratio</div>
+                    <div class="stat-label" data-i18n="statGrowthLabel">نسبة النمو</div>
                     <div id="stat-growth" class="stat-value">-- x</div>
                 </div>
             </div>
 
+            <div id="raster-section" class="raster-section" style="margin-top:14px;margin-bottom:14px;padding:12px 14px;background:var(--glass-card);border:1px solid var(--glass-border);border-radius:var(--radius-sm);">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                    <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;font-size:0.8rem;color:var(--text-heading);user-select:none;margin:0;">
+                        <input type="checkbox" id="raster-toggle" checked style="accent-color:var(--accent);cursor:pointer;width:15px;height:15px;">
+                        <span data-i18n="rasterMapLabel">🗺️ الخريطة التاريخية الأصلية</span>
+                    </label>
+                    <span id="raster-year-indicator" style="font-size:0.7rem;font-weight:700;color:var(--accent);background:rgba(255,107,0,0.12);padding:2px 6px;border-radius:4px;">637 م</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:0.7rem;color:var(--text-muted);">
+                    <span data-i18n="opacityLabel">الشفافية</span>
+                    <input type="range" id="raster-opacity" min="0" max="1" step="0.05" value="0.85" style="flex:1;cursor:pointer;accent-color:var(--accent);">
+                    <span id="raster-opacity-val" style="min-width:28px;text-align:right;font-weight:600;color:var(--text-heading);">85%</span>
+                </div>
+            </div>
+
             <div id="layer-section">
-                <div class="stat-label">Visible Vector Layers</div>
+                <div class="stat-label" data-i18n="vectorLayersLabel">الطبقات المتجهة النشطة</div>
                 <div id="layer-toggles" class="layer-list"></div>
             </div>
 
             <div id="terrain-section">
-                <div class="stat-label">3D Terrain Settings</div>
+                <div class="stat-label" data-i18n="terrainSettingsLabel">إعدادات التضاريس ثلاثية الأبعاد</div>
                 <div class="layer-item" style="margin-bottom:12px;">
                     <input type="checkbox" id="terrain-toggle" checked>
-                    <span>3D Terrain Model (DEM)</span>
+                    <span data-i18n="terrainModelLabel">3D نموذج التضاريس (DEM)</span>
                 </div>
                 <div class="stat-label" style="display:flex;justify-content:space-between;margin-bottom:6px;">
-                    <span>Elevation Exaggeration</span>
+                    <span data-i18n="terrainExaggLabel">مبالغة ارتفاع التضاريس</span>
                     <span id="exaggeration-val" style="color:var(--accent);font-weight:600;">1.5x</span>
                 </div>
-                <input type="range" id="terrain-exaggeration" min="0" max="5" step="0.1" value="1.5" style="width:100%;">
+                <input type="range" id="terrain-exaggeration" min="0.2" max="3.5" step="0.1" value="1.5" style="width:100%;">
             </div>
         </div>
 
         <!-- ── TAB 2 : MORPHOMETRICS ── -->
         <div id="tab-syntax" class="tab-panel" role="tabpanel">
-            <h3 class="panel-title">Morphological Analysis Mode</h3>
+            <h3 class="panel-title" data-i18n="morphoTitle">نمط التحليل المورفولوجي</h3>
             
             <div class="metric-selector-grid" style="grid-template-columns: repeat(2, 1fr);">
                 <button class="metric-btn active" id="mode-fractal-btn" data-mode="fractal">
                     <span class="m-icon">🌀</span>
-                    <span class="m-title">Fractal (D_f)</span>
+                    <span class="m-title" data-i18n="modeFractal">الكسوري (D_f)</span>
                 </button>
                 <button class="metric-btn" id="mode-normal-btn" data-mode="normal">
                     <span class="m-icon">🏛</span>
-                    <span class="m-title">Standard 3D</span>
+                    <span class="m-title" data-i18n="modeStandard">العرض القياسي</span>
                 </button>
             </div>
 
             <div id="syntax-legend-container" class="syntax-legend-box" style="margin-top:16px;">
-                <div class="stat-label" id="syntax-legend-title" style="margin-bottom:8px;">Fractal Complexity (D_f)</div>
+                <div class="stat-label" id="syntax-legend-title" style="margin-bottom:8px;" data-i18n="fractalLegendTitle">التعقيد الكسوري (D_f)</div>
                 <div class="syntax-legend-bar" style="background: linear-gradient(to right, #312e81, #6366f1, #a855f7, #ec4899, #f43f5e);"></div>
                 <div class="syntax-legend-labels">
-                    <span style="color:#6366f1;">Low<br><small>Simple</small></span>
-                    <span style="color:#a855f7;">Medium</span>
-                    <span style="color:#ec4899;">High</span>
-                    <span style="color:#f43f5e;">Peak<br><small>Dense Core</small></span>
+                    <span style="color:#6366f1;" data-i18n="fractalLow">منخفض<br><small>بسيط</small></span>
+                    <span style="color:#a855f7;" data-i18n="fractalMed">متوسط</span>
+                    <span style="color:#ec4899;" data-i18n="fractalHigh">مرتفع</span>
+                    <span style="color:#f43f5e;" data-i18n="fractalPeak">ذروة<br><small>مركز كثيف</small></span>
                 </div>
             </div>
 
             <div class="stat-card" style="margin-top:16px;">
-                <div class="stat-label">Morphological Analysis</div>
-                <div id="syntax-insight-text" class="insight-text">
-                    Fractal dimension metrics (D_f) analyze the structural self-similarity and density complexity of historical Mosul urban fabrics.
+                <div class="stat-label" data-i18n="morphoAnalysisLabel">التحليل المورفولوجي</div>
+                <div id="syntax-insight-text" class="insight-text" data-i18n="morphoInsight">
+                    تحلل مقاييس البعد الكسوري (D_f) التشابه الذاتي والتعقيد الكثافي للأنسجة الحضرية التاريخية لمدينة الموصل.
                 </div>
             </div>
         </div>
     </div>
+    <!-- Floating Sidebar Toggle Button -->
+    <button id="sidebar-toggle-btn" class="sidebar-toggle-btn" title="إخفاء / إظهار اللوحة" aria-label="Toggle Sidebar">
+        <span class="sidebar-toggle-arrow">◀</span>
+    </button>
     <!-- ════════════════════════════════════════════════════════ -->
 
     <!-- Floating Spatial Measurement Widget -->
     <div id="measure-widget" class="measure-widget" style="display:none;">
         <div class="measure-widget-header">
-            <span class="measure-widget-title">📐 Spatial Measurement</span>
+            <span class="measure-widget-title" data-i18n="measureTitle">📐 القياس المكاني</span>
             <button id="measure-close-btn" class="measure-close">✕</button>
         </div>
         <div class="measure-widget-body">
             <div class="measure-mode-grid">
-                <button id="measure-dist-btn" class="measure-btn" data-mode="distance">📏 Distance</button>
-                <button id="measure-area-btn" class="measure-btn" data-mode="area">◼ Area</button>
+                <button id="measure-dist-btn" class="measure-btn" data-mode="distance" data-i18n="measureDist">📏 المسافة</button>
+                <button id="measure-area-btn" class="measure-btn" data-mode="area" data-i18n="measureArea">◼ المساحة</button>
             </div>
             <div class="measure-output-card">
-                <div class="stat-label">Result</div>
+                <div class="stat-label" data-i18n="measureResultLabel">النتيجة</div>
                 <div id="measure-result" class="measure-result-value">—</div>
-                <div id="measure-instruction" class="measure-instruction">Choose a tool, then click on the map. Double-click to finish.</div>
+                <div id="measure-instruction" class="measure-instruction" data-i18n="measureInstruction">اختر أداة، ثم انقر على الخريطة. انقر نقراً مزدوجاً للإنهاء.</div>
             </div>
-            <button id="measure-clear-btn" class="measure-clear-btn" disabled>Clear</button>
+            <button id="measure-clear-btn" class="measure-clear-btn" disabled data-i18n="measureClear">مسح</button>
         </div>
     </div>
 
     <!-- Floating Measure Toggle (always visible) -->
-    <button id="measure-open-btn" class="measure-fab" title="Open Spatial Measurement Tool">📐</button>
+    <button id="measure-open-btn" class="measure-fab" title="فتح أداة القياس المكاني">📐</button>
 
     <!-- Timeline -->
     <div id="timeline-container">
         <div class="timeline-top-bar">
             <div id="current-year" class="year-display">637</div>
-            <div id="current-era-badge" class="era-badge" title="Islamic establishment and Atabeg expansion">Islamic &amp; Atabeg</div>
-            <button id="map-source-btn" class="source-info-btn" title="View Archival Source of Current Map">ℹ️ Map Source</button>
+            <div id="current-era-badge" class="era-badge" title="Islamic establishment and Atabeg expansion">العصر الإسلامي والأتابكي</div>
+            <button id="era-desc-btn" class="source-info-btn era-desc-btn" title="View Historical Summary of Era" data-i18n="btnEraDesc">📖 وصف الحقبة</button>
+            <button id="map-source-btn" class="source-info-btn" title="View Archival Source of Current Map" data-i18n="btnMapSource">ℹ️ مصدر الخريطة</button>
         </div>
         <div id="era-groups-container" class="era-groups-container"></div>
         <input type="range" id="timeline-slider" min="0" max="13" step="1" value="0">
+    </div>
+
+    <!-- Era Description Modal Window -->
+    <div id="era-desc-window" class="mac-window source-window" style="width:580px;max-width:94vw;">
+        <div class="mac-titlebar">
+            <div class="mac-buttons">
+                <span class="mac-btn close-btn" id="era-desc-close-btn"></span>
+                <span class="mac-btn minimize-btn"></span>
+                <span class="mac-btn zoom-btn"></span>
+            </div>
+            <span id="era-desc-window-title" class="mac-title" data-i18n="eraModalTitle">📖 وصف الحقبة التاريخية</span>
+        </div>
+        <div class="mac-body source-body">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
+                <div id="era-desc-year-badge" class="source-era-badge" style="margin-bottom:0;">السنة: 637 م</div>
+                <div id="era-desc-group-badge" class="source-era-badge" style="background:rgba(0,229,255,0.15);color:var(--accent-cyan);border-color:rgba(0,229,255,0.3);margin-bottom:0;">العصر الإسلامي والأتابكي</div>
+            </div>
+            <h2 id="era-desc-title" class="source-heading" style="margin-bottom:12px;font-size:1.05rem;">سنة 637 م — التأسيس الإسلامي والنواة العسكرية</h2>
+            <div class="era-desc-box">
+                <p id="era-desc-text" class="era-desc-paragraph">--</p>
+            </div>
+            <div class="era-modal-nav">
+                <button id="era-modal-prev-btn" class="mac-btn-modern" style="padding:6px 14px;font-size:0.78rem;" data-i18n="btnModalPrev">◄ الحقبة السابقة</button>
+                <button id="era-modal-sync-btn" class="mac-btn-modern" style="padding:6px 14px;font-size:0.78rem;background:rgba(255,107,0,0.18);border-color:var(--accent);color:var(--accent);" data-i18n="btnModalSync">عرض على الخريطة 📍</button>
+                <button id="era-modal-next-btn" class="mac-btn-modern" style="padding:6px 14px;font-size:0.78rem;" data-i18n="btnModalNext">الحقبة التالية ►</button>
+            </div>
+        </div>
     </div>
 
     <!-- Map Source Modal Window -->
@@ -163,27 +214,27 @@
                 <span class="mac-btn minimize-btn"></span>
                 <span class="mac-btn zoom-btn"></span>
             </div>
-            <span id="source-window-title" class="mac-title">📜 Map Source &amp; Citation</span>
+            <span id="source-window-title" class="mac-title" data-i18n="mapSourceModalTitle">📜 مصدر وتوثيق الخريطة</span>
         </div>
         <div class="mac-body source-body">
-            <div id="source-year-badge" class="source-era-badge">Era: --</div>
-            <h2 id="source-title" class="source-heading">Map Title</h2>
+            <div id="source-year-badge" class="source-era-badge">الحقبة: --</div>
+            <h2 id="source-title" class="source-heading">عنوان الخريطة</h2>
             <div class="source-grid">
                 <div class="source-item">
-                    <span class="source-label">Cartographer / Author:</span>
+                    <span class="source-label" data-i18n="sourceAuthorLabel">المساح / المؤلف:</span>
                     <span id="source-author" class="source-value">--</span>
                 </div>
                 <div class="source-item">
-                    <span class="source-label">Archival Repository:</span>
+                    <span class="source-label" data-i18n="sourceRepoLabel">المستودع الأرشيفي:</span>
                     <span id="source-repo" class="source-value">--</span>
                 </div>
                 <div class="source-item">
-                    <span class="source-label">Publication / Date:</span>
+                    <span class="source-label" data-i18n="sourceDateLabel">تاريخ النشر / الإصدار:</span>
                     <span id="source-date" class="source-value">--</span>
                 </div>
             </div>
             <div class="source-desc-box">
-                <div class="source-label">Historical Notes &amp; Description:</div>
+                <div class="source-label" data-i18n="sourceNotesLabel">الملاحظات والوصف التاريخي:</div>
                 <p id="source-desc" class="source-desc-text">--</p>
             </div>
         </div>
@@ -197,34 +248,34 @@
                 <span class="mac-btn minimize-btn"></span>
                 <span class="mac-btn zoom-btn"></span>
             </div>
-            <span class="mac-title">🎓 Research Methodology &amp; Academic Citation</span>
+            <span class="mac-title" data-i18n="citationModalTitle">🎓 المنهجية البحثية والتوثيق الأكاديمي</span>
         </div>
         <div class="mac-body source-body">
-            <div class="source-era-badge" style="background:rgba(0,229,255,0.15);color:var(--accent-cyan);border-color:rgba(0,229,255,0.3);">Master's Thesis Research Project</div>
-            <h2 class="source-heading">Diachronic Urban Mapping &amp; Morphological Analysis of Old Mosul</h2>
-            <p class="panel-desc" style="margin-top:8px;">This web-GIS platform presents research digitizing, reconstructing, and analyzing the urban fabric of Old Mosul across 14 historical eras spanning 637 CE to 2020 CE.</p>
+            <div class="source-era-badge" style="background:rgba(0,229,255,0.15);color:var(--accent-cyan);border-color:rgba(0,229,255,0.3);" data-i18n="citationProjectBadge">مشروع بحث رسالة الماجستير</div>
+            <h2 class="source-heading" data-i18n="citationHeading">التحليل المكاني والمورفولوجي لمدينة الموصل القديمة عبر العصور</h2>
+            <p class="panel-desc" style="margin-top:8px;" data-i18n="citationDesc">تقدم هذه المنصة الرقمية التفاعلية نمذجة وتوثيقاً وتحليلاً مورفولوجياً للنسيج الحضري لمدينة الموصل القديمة عبر 14 حقبة تاريخية من عام 637 م إلى 2020 م.</p>
 
             <div class="source-grid" style="grid-template-columns: repeat(2, 1fr);margin-top:16px;">
                 <div class="source-item">
-                    <span class="source-label">Primary Methodology:</span>
-                    <span class="source-value">Space Syntax (Rₙ), Fractal Dimension (D_f), GIS Vectorization</span>
+                    <span class="source-label" data-i18n="citeMethodLabel">المنهجية الأساسية:</span>
+                    <span class="source-value" data-i18n="citeMethodVal">Space Syntax (Rₙ), البعد الكسوري (D_f), الرقمنة الجغرافية GIS</span>
                 </div>
                 <div class="source-item">
-                    <span class="source-label">Coordinate Reference System:</span>
+                    <span class="source-label" data-i18n="citeCRSLabel">نظام الإسناد الجغرافي:</span>
                     <span class="source-value">WGS84 / EPSG:4326 (GeoJSON RFC7946)</span>
                 </div>
                 <div class="source-item">
-                    <span class="source-label">Dataset Layers:</span>
-                    <span class="source-value">96 Vector Layers Across 14 Chronological Eras</span>
+                    <span class="source-label" data-i18n="citeLayersLabel">الطبقات المتجهة:</span>
+                    <span class="source-value" data-i18n="citeLayersVal">96 طبقة متجهة عبر 14 حقبة زمنية</span>
                 </div>
                 <div class="source-item">
-                    <span class="source-label">3D Terrain Baseline:</span>
-                    <span class="source-value">High-Resolution Old Mosul DEM</span>
+                    <span class="source-label" data-i18n="citeDEMLabel">نموذج الارتفاع الرقمي:</span>
+                    <span class="source-value" data-i18n="citeDEMVal">نموذج تضاريس عالي الدقة للموصل القديمة (DEM)</span>
                 </div>
             </div>
 
             <div class="source-desc-box" style="margin-top:16px;">
-                <div class="source-label">BibTeX Citation:</div>
+                <div class="source-label" data-i18n="citeBibtexLabel">اقتباس بصيغة BibTeX:</div>
                 <pre class="citation-code">@mastersthesis{MosulUrbanMorphology2026,
   author       = {Bashar Mohammed, Abdullah},
   title        = {Diachronic Spatial Analysis and Morphological Evolution of the Old City of Mosul},

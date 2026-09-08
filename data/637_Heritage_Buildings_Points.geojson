@@ -15,6 +15,7 @@
 { "type": "Feature", "properties": { "id": 11, "Building N": "مسجد سعيد بن عبد الملك" }, "geometry": { "type": "Point", "coordinates": [ 43.131862, 36.3440678 ] } },
 { "type": "Feature", "properties": { "id": 12, "Building N": "قصر المنقوشة" }, "geometry": { "type": "Point", "coordinates": [ 43.1334801, 36.343386 ] } },
 { "type": "Feature", "properties": { "id": 13, "Building N": "الجامع الأموي ودار الإمارة" }, "geometry": { "type": "Point", "coordinates": [ 43.1316191, 36.3462861 ] } },
-{ "type": "Feature", "properties": { "id": 14, "Building N": "كنيسة شمعون الصفا" }, "geometry": { "type": "Point", "coordinates": [ 43.1261414, 36.3378201 ] } }
+{ "type": "Feature", "properties": { "id": 14, "Building N": "كنيسة شمعون الصفا" }, "geometry": { "type": "Point", "coordinates": [ 43.1261414, 36.3378201 ] } },
+{ "type": "Feature", "properties": { "id": 25, "Building N": "دير مار ميخائيل" }, "geometry": { "type": "Point", "coordinates": [ 43.0779031, 36.3904279 ] } }
 ]
 }

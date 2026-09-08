@@ -507,6 +507,13 @@
       ]
     },
     {
+      "file": "2003_Building_Blocks.geojson",
+      "layer": "2003_Building_Blocks",
+      "years": [
+        2003
+      ]
+    },
+    {
       "file": "2003_Citys_Gates.geojson",
       "layer": "2003_Citys_Gates",
       "years": [
@@ -772,10 +779,43 @@
       ]
     },
     {
-      "file": "2003_Building_Blocks.geojson",
-      "layer": "2003_Building_Blocks",
+      "file": "evolution_1778_to_1852.geojson",
+      "layer": "evolution_1778_to_1852",
       "years": [
+        1778,
+        1852
+      ]
+    },
+    {
+      "file": "evolution_1944_to_1966.geojson",
+      "layer": "evolution_1944_to_1966",
+      "years": [
+        1944,
+        1966
+      ]
+    },
+    {
+      "file": "evolution_1966_to_1988.geojson",
+      "layer": "evolution_1966_to_1988",
+      "years": [
+        1966,
+        1988
+      ]
+    },
+    {
+      "file": "evolution_1988_to_2003.geojson",
+      "layer": "evolution_1988_to_2003",
+      "years": [
+        1988,
         2003
+      ]
+    },
+    {
+      "file": "evolution_2003_to_2020.geojson",
+      "layer": "evolution_2003_to_2020",
+      "years": [
+        2003,
+        2020
       ]
     }
   ]

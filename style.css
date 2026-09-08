@@ -32,14 +32,129 @@
 /* ── Reset & Global Typography ── */
 *, *::before, *::after { box-sizing: border-box; }
 
+body, button, input, select, textarea {
+    font-family: 'Cairo', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+[lang="en"] body, [lang="en"] button, [lang="en"] input, [lang="en"] select, [lang="en"] textarea {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
 body {
     margin: 0; padding: 0;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg-dark);
     color: var(--text-body);
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Top-Right Language Switcher ── */
+.top-nav-bar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lang-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--glass-panel);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    color: var(--text-heading);
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow-card);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+}
+
+.lang-toggle-btn:hover {
+    background: rgba(255, 107, 0, 0.16);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 20px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+.lang-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+.lang-toggle-btn .lang-icon {
+    font-size: 1.1rem;
+}
+
+/* ── RTL Alignments ── */
+html[dir="rtl"] #sidebar {
+    text-align: right;
+}
+
+html[dir="rtl"] .stat-card {
+    text-align: right;
+}
+
+html[dir="rtl"] .source-body,
+html[dir="rtl"] .era-desc-box,
+html[dir="rtl"] .era-desc-paragraph,
+html[dir="rtl"] .source-heading,
+html[dir="rtl"] .source-desc-text,
+html[dir="rtl"] .panel-desc {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] .source-item {
+    text-align: right;
+}
+
+html[dir="rtl"] .measure-output-card {
+    text-align: right;
+}
+
+html[dir="rtl"] .compare-panel {
+    text-align: right;
+}
+
+/* ── LTR Alignments ── */
+html[dir="ltr"] #sidebar {
+    text-align: left;
+}
+
+html[dir="ltr"] .stat-card {
+    text-align: left;
+}
+
+html[dir="ltr"] .source-body,
+html[dir="ltr"] .era-desc-box,
+html[dir="ltr"] .era-desc-paragraph,
+html[dir="ltr"] .source-heading,
+html[dir="ltr"] .source-desc-text,
+html[dir="ltr"] .panel-desc {
+    direction: ltr;
+    text-align: left;
+}
+
+html[dir="ltr"] .source-item {
+    text-align: left;
+}
+
+html[dir="ltr"] .measure-output-card {
+    text-align: left;
+}
+
+html[dir="ltr"] .compare-panel {
+    text-align: left;
 }
 
 /* ── Map Containers ── */
@@ -100,7 +215,58 @@ body.compare-mode #map-compare { display: block; }
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--accent) rgba(255,255,255,0.03);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#sidebar.collapsed {
+    transform: translateX(calc(-100% - 30px));
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* ── Sidebar Toggle Button ── */
+.sidebar-toggle-btn {
+    position: absolute;
+    top: 26px;
+    left: 326px;
+    width: 32px;
+    height: 38px;
+    background: var(--glass-panel);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    color: var(--text-heading);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 15;
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.35);
+    transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    user-select: none;
+}
+
+.sidebar-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.sidebar-toggle-btn:active {
+    transform: scale(0.92);
+}
+
+.sidebar-toggle-btn.collapsed {
+    left: 16px;
+    border-left: 1px solid var(--accent);
+    border-radius: 10px;
+    background: var(--glass-panel);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 18px rgba(255, 107, 0, 0.35), var(--shadow-float);
 }
 
 #sidebar::-webkit-scrollbar { width: 4px; }
@@ -203,7 +369,7 @@ h1 {
 /* ── Stat Cards ── */
 .stats-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
     margin-bottom: 20px;
 }
@@ -1065,6 +1231,62 @@ h1 {
     overflow-x: auto;
     border: 1px solid var(--glass-border);
     margin: 6px 0 0 0;
+}
+
+/* ── Era Description Window & Button ─────────────────────── */
+.era-desc-btn {
+    background: rgba(0, 229, 255, 0.12);
+    border-color: rgba(0, 229, 255, 0.35);
+    color: var(--accent-cyan);
+}
+.era-desc-btn:hover {
+    background: rgba(0, 229, 255, 0.22);
+    border-color: var(--accent-cyan);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+}
+
+.era-desc-box {
+    background: var(--glass-card);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    border: 1px solid var(--glass-border);
+    margin-bottom: 14px;
+    max-height: 48vh;
+    overflow-y: auto;
+}
+
+.era-desc-paragraph {
+    font-family: inherit;
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: #f1f5f9;
+    margin: 0;
+    letter-spacing: 0.01em;
+}
+
+.era-modal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 4px;
+}
+
+.era-pill-info-btn {
+    background: transparent;
+    border: none;
+    font-size: 0.7rem;
+    cursor: pointer;
+    opacity: 0.6;
+    padding: 0 2px;
+    margin-left: 4px;
+    transition: all 0.2s ease;
+    vertical-align: middle;
+}
+.era-pill-info-btn:hover {
+    opacity: 1;
+    transform: scale(1.25);
 }
 
 /* ══════════════════════════════════
