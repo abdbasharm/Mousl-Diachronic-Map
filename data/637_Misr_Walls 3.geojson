@@ -1,0 +1,7 @@
+{
+"type": "FeatureCollection",
+"name": "637_Misr_Walls",
+"features": [
+{ "type": "Feature", "properties": { "id": null }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 43.1288313, 36.3478791 ], [ 43.1294215, 36.3448712 ], [ 43.1328684, 36.3454265 ], [ 43.13232, 36.3484385 ] ] ] } }
+]
+}
