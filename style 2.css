@@ -1540,10 +1540,3 @@ body { position:fixed; inset:0; }
 #syntax-insight-text, #analysis-method { font-size:13px; line-height:1.8; margin-top:16px; }
 #analysis-method summary { cursor:pointer; color:var(--accent-cyan); }
 #analysis-method a { color:var(--accent-cyan); }
-/* Compass rose artwork only; MapLibre retains rotation, pitch and reset behavior. */
-.maplibregl-ctrl-compass .maplibregl-ctrl-icon {
-    background-image:url('compass.svg') !important;
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-}

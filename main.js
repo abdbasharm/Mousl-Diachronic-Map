@@ -85,112 +85,112 @@ const eraDescriptions = {
         title_en: "Year 637 CE — Islamic Founding & Military Citadel Nucleus",
         era_ar: "العصر الإسلامي والأتابكي",
         era_en: "Islamic & Atabeg",
-        text_ar: "تأسيس الموصل كمعسكر عسكري (تمصير) على الضفة الغربية لنهر دجلة بقيادة عتبة بن فرقد السلمي، وتميزت بنواتين: الحصن (قلعة باشطابيا لاحقاً) والمسجد الجامع ودار الإمارة، مع انفصالها عن نينوى الآشورية وتشكيل نقطة ربط تجارية وعسكرية إقليمية.",
-        text_en: "Establishment of Mosul as an Islamic garrison town (amsar) on the western bank of the Tigris River by Utba ibn Farqad al-Sulami. Defined by two primary nuclei: the northern citadel fortress (later Bash Tapia) and the Friday Mosque with the governor's palace (Dar al-Imara), establishing a major strategic and trade crossroads separate from ancient Nineveh."
+        text_ar: "كانت النشأة الأولى على مرتفع \"القليعات\" بالضفة الغربية لدجلة لحماية حاضرة نينوى عام 400 ق.م، وعُرف بـ \"الحصن العبوري\" (حصنا عبرايا). وفي حدود 570م أُسست صومعة الراهب مار إيشوعياب قرب الحصن وتشكلت حولهما مستوطنة مبكرة مع امتداد الأحياء غرباً. ثم في عام 637 أُسست المدينة كـ \"مِصر\" إسلامي عسكري بإشراف هرثمة بن عرفجة البارقي بأمر الخليفة عمر بن الخطاب. تم توزيع القبائل في محلات عرفت بالـ \"خِطط\" حول المسجد الجامع الأول ودار الإمارة في مخطط مربع محصن بنواة مركزية تبلغ مساحتها 330×330 متراً فوق القليعات.",
+        text_en: "The earliest settlement arose on the Al-Qulayat heights, on the western bank of the Tigris, to protect Nineveh in 400 BCE. It was known as the crossing fortress (Hisna Abraya). Around 570 CE, the monk Mar Ishoʿyahb established a hermitage near the fortress. An early settlement formed around them, with neighborhoods extending westward. In 637, the city was established as an Islamic military garrison town under Harthama ibn Arfaja al-Bariqi, by order of Caliph Umar ibn al-Khattab. Tribes were allocated quarters known as khitat around the first congregational mosque and the governor’s residence, within a fortified square plan whose central nucleus measured 330 × 330 metres atop Al-Qulayat."
     },
     912: {
         title_ar: "سنة 912 م — العصر العباسي والحمداني وتوسيع التحصينات",
         title_en: "Year 912 CE — Abbasid & Hamdanid Era Urban Expansion",
         era_ar: "العصر الإسلامي والأتابكي",
         era_en: "Islamic & Atabeg",
-        text_ar: "شهدت المدينة توسعاً عمرانياً ملحوظاً تحت حكم الحمدانيين، وازدهار النشاط التجاري وتطور شبكة الأزقة العضوية المتقاطعة، مع تعزيز الأسوار الحجرية الأولى للمدينة لحمايتها من الغزوات.",
-        text_en: "The city underwent significant urban expansion under Hamdanid rule, witnessing vibrant commercial growth, densification of organic street alleyways, and the reinforcement of the initial defensive stone perimeter walls."
+        text_ar: "في عام 750 م جعل مروان بن محمد الموصل عاصمة للجزيرة فدفع بالتوسع العمراني. نفّذ الوالي الحر بن يوسف مشروع \"النهر المكشوف\" (نهر الحر) بطول 10 كم من دير مار ميخائيل لتغذية المدينة، وتوسعت الأسواق جنوباً خارج النواة المحصنة بعد زيادة الكثافة السكانية. ثم في عام 912 م وصف المقدسي مخطط المدينة الأرضي بشكل \"شبه الطيلسان\" (شبه منحرف) نتيجة الامتداد الكبير نحو الجنوب بمحاذاة القناة المائية. أنشأ الحمدانيون مجمعهم القصري (دار المملكة) شمالاً، وربطوه بقلب المدينة عبر المحور الرئيسي (شارع الشعارين) .",
+        text_en: "In 750 CE, Marwan ibn Muhammad made Mosul the capital of Al-Jazira, encouraging urban expansion. Governor Al-Hurr ibn Yusuf implemented the open-channel project, known as the Al-Hurr River, extending 10 km from Mar Mikhaʾil Monastery to supply the city. As population density increased, markets expanded southward beyond the fortified nucleus. In 912 CE, Al-Muqaddasi described the city’s ground plan as resembling a taylasan cloak, or a trapezoid, reflecting its substantial southward extension along the water channel. The Hamdanids established their palace complex, Dar al-Mamlaka, to the north and connected it to the city centre through the main axis, Al-Shaʿarin Street."
     },
     1096: {
         title_ar: "سنة 1096 م — العصر السلجوقي والتحصينات الدفاعية",
         title_en: "Year 1096 CE — Seljuk Period & Defensive Consolidation",
         era_ar: "العصر الإسلامي والأتابكي",
         era_en: "Islamic & Atabeg",
-        text_ar: "توطيد التحصينات الدفاعية وتشييد المنشآت العمرانية الكبرى كالمساجد والمدارس الدينية وتطوير مسارات الأسواق المسقوفة (القيساريات).",
-        text_en: "Consolidation of urban fortifications, construction of monumental public institutions including madrasas and mosques, and crystallization of the vaulted covered bazaar networks (Qaysariyyas)."
+        text_ar: "اتسمت هذه الفترة بإعادة تحصين المدينة بعد تدمير السور في الفترة العباسية، حيث أُقيم سور دفاعي جديد منخفض الارتفاع وبمسار مختلف عن الأسوار القديمة ودون خندق خارجي. عانت المدينة من انكماش ديموغرافي وتراجع في كثافة أحيائها الشمالية التي أصابها الخراب، مما أدى إلى خلو الجامع العتيق وتراجع دوره الحيوي، في حين تركزت غالبية الكتلة السكنية الحية والنشاط اليومي في القسم الجنوبي المحمي من المدينة..",
+        text_en: "This period was marked by the refortification of the city after the destruction of its wall in the Abbasid period. A new, low defensive wall was built along a different route from the older walls, without an external moat. The city experienced demographic contraction and declining density in its northern neighborhoods, which fell into ruin. The old mosque became empty and its vital role diminished, while most inhabited residential fabric and daily activity concentrated in the protected southern part of the city."
     },
     1127: {
         title_ar: "سنة 1127 م — العصر الأتابكي وعصر الزنكيين الذهبي",
         title_en: "Year 1127 CE — Atabeg Zangid Golden Age",
         era_ar: "العصر الإسلامي والأتابكي",
         era_en: "Islamic & Atabeg",
-        text_ar: "العصر الذهبي للموصل تحت حكم عماد الدين ونور الدين زنكي وبدر الدين لؤلؤ. بناء الجامع النوري الكبير بمنارته الحدباء الشهيرة، وتوسيع السور المزدوج العظيم، وشق نهر الحر بن يوسف داخل المدينة، وازدهار العمارة الإسلامية الفريدة بالرخام الأزرق (الفرش).",
-        text_en: "The Golden Age of Mosul under Imad al-Din, Nur al-Din Zangi, and Badr al-Din Lu'lu'. Construction of the Great Al-Nuri Mosque with its iconic leaning Al-Hadba minaret, expansion of the monumental double city wall, canalization of the Al-Hur River, and flourishing of Mosul's distinct architectural identity in blue Al-Farsh marble."
+        text_ar: "بلغت المدينة ذروة اتساعها بنحو 277.8 هكتاراً وشُيد الجامع النوري الكبير (1170م) فنقل المركز الحضري لصالحه. وُسّع السور ليضم قلعة باشطابيا وحُول السور القديم لفاصل داخلي عُرف بـ \"الميدان\"، كما بنى بدر الدين لؤلؤ أضرحة ومَشاهد تذكارية على مسافات منتظمة عند البوابات.",
+        text_en: "The city reached its greatest extent, approximately 277.8 hectares. The construction of the Great Al-Nuri Mosque in 1170 shifted the urban centre toward it. The wall was expanded to include Bash Tapia Castle, while the old wall became an internal divider known as Al-Maidan. Badr al-Din Luʾluʾ also built shrines and memorial structures at regular intervals by the gates."
     },
     1778: {
         title_ar: "سنة 1778 م — العهد العثماني ومخطط كارستن نيبور",
         title_en: "Year 1778 CE — Ottoman Period & Carsten Niebuhr's Survey",
         era_ar: "العهد العثماني المبكر",
         era_en: "Early Ottoman",
-        text_ar: "وثق المستكشف كارستن نيبور خريطة دقيقة للموصل بعد صمودها الأسطوري أمام حصار نادر شاه (1743م) بقيادة حسين باشا الجليلي، مبيناً السور المنيع ذو الـ 12 بوابة والأبراج الدفاعية والنسيج السكني المتضام.",
-        text_en: "Documented by explorer Carsten Niebuhr following Mosul's legendary defense against Nader Shah's siege (1743) under Hussein Pasha Al-Jalili. Illustrates the fortified perimeter with 12 historic gates, defensive bastions, and the densely compact residential fabric."
+        text_ar: "اكتمل النسيج العمراني للمدينة داخل أسوارها ككتلة متضامة وعضوية عالية الكثافة. تميزت هذه الحقبة بترميم واستحكام المنظومة الدفاعية (الأسوار، الأبراج، والخندق) إبان مواجهة الغزو الفارسي (نادر شاه)، مع إعادة إعمار واسعة للمساجد، والمدارس، والبيوت الفنائية ذات الزخارف الرخامية. تركز النشاط الاقتصادي في قطاع الأسواق والخانات الكبرى جنوب وشرق المدينة قرب النهر، وارتبطت ضفتا دجلة بحركة تجارية نشطة عبر جسر القوارب العائم، مع بقاء فضاء الميدان متنفساً عسكرياً وحرفياً في الشمال.",
+        text_en: "The urban fabric within the walls had developed into a dense, compact organic mass. This period was distinguished by the restoration and strengthening of the defensive system—walls, towers and moat—during the confrontation with Nader Shah’s Persian invasion, alongside extensive rebuilding of mosques, schools and courtyard houses with marble decoration. Economic activity concentrated in the markets and major khans in the south and east near the river. An active commercial flow linked the two banks of the Tigris through the floating pontoon bridge, while Al-Maidan remained an open military and craft space in the north."
     },
     1838: {
         title_ar: "سنة 1838 م — خريطة هيلموت فون مولتكه الطبوغرافية",
         title_en: "Year 1838 CE — Helmuth von Moltke's Topographical Survey",
         era_ar: "العهد العثماني الأوسط",
         era_en: "Middle Ottoman",
-        text_ar: "مسح طبوغرافي وعسكري دقيق أجراه القائد البروسي فون مولتكه، يبرز طبوغرافيا المدينة الدفاعية ووديانها وتلالها وعلاقتها بنهر دجلة وتوزيع القلاع والمحلات السكنية.",
-        text_en: "A detailed military-topographical survey drafted by Prussian Field Marshal Helmuth von Moltke, delineating natural drainage valleys, defensive contours, Tigris riverfront relationships, and urban quarter distributions."
+        text_ar: "سادت المدينة حالة من التراجع الديموغرافي والاقتصادي انعكست على نسيجها المبني؛ إذ تقلصت رقعة الاستيطان الفعلي لتتركز بكثافة في القطاعين الأوسط والجنوبي حيث تتشابك الأسواق والمحلات التقليدية حول الأنماط السكنية الحصينة ذات السراديب العميقة والأفنية الداخلية. في المقابل، تحولت الأجزاء الشمالية الداخلية المحاذية للسور إلى مساحات شبه مهجورة وفضاءات خراب، مع بقاء السور التاريخي حاجزاً ومحدداً مكانياً صارماً يمنع أي توسع خارجي.",
+        text_en: "Demographic and economic decline shaped the city’s built fabric. Actual settlement contracted and became densely concentrated in the central and southern sectors, where markets and traditional quarters intertwined around fortified residential forms with deep basements and internal courtyards. Meanwhile, the northern areas inside the wall became largely abandoned spaces and ruins. The historic wall remained a strict barrier and spatial boundary preventing outward expansion."
     },
     1852: {
         title_ar: "سنة 1852 م — مسح فيلكس جونز الكارتوغرافي الدقيق",
         title_en: "Year 1852 CE — Commander Felix Jones' Trigonometrical Survey",
         era_ar: "العهد العثماني الأوسط",
         era_en: "Middle Ottoman",
-        text_ar: "أدق خريطة تاريخية كارتوغرافية للموصل في القرن التاسع عشر للمسّاح البريطاني فيلكس جونز، وثقت بالتفصيل أسماء المحلات والمباني التاريخية والكنائس والمساجد ومسارات السور والأبراج والأزقة.",
-        text_en: "The definitive 19th-century trigonometrical survey by British Commander Felix Jones, documenting residential mahallas, historic mosques, churches, bathhouses, fortified bastions, gates, and intricate alley networks with unprecedented precision."
+        text_ar: "استقرت المورفولوجيا الحضرية كمدينة محصنة تقليدية محكومة بنظام أمني صارم يفرضه السور الحجري المدعم بالأبراج المحيطية والخندق المائي العميق. اعتمدت المنظومة البيئية والخدمية على شبكة مجاري وقنوات متفرعة من \"نهر الحر\" القادم من شمال غرب المدينة ليغذي البساتين والحمامات والمرافق الحضرية قبل اتصاله بمجرى دجلة، مشكلاً تكاملاً بين الموارد المائية وتوزيع الكتل السكنية المتراصة.",
+        text_en: "The urban morphology stabilized as a traditional fortified city governed by the strict security system of the stone wall, its perimeter towers and the deep water-filled moat. Environmental and service provision relied on a network of channels branching from the Al-Hurr River, which approached from the northwest and supplied gardens, bathhouses and urban facilities before joining the Tigris. Water resources and the distribution of compact residential blocks formed an integrated system."
     },
     1906: {
         title_ar: "سنة 1906 م — خريطة الموصل في أواخر العهد العثماني",
         title_en: "Year 1906 CE — Late Ottoman Cartographic Survey",
         era_ar: "العهد العثماني المتأخر",
         era_en: "Late Ottoman",
-        text_ar: "خريطة عثمانية نادرة تؤرخ قمة اكتمال النسيج الحضري العضوي التقليدي وكثافته السكانية، وظهور بواكير المباني الإدارية الحديثة (السراي والبلدية والمستشفى والمدارس الرشدية).",
-        text_en: "A rare late-Ottoman cadastral survey documenting the peak organic density of the historic urban fabric prior to 20th-century automotive cuts, alongside early Tanzimat public institutions (Saray, Municipality, Military Barracks, and Rüşdiye schools)."
+        text_ar: "وصل النسيج العضوي داخل الأسوار إلى أقصى طاقته الاستيعابية من الاكتظاظ السكاني، وتلاصقت الدور السكنية عبر أزقة متعرجة ومغطاة بقناطر حجرية. بدأت المدينة تشهد كسر العزلة عبر الامتداد الخفيف خارج محيط الأسوار القديمة، ولا سيما التمدد جنوباً خارج البوابات باتجاه مجمع جامع المجاهدي (الخضر)، مع الحفاظ على هوية السور والأبواب كمفاصل لضبط الدخول والخروج والنشاط التجاري.",
+        text_en: "The organic fabric within the walls reached its maximum capacity for population density, with houses tightly adjoining one another along winding alleys covered by stone arches. The city began to break out of its enclosure through modest expansion beyond the old walls, particularly southward through the gates toward the Al-Mujahidi (Al-Khidr) Mosque complex. The wall and gates retained their identity as points regulating entry, exit and commercial activity."
     },
     1919: {
         title_ar: "سنة 1919 م — مخطط إرنست هيرتسفيلد وبداية التحديث",
         title_en: "Year 1919 CE — Ernst Herzfeld Survey & Early Modernization",
         era_ar: "العهد الملكي",
         era_en: "Royal Period",
-        text_ar: "رصد هيرتسفيلد النسيج التراثي بالتزامن مع تنفيذ المرحلة الأولى لشق شارع نينوى من جهة الجسر حتى كنيسة الساعة، كأول شريان مستقيم يكسر خصوصية الأزقة العضوية القديمة.",
-        text_en: "Architectural survey by Ernst Herzfeld capturing the historic fabric during the initial opening of Nineveh Street from the bridgehead to the Clock Church—the first straight axial intervention piercing the historic organic maze."
+        text_ar: "شهدت البنية المكانية للمدينة صدمة تحديثية أولى كسرت انغلاقها النسيجي التاريخي؛ حيث بدأت أعمال شق \"شارع نينوى\" كأول محور مروري مستقيم يخترق قلب المدينة القديمة من جهة الجسر وصولاً إلى عمق النسيج قرب كنيسة الساعة. شكّل هذا الاختراق بداية تقطيع أوصال المحلات التراثية المتصلة، وتزامن مع زوال الطابع العسكري للأسوار وبدء تفكيك أجزاء منها لتسهيل الربط مع حركة النقل الصاعدة..",
+        text_en: "The city’s spatial structure experienced its first shock of modernization, breaking the enclosure of its historic fabric. Work began on Nineveh Street, the first straight traffic axis to cut through the heart of the old city from the bridge into the fabric near the Clock Church. This intervention began the fragmentation of interconnected historic quarters. It coincided with the loss of the walls’ military role and the dismantling of sections to connect the city with growing transport flows."
     },
     1944: {
         title_ar: "سنة 1944 م — الشرايين الملكية الحديثة وشطر البلوكات التراثية",
         title_en: "Year 1944 CE — Royal Period Modern Arterials & Block Bisection",
         era_ar: "العهد الملكي",
         era_en: "Royal Period",
-        text_ar: "تبرز الخريطة اكتمال فتح المحاور الشريانية الكبرى (شارع نينوى والفاروق) وافتتاح الجسر الحديدي (1934م)، مما شطر البلوكات التراثية وحول المسارات الداخلية للمشاة لقنوات عبور سيارات.",
-        text_en: "Illustrates the completed vehicular arterial axes (Nineveh and Al-Farouq Streets) and the opening of the King Ghazi Iron Bridge (1934), permanently bisecting traditional pedestrian quarters to accommodate automotive traffic."
+        text_ar: "اكتمل التحول المورفولوجي في بنية المدينة القديمة بافتتاح الجسر الحديدي الثابت واكتمال المحاور الطرقية الكبرى . أدى ذلك إلى تمزيق الكتل الحضرية التاريخية المتضامة وتقسيمها إلى أربعة قطاعات معزولة، وتحولت المسارات الداخلية التي صُممت تاريخياً لحركة المشاة والدواب إلى قنوات لعبور المركبات الآلية، مما أطلق موجة هجرة للطبقات الميسورة باتجاه الضواحي الحديثة.",
+        text_en: "The morphological transformation of the old city’s structure was completed with the opening of the permanent iron bridge and the completion of the major road axes. These interventions tore through the compact historic urban blocks and divided them into four isolated sectors. Internal routes originally designed for pedestrians and pack animals became channels for motor vehicles, prompting affluent residents to migrate toward modern suburbs."
     },
     1966: {
         title_ar: "سنة 1966 م — التمدد العمراني والجسور الخرسانية الحديثة",
         title_en: "Year 1966 CE — Aerial Reconnaissance & Modern Concrete Bridges",
         era_ar: "التوسع المعاصر",
         era_en: "Modern Expansion",
-        text_ar: "رصدت الصور الجوية التمدد العمراني الواسع خارج الأسوار نحو الضفة اليسرى، وتشييد جسور خرسانية جديدة، مما أدى لاندثار معالم السور وبواباته وتحول النسيج القديم إلى عقدة عبور مرورية.",
-        text_en: "Declassified aerial reconnaissance documenting rapid suburban sprawl onto the Left Bank across the Tigris, concrete bridge construction, progressive disappearance of historic wall remnants, and changing traffic dynamics."
+        text_ar: "تجاوزت المدينة حدودها التاريخية تماماً، حيث طغى النمو العمراني الحديث عبر التمدد الهائل نحو الضفة الشرقية مدعوماً بتشييد الجسور الخرسانية الحديثة. تسبب هذا في إزالة واندثار الجزء الأكبر من السور التاريخي وبواباته القديمة، وتحولت النواة التاريخية (الموصل القديمة) من كونها كامل المدينة إلى مركز تقليدي يعاني من الضغط المروري والتجاري العابر.",
+        text_en: "The city expanded entirely beyond its historic boundaries. Modern urban growth spread extensively toward the eastern bank, supported by the construction of modern concrete bridges. This caused the removal and disappearance of most of the historic wall and its old gates. The historic nucleus, Old Mosul, changed from encompassing the entire city to becoming a traditional centre under pressure from through traffic and commerce."
     },
     1988: {
         title_ar: "سنة 1980 / 1988 م — التوسع الحضري وشبكات الطرق السريعة",
         title_en: "Year 1980 / 1988 CE — Urban Sprawl & Master Plan Highways",
         era_ar: "التوسع المعاصر",
         era_en: "Modern Expansion",
-        text_ar: "رصدت الصور الفضائية التوسع الحضري الشامل واكتمال خمسة جسور رئيسية عبر دجلة، وتطوير الشوارع المحيطية، وبدايات التغير في الكثافة السكنية لمركز المدينة القديمة.",
-        text_en: "Satellite imagery documenting comprehensive urban expansion, completion of five major Tigris river bridges, modern peripheral highway loops, and demographic shifts away from the old core."
+        text_ar: "تعمقت الفجوة بين المركز التراثي المتداعي وأطراف المدينة المترامية؛ حيث أدت مشاريع التطوير العشوائي وفتح الفتحات الإضافية وتوسعة بعض المحاور لحركة السيارات إلى فقدان مستمر لوحدات النسيج السكني التراثي. تحولت الكثير من الدور التاريخية في أطراف المحلات إلى مخازن تجارية وورش حرفية ملوثة ملحقة بالأسواق، مما أفقد المدينة التراثية جزءاً كبيراً من هويتها السكنية ووظيفتها الاجتماعية التقليدية.",
+        text_en: "The gap widened between the deteriorating historic centre and the sprawling urban periphery. Unplanned development projects, additional openings and the widening of some routes for cars caused continuing losses of historic residential fabric. Many historic houses on the edges of the quarters became commercial warehouses and polluting craft workshops associated with the markets. The historic city consequently lost a substantial part of its residential identity and traditional social function."
     },
     2003: {
         title_ar: "سنة 2003 م — تآكل وفقدان النسيج السكني التراثي",
         title_en: "Year 2003 CE — Historic Urban Fabric Erosion",
         era_ar: "التوسع المعاصر",
         era_en: "Modern Expansion",
-        text_ar: "أظهرت الصور الفضائية فقدان وتآكل قرابة 20% إلى 40% من النسيج السكني التراثي نتيجة الإهمال والهدم العشوائي والضغط المروري المتولد من الجسور المتعددة.",
-        text_en: "High-resolution satellite imagery showing progressive erosion of 20% to 40% of historic domestic architecture due to infrastructural pressures, modernization, and lack of conservation regulations."
+        text_ar: "اتسمت هذه الحقبة بتدهور بيئي وحضري متسارع للنسيج التراثي التاريخي، حيث تسببت عقود الحصار الاقتصادي والنمو السكاني والضغط المروري المتولد من الجسور النهرية في تآكل ما نسبته 20% إلى 40% من المباني السكنية القديمة نتيجة انعدام أعمال الصيانة، وانهيار المرافق الخدمية، واستبدال البيوت التراثية المتداعية بكتل إسمنتية تفتقر للهوية المعمارية الأصيلة.",
+        text_en: "This period was characterized by accelerating environmental and urban deterioration of the historic fabric. Decades of economic sanctions, population growth and traffic pressure generated by the river bridges contributed to the erosion of 20% to 40% of old residential buildings. Causes included the absence of maintenance, the collapse of service infrastructure and the replacement of deteriorating heritage houses with concrete blocks lacking an authentic architectural identity."
     },
     2020: {
         title_ar: "سنة 2020 م — تقييم الدمار وتحديات الحفاظ على أصالة المدينة",
         title_en: "Year 2020 CE — Post-Conflict Damage Assessment & Recovery",
         era_ar: "التوسع المعاصر",
         era_en: "Modern Expansion",
-        text_ar: "توثيق شامل للدمار غير المسبوق في أحداث 2017 الذي طال 47% من المباني التاريخية والجامع النوري والواجهة النهرية، مبرزةً تحديات الحفاظ على أصالة النسيج المتضام أمام مخططات التوسعة الحديثة.",
-        text_en: "Comprehensive spatial documentation of the unprecedented destruction during the 2017 battle affecting 47% of historic structures including the Great Al-Nuri Mosque and Tigris riverfront, highlighting post-conflict recovery challenges."
+        text_ar: "عاشت المدينة أكبر نكبة عمرانية في تاريخها المعاصر عقب المعارك العسكرية عام 2017، والتي أسفرت عن تدمير هائل طال النسيج الكلي بنسب مرتفعة جداً، وتضرر قرابة نصف المباني الأثرية والدينية والتاريخية .دخلت المدينة مرحلة صراع مورفولوجي حرج بين متطلبات الإنقاذ وإعادة الإعمار السريع وفتح الشوارع، وبين مساعي الحفاظ على أصالة الأزقة المتضامة والأنساق المعمارية التقليدية لحماية الذاكرة الجمعية للموصل.",
+        text_en: "The city experienced the greatest urban catastrophe in its modern history following the military battles of 2017. Widespread destruction affected a very large proportion of the overall urban fabric, and nearly half of its archaeological, religious and historic buildings were damaged. The city entered a critical morphological struggle between the demands of rescue, rapid reconstruction and street opening, and efforts to preserve the authenticity of compact alleys and traditional architectural patterns in order to protect Mosul’s collective memory."
     }
 };
 
