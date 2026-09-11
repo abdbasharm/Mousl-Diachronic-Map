@@ -5,8 +5,8 @@ These separate layers reconstruct candidate street centerlines inside mapped roa
 | Era | All paths | Main connected network | Components |
 | --- | ---: | ---: | ---: |
 | 1906 | 1,294 | 1,211 | 25 |
-| 1919 | 1,261 | 1,132 | 34 |
-| 1944 | 1,327 | 1,086 | 55 |
+| 1919 | 1,266 | 1,137 | 34 |
+| 1944 | 1,330 | 1,085 | 57 |
 
 The app defaults to the main connected network; all components and original mapped lines remain selectable. Download links include the displayed network and calculated attributes. Both GeoJSON variants use EPSG:4326 and can be opened directly in QGIS. For distance or length work, reproject to EPSG:32638.
 

@@ -4,7 +4,7 @@
     "file": "data/analysis-networks/1944_network.geojson",
     "prepared_bridges": true,
     "source_kind": "derived",
-    "paths": 1328,
+    "paths": 1331,
     "bridges": 1,
     "attached_bridges": 1,
     "bridge_audit": [
@@ -16,7 +16,7 @@
             "gap_m": 8.581,
             "building_crossing_m": 0,
             "accepted": true,
-            "target": "derived/1944_derived_centerlines.geojson:782:0"
+            "target": "derived/1944_derived_centerlines.geojson:792:0"
           },
           {
             "gap_m": 459.693,
@@ -30,14 +30,14 @@
     "approach_limit_m": 50,
     "source_sha256": {
       "1944_Building_Blocks.geojson": "6fc6919279be09dee728a671d59c96de2544cc702df627d71885ed742afeffdc",
-      "1944_Heritage_Buildings.geojson": "4a66e607bf2058eb22881f3bab5f3db9ecc85264c75235fed929b407d7c984ae",
-      "derived/1944_derived_centerlines.geojson": "b68dab9d8cae3485d918eb9763ef52d81327ea867ab6ac28c6977134944918f0",
+      "1944_Heritage_Buildings.geojson": "b74e009fc914fbefa634ed8d01c9e368c05cc4babfec03b4cf271789e7a2a18a",
+      "derived/1944_derived_centerlines.geojson": "863b9f51bf4584f4abf608d93d230d18b8f52da7751d76c06a665b0302e94a13",
       "1944_Old_Bridge.geojson": "830a7d814887bc277a08f7feef305aacb8582b33af46a6b81689489fc55c8eb0"
     },
-    "components": 55,
-    "isolated": 26,
+    "components": 57,
+    "isolated": 27,
     "main_file": "data/analysis-networks/1944_main_network.geojson",
-    "largest_component_paths": 1087,
+    "largest_component_paths": 1086,
     "main_bridges": 1
   },
   "1966": {
@@ -89,7 +89,7 @@
     "approach_limit_m": 50,
     "source_sha256": {
       "1966_Building_Blocks.geojson": "6063343495ab9bf710ea5689361c7a07e8a524953349af51b23dd86b1f870bca",
-      "1966_Heritage_Building.geojson": "aa4d2f415562b9685b0b226a2218c7bb7a5cebeda3703ebd31df899b2a0a7efb",
+      "1966_Heritage_Building.geojson": "01c57c8ce91d17c22407277adfa9da6608b6fcbf71bc4f248c4a1159b801f7ca",
       "1966_Main_Roads.geojson": "6a5f1f5b9d8f9b507e3a8329a576b8f357cdb032acadff9a91cf0cab0d108d57",
       "1966_Secondary_roads.geojson": "06de441d0f6380ef12e6f66c4752ddbe92bf21c8beaf2114eafd4c4a26107a9e",
       "1966_Bridges.geojson": "40c79e0c283b2e300a0b6e826a6f6d623d253f8166a39a0a6bca678b6a824406"
@@ -167,7 +167,7 @@
     "approach_limit_m": 50,
     "source_sha256": {
       "1980_Building_Blocks.geojson": "c1bf56ec776e35b6d10c826b76518eefb6b496169670da7ba9716b8c6d542376",
-      "1980_Heritage_Building.geojson": "296220904d4940adf340af3e6a8bd044c718da2f7954acdd0595166a30f108e4",
+      "1980_Heritage_Building.geojson": "fa18de478e5e7253b0163315811932fd33f169123173553cc5fa3f65157cc1b8",
       "1980_Main_Roads.geojson": "2cb5520547e5a2e09056cba96e3612444f64f69f1a3775b2bcb4b2e66780c9f2",
       "1980_Secondery_Roads.geojson": "e25d4f018f1151bfa6b9cc9c71488bd11d9770e5962a31c6aab1515390929c5d",
       "1980_Bridges.geojson": "32c1e8079d0ceb42711b259b35e4445e83d9c0f23861576d63416ec579c8468f"
@@ -353,7 +353,7 @@
     "approach_limit_m": 50,
     "source_sha256": {
       "2003_Building_Blocks.geojson": "a2079ac87a4700dafa68fc7f2854083103760e558b172ceee278ec532b72bf5a",
-      "2003_Heritage_Buildings.geojson": "a530f301cbdf7acdd62e430b2b43fb2e5a5a9969c3062cd80fe2157e94dfc5ac",
+      "2003_Heritage_Buildings.geojson": "1d4ec5bd4e3117f2f87b0f13ef3aaf67b5306614ae9c4119eac4e2b666008d1b",
       "2003_Main_Roads.geojson": "921684cbfd03a82786a6304a4a207fc71a722baa559429385894605eaad7b775",
       "2003_Secondery_Roads.geojson": "0faf69d32a4120208aee1daec76c9b1bd31d63713a776601eb0f53a2f1e92a8e",
       "2003_Bridges.geojson": "138ab21f37c47e671f52f0c8465857b47537ce8feeb1f1e55aa298ff11cd77d3"
@@ -539,7 +539,7 @@
     "approach_limit_m": 50,
     "source_sha256": {
       "2020_Buildings_Block.geojson": "000814f29fc1b7d00eb46e4be396867d2d7d8dec18a7189cfad3d5ca070324a1",
-      "2020_Heritage_Buildings.geojson": "3111505b4369d409b3768dc95cf68038399391737afdb76bd5d5ece4ccafeaec",
+      "2020_Heritage_Buildings.geojson": "c1402518c68c6637b9d0ea5b756e75ecafecc30b0796fcdb20d3366f26c59d5a",
       "2020-Roads.geojson": "7e82198367db85e79805607ae869eb967b5de3388e356aa7b92dba4f3536f2cc",
       "2020-_Big-Roads.geojson": "e7ad1acd29102dadb2511694971edb270ab3001d6329f744432c9e646a80da4c",
       "2020-_Small_Roads.geojson": "7d4c48325323c6140eff583a66b5c4c5f1f8e1851cd03837e80db11f7dba094b",

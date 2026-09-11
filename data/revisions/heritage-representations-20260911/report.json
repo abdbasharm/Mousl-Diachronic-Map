@@ -1,0 +1,313 @@
+{
+  "removed": [
+    {
+      "year": 1778,
+      "name": "مرقد الامام يحيى ابو القاسم",
+      "removed_file": "1778_Heritage_Buildings_Points.geojson",
+      "removed_record": 1,
+      "kept_file": "1778_Heritage_Buildings.geojson",
+      "kept_record": 7,
+      "kept_type": "MultiPolygon"
+    },
+    {
+      "year": 1919,
+      "name": "خان الكمرك",
+      "removed_file": "1919_Heritage_Buidlings.geojson",
+      "removed_record": 16,
+      "kept_file": "1919_Heritage_Buidlings.geojson",
+      "kept_record": 24,
+      "kept_type": "MultiPolygon"
+    },
+    {
+      "year": 2003,
+      "name": "قره سراي",
+      "removed_file": "2003_Heritage_Buildings.geojson",
+      "removed_record": 25,
+      "kept_file": "2003_Heritage_Buildings.geojson",
+      "kept_record": 27,
+      "kept_type": "MultiPolygon"
+    },
+    {
+      "year": 2020,
+      "name": "قره سراي",
+      "removed_file": "2020_Heritage_Buildings.geojson",
+      "removed_record": 25,
+      "kept_file": "2020_Heritage_Buildings.geojson",
+      "kept_record": 26,
+      "kept_type": "MultiPolygon"
+    },
+    {
+      "year": 637,
+      "name": "الجامع الأموي",
+      "removed_file": "637_Heritage_Buildings_Points.geojson",
+      "removed_record": 13,
+      "kept_file": "637_Heritage_Buildings.geojson",
+      "kept_record": 1,
+      "kept_type": "MultiPolygon"
+    },
+    {
+      "year": 637,
+      "name": "كنيسة مار إشعيا",
+      "removed_file": "637_Heritage_Buildings_Points.geojson",
+      "removed_record": 1,
+      "kept_file": "637_Heritage_Buildings.geojson",
+      "kept_record": 2,
+      "kept_type": "MultiPolygon"
+    },
+    {
+      "year": 637,
+      "name": "كنيسة الطاهرة السريانية الكاثوليكية",
+      "removed_file": "637_Heritage_Buildings_Points.geojson",
+      "removed_record": 2,
+      "kept_file": "637_Heritage_Buildings.geojson",
+      "kept_record": 3,
+      "kept_type": "MultiPolygon"
+    },
+    {
+      "year": 912,
+      "name": "الجامع الأموي",
+      "removed_file": "912_Heritage_Buildings.geojson",
+      "removed_record": 13,
+      "kept_file": "912_Heritage_Buildings.geojson",
+      "kept_record": 24,
+      "kept_type": "MultiPolygon"
+    }
+  ],
+  "renamed": [
+    {
+      "year": 1919,
+      "file": "1919_Heritage_Buidlings.geojson",
+      "record": 9,
+      "before": "كنيسة الطاهرة الخارجية",
+      "after": "كنيسة الطاهرة الخارجية (الكلدان)"
+    },
+    {
+      "year": 1919,
+      "file": "1919_Heritage_Buidlings.geojson",
+      "record": 11,
+      "before": "كنيسة الطاهرة الخارجية",
+      "after": "كنيسة الطاهرة الخارجية (السريان)"
+    },
+    {
+      "year": 1944,
+      "file": "1944_Heritage_Buildings.geojson",
+      "record": 9,
+      "before": "كنيسة الطاهرة الخارجية",
+      "after": "كنيسة الطاهرة الخارجية (الكلدان)"
+    },
+    {
+      "year": 1944,
+      "file": "1944_Heritage_Buildings.geojson",
+      "record": 11,
+      "before": "كنيسة الطاهرة الخارجية",
+      "after": "كنيسة الطاهرة الخارجية (السريان)"
+    },
+    {
+      "year": 637,
+      "file": "637_Heritage_Buildings.geojson",
+      "record": 3,
+      "before": "كنيسة الطاهرة السريانية",
+      "after": "كنيسة الطاهرة السريانية الكاثوليكية"
+    },
+    {
+      "year": 637,
+      "file": "637_Heritage_Buildings_Points.geojson",
+      "record": 13,
+      "before": "الجامع الأموي ودار الإمارة",
+      "after": "الجامع الأموي"
+    },
+    {
+      "year": 912,
+      "file": "912_Heritage_Buildings.geojson",
+      "record": 13,
+      "before": "الجامع الأموي ودار الإمارة",
+      "after": "الجامع الأموي"
+    }
+  ],
+  "relocated": [
+    {
+      "year": 1852,
+      "name": "جامع الزيواني",
+      "before_centroid": [
+        43.1250997714806,
+        36.33579836798465
+      ],
+      "after_centroid": [
+        43.125495082643845,
+        36.33633303189612
+      ],
+      "source_year": 1919,
+      "inside_wall": true
+    }
+  ],
+  "layers": [
+    {
+      "year": 637,
+      "file": "637_Heritage_Buildings.geojson",
+      "geometry": "polygon",
+      "count": 5
+    },
+    {
+      "year": 637,
+      "file": "637_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 12
+    },
+    {
+      "year": 912,
+      "file": "912_Heritage_Buildings.geojson",
+      "geometry": "polygon",
+      "count": 1
+    },
+    {
+      "year": 912,
+      "file": "912_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 22
+    },
+    {
+      "year": 1096,
+      "file": "1096_Heritage_Buildings.geojson",
+      "geometry": "polygon",
+      "count": 1
+    },
+    {
+      "year": 1096,
+      "file": "1096_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 26
+    },
+    {
+      "year": 1127,
+      "file": "1127_Heritage_Buildings.geojson",
+      "geometry": "polygon",
+      "count": 5
+    },
+    {
+      "year": 1127,
+      "file": "1127_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 27
+    },
+    {
+      "year": 1778,
+      "file": "1778_Heritage_Buildings.geojson",
+      "geometry": "polygon",
+      "count": 27
+    },
+    {
+      "year": 1778,
+      "file": "1778_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 5
+    },
+    {
+      "year": 1838,
+      "file": "1838_Heritage_Buildings.geojson",
+      "geometry": "polygon",
+      "count": 25
+    },
+    {
+      "year": 1838,
+      "file": "1838_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 2
+    },
+    {
+      "year": 1852,
+      "file": "1852_Heritage_Building.geojson",
+      "geometry": "polygon",
+      "count": 43
+    },
+    {
+      "year": 1852,
+      "file": "1852_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 2
+    },
+    {
+      "year": 1906,
+      "file": "1906_Heritage_Buildings.geojson",
+      "geometry": "polygon",
+      "count": 39
+    },
+    {
+      "year": 1906,
+      "file": "1906_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 2
+    },
+    {
+      "year": 1919,
+      "file": "1919_Heritage_Buidlings.geojson",
+      "geometry": "polygon",
+      "count": 42
+    },
+    {
+      "year": 1919,
+      "file": "1919_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 2
+    },
+    {
+      "year": 1944,
+      "file": "1944_Heritage_Buildings.geojson",
+      "geometry": "polygon",
+      "count": 42
+    },
+    {
+      "year": 1944,
+      "file": "1944_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 2
+    },
+    {
+      "year": 1966,
+      "file": "1966_Heritage_Building.geojson",
+      "geometry": "polygon",
+      "count": 40
+    },
+    {
+      "year": 1966,
+      "file": "1966_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 2
+    },
+    {
+      "year": 1988,
+      "file": "1980_Heritage_Building.geojson",
+      "geometry": "polygon",
+      "count": 39
+    },
+    {
+      "year": 1988,
+      "file": "1988_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 2
+    },
+    {
+      "year": 2003,
+      "file": "2003_Heritage_Buildings.geojson",
+      "geometry": "polygon",
+      "count": 40
+    },
+    {
+      "year": 2003,
+      "file": "2003_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 2
+    },
+    {
+      "year": 2020,
+      "file": "2020_Heritage_Buildings.geojson",
+      "geometry": "polygon",
+      "count": 39
+    },
+    {
+      "year": 2020,
+      "file": "2020_Heritage_Buildings_Points.geojson",
+      "geometry": "point",
+      "count": 2
+    }
+  ]
+}

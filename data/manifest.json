@@ -31,13 +31,6 @@
       ]
     },
     {
-      "file": "1096_Heritage_Buildings.geojson",
-      "layer": "1096_Heritage_Buildings",
-      "years": [
-        1096
-      ]
-    },
-    {
       "file": "1127_City_Borders.geojson",
       "layer": "1127_City_Borders",
       "years": [
@@ -47,13 +40,6 @@
     {
       "file": "1127_City_walls.geojson",
       "layer": "1127_City_walls",
-      "years": [
-        1127
-      ]
-    },
-    {
-      "file": "1127_Heritage_Buildings.geojson",
-      "layer": "1127_Heritage_Buildings",
       "years": [
         1127
       ]
@@ -82,20 +68,6 @@
     {
       "file": "1778_Gates.geojson",
       "layer": "1778_Gates",
-      "years": [
-        1778
-      ]
-    },
-    {
-      "file": "1778_Heritage_Buildings.geojson",
-      "layer": "1778_Heritage_Buildings",
-      "years": [
-        1778
-      ]
-    },
-    {
-      "file": "1778_Heritage_Buildings_Points.geojson",
-      "layer": "1778_Heritage_Buildings_Points",
       "years": [
         1778
       ]
@@ -185,13 +157,6 @@
       ]
     },
     {
-      "file": "1852_Heritage_Building.geojson",
-      "layer": "1852_Heritage_Building",
-      "years": [
-        1852
-      ]
-    },
-    {
       "file": "1852_Photos.geojson",
       "layer": "1852_Photos",
       "years": [
@@ -248,13 +213,6 @@
       ]
     },
     {
-      "file": "1906_Heritage_Buildings.geojson",
-      "layer": "1906_Heritage_Buildings",
-      "years": [
-        1906
-      ]
-    },
-    {
       "file": "1906_Photos.geojson",
       "layer": "1906_Photos",
       "years": [
@@ -278,13 +236,6 @@
     {
       "file": "1919_Citys_Gates.geojson",
       "layer": "1919_Citys_Gates",
-      "years": [
-        1919
-      ]
-    },
-    {
-      "file": "1919_Heritage_Buidlings.geojson",
-      "layer": "1919_Heritage_Buidlings",
       "years": [
         1919
       ]
@@ -327,13 +278,6 @@
     {
       "file": "1944_Citys_Gates.geojson",
       "layer": "1944_Citys_Gates",
-      "years": [
-        1944
-      ]
-    },
-    {
-      "file": "1944_Heritage_Buildings.geojson",
-      "layer": "1944_Heritage_Buildings",
       "years": [
         1944
       ]
@@ -409,13 +353,6 @@
       ]
     },
     {
-      "file": "1966_Heritage_Building.geojson",
-      "layer": "1966_Heritage_Building",
-      "years": [
-        1966
-      ]
-    },
-    {
       "file": "1966_Main_Roads.geojson",
       "layer": "1966_Main_Roads",
       "years": [
@@ -479,13 +416,6 @@
       ]
     },
     {
-      "file": "1980_Heritage_Building.geojson",
-      "layer": "1980_Heritage_Building",
-      "years": [
-        1988
-      ]
-    },
-    {
       "file": "1980_Main_Roads.geojson",
       "layer": "1980_Main_Roads",
       "years": [
@@ -516,13 +446,6 @@
     {
       "file": "2003_Citys_Gates.geojson",
       "layer": "2003_Citys_Gates",
-      "years": [
-        2003
-      ]
-    },
-    {
-      "file": "2003_Heritage_Buildings.geojson",
-      "layer": "2003_Heritage_Buildings",
       "years": [
         2003
       ]
@@ -577,13 +500,6 @@
       ]
     },
     {
-      "file": "2020_Heritage_Buildings.geojson",
-      "layer": "2020_Heritage_Buildings",
-      "years": [
-        2020
-      ]
-    },
-    {
       "file": "2020_Roads.geojson",
       "layer": "2020_Roads",
       "years": [
@@ -626,20 +542,6 @@
       ]
     },
     {
-      "file": "637_Heritage_Buildings.geojson",
-      "layer": "637_Heritage_Buildings",
-      "years": [
-        637
-      ]
-    },
-    {
-      "file": "637_Heritage_Buildings_Points.geojson",
-      "layer": "637_Heritage_Buildings_Points",
-      "years": [
-        637
-      ]
-    },
-    {
       "file": "637_Misr_Walls.geojson",
       "layer": "637_Misr_Walls",
       "years": [
@@ -656,13 +558,6 @@
     {
       "file": "912_City_walls.geojson",
       "layer": "912_City_walls",
-      "years": [
-        912
-      ]
-    },
-    {
-      "file": "912_Heritage_Buildings.geojson",
-      "layer": "912_Heritage_Buildings",
       "years": [
         912
       ]
@@ -815,6 +710,202 @@
       "layer": "evolution_2003_to_2020",
       "years": [
         2003,
+        2020
+      ]
+    },
+    {
+      "file": "637_Heritage_Buildings.geojson",
+      "layer": "637_Heritage_Buildings",
+      "years": [
+        637
+      ]
+    },
+    {
+      "file": "637_Heritage_Buildings_Points.geojson",
+      "layer": "637_Heritage_Buildings_Points",
+      "years": [
+        637
+      ]
+    },
+    {
+      "file": "912_Heritage_Buildings.geojson",
+      "layer": "912_Heritage_Buildings",
+      "years": [
+        912
+      ]
+    },
+    {
+      "file": "912_Heritage_Buildings_Points.geojson",
+      "layer": "912_Heritage_Buildings_Points",
+      "years": [
+        912
+      ]
+    },
+    {
+      "file": "1096_Heritage_Buildings.geojson",
+      "layer": "1096_Heritage_Buildings",
+      "years": [
+        1096
+      ]
+    },
+    {
+      "file": "1096_Heritage_Buildings_Points.geojson",
+      "layer": "1096_Heritage_Buildings_Points",
+      "years": [
+        1096
+      ]
+    },
+    {
+      "file": "1127_Heritage_Buildings.geojson",
+      "layer": "1127_Heritage_Buildings",
+      "years": [
+        1127
+      ]
+    },
+    {
+      "file": "1127_Heritage_Buildings_Points.geojson",
+      "layer": "1127_Heritage_Buildings_Points",
+      "years": [
+        1127
+      ]
+    },
+    {
+      "file": "1778_Heritage_Buildings.geojson",
+      "layer": "1778_Heritage_Buildings",
+      "years": [
+        1778
+      ]
+    },
+    {
+      "file": "1778_Heritage_Buildings_Points.geojson",
+      "layer": "1778_Heritage_Buildings_Points",
+      "years": [
+        1778
+      ]
+    },
+    {
+      "file": "1838_Heritage_Buildings.geojson",
+      "layer": "1838_Heritage_Buildings",
+      "years": [
+        1838
+      ]
+    },
+    {
+      "file": "1838_Heritage_Buildings_Points.geojson",
+      "layer": "1838_Heritage_Buildings_Points",
+      "years": [
+        1838
+      ]
+    },
+    {
+      "file": "1852_Heritage_Building.geojson",
+      "layer": "1852_Heritage_Building",
+      "years": [
+        1852
+      ]
+    },
+    {
+      "file": "1852_Heritage_Buildings_Points.geojson",
+      "layer": "1852_Heritage_Buildings_Points",
+      "years": [
+        1852
+      ]
+    },
+    {
+      "file": "1906_Heritage_Buildings.geojson",
+      "layer": "1906_Heritage_Buildings",
+      "years": [
+        1906
+      ]
+    },
+    {
+      "file": "1906_Heritage_Buildings_Points.geojson",
+      "layer": "1906_Heritage_Buildings_Points",
+      "years": [
+        1906
+      ]
+    },
+    {
+      "file": "1919_Heritage_Buidlings.geojson",
+      "layer": "1919_Heritage_Buidlings",
+      "years": [
+        1919
+      ]
+    },
+    {
+      "file": "1919_Heritage_Buildings_Points.geojson",
+      "layer": "1919_Heritage_Buildings_Points",
+      "years": [
+        1919
+      ]
+    },
+    {
+      "file": "1944_Heritage_Buildings.geojson",
+      "layer": "1944_Heritage_Buildings",
+      "years": [
+        1944
+      ]
+    },
+    {
+      "file": "1944_Heritage_Buildings_Points.geojson",
+      "layer": "1944_Heritage_Buildings_Points",
+      "years": [
+        1944
+      ]
+    },
+    {
+      "file": "1966_Heritage_Building.geojson",
+      "layer": "1966_Heritage_Building",
+      "years": [
+        1966
+      ]
+    },
+    {
+      "file": "1966_Heritage_Buildings_Points.geojson",
+      "layer": "1966_Heritage_Buildings_Points",
+      "years": [
+        1966
+      ]
+    },
+    {
+      "file": "1980_Heritage_Building.geojson",
+      "layer": "1980_Heritage_Building",
+      "years": [
+        1988
+      ]
+    },
+    {
+      "file": "1988_Heritage_Buildings_Points.geojson",
+      "layer": "1988_Heritage_Buildings_Points",
+      "years": [
+        1988
+      ]
+    },
+    {
+      "file": "2003_Heritage_Buildings.geojson",
+      "layer": "2003_Heritage_Buildings",
+      "years": [
+        2003
+      ]
+    },
+    {
+      "file": "2003_Heritage_Buildings_Points.geojson",
+      "layer": "2003_Heritage_Buildings_Points",
+      "years": [
+        2003
+      ]
+    },
+    {
+      "file": "2020_Heritage_Buildings.geojson",
+      "layer": "2020_Heritage_Buildings",
+      "years": [
+        2020
+      ]
+    },
+    {
+      "file": "2020_Heritage_Buildings_Points.geojson",
+      "layer": "2020_Heritage_Buildings_Points",
+      "years": [
         2020
       ]
     }

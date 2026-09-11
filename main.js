@@ -1526,6 +1526,7 @@ function addLayerToMap(targetMap, layerInfo, data) {
         } else {
             targetMap.addLayer({
                 id: layerId, type: 'circle', source: sourceId,
+                filter: ['==', ['geometry-type'], 'Point'],
                 layout: { visibility: 'none' },
                 paint: {
                     'circle-color': colorExpr, 'circle-radius': isBuilding ? 5 : 7,
@@ -2670,4 +2671,3 @@ if (langToggleBtn) {
 
 // Initialize default language state
 setLanguage(currentLang);
-

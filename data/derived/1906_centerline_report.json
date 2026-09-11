@@ -25,7 +25,7 @@
   "source_sha256": {
     "1906_Roads.geojson": "05b9c6c3b2c351bf384353361056a47e6d6277693c01496d92357c889b94927b",
     "1906_Buildings_Block.geojson": "72fdae60ff4a178ba87bb021d769d746058cc97fd4bd8a282105cf9a0bb485cf",
-    "1906_Heritage_Buildings.geojson": "7b6d958fb7c54a765459f876ef80a9a16880d0ce1cf748bc20c4d013727c219a",
+    "1906_Heritage_Buildings.geojson": "caa90891fd8329c69bdbeb9f32d5b8850d5b8427bd98f19bfa50765cbacd4a89",
     "1906_River.geojson": "e5c161712a3727d82e318e3fc762c5779628b99974544a637328c713145f6a12"
   },
   "method": "Zhang skeletonization of a 1 m road-area mask after subtracting building/heritage footprints and river polygons. Adjacent junction pixels consolidated; degree-2 nodes merged. Edges outside the corridor rejected; no gap-bridging is used. Explicit shared endpoints define network connections.",

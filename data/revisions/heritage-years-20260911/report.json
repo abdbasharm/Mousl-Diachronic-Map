@@ -1,0 +1,2570 @@
+{
+  "source_workbook": "Heritage Buildings Years.xlsx",
+  "source_sha256": "89dfa45c6a9e7ec18796833411d4c8e8743892e358cfc30269106a6144a5df15",
+  "policy": "Add missing occurrences and unify approved identity aliases. Keep original geometries, unrelated records, and existing occurrences outside the supplied intervals. Copied geometry is not a reconstruction of the historical footprint.",
+  "matches": [
+    {
+      "row": 11,
+      "code": "A01/A02",
+      "sheet_name": "الجامع الأموي (جامع المصفى / العتيق)",
+      "years": [
+        637,
+        912,
+        1096,
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A01/A02:1",
+      "canonical": "الجامع الأموي",
+      "aliases_found": [
+        "الجامع الأموي",
+        "الجامع الاموي",
+        "الجامع الاموي (المصفي)",
+        "جامع المصفي"
+      ],
+      "existing_years": [
+        637,
+        1096,
+        1127,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 14,
+      "code": "B03",
+      "sheet_name": "كنيسة مار إشعيا (Mar Isha'ia)",
+      "years": [
+        637,
+        912,
+        1096,
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "B03:1",
+      "canonical": "كنيسة مار إشعيا",
+      "aliases_found": [
+        "كاتدرائية مار إيشوعياب",
+        "كنيسة مار اشعيا",
+        "مار إيشوعياب"
+      ],
+      "existing_years": [
+        637,
+        912,
+        1096,
+        1127,
+        1906
+      ]
+    },
+    {
+      "row": 17,
+      "code": "B15",
+      "sheet_name": "كنيسة مار شمعون الصفا",
+      "years": [
+        637,
+        912,
+        1096,
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "B15:1",
+      "canonical": "كنيسة شمعون الصفا",
+      "aliases_found": [
+        "كنيسة شمعون الصفا"
+      ],
+      "existing_years": [
+        637,
+        912,
+        1096,
+        1127
+      ]
+    },
+    {
+      "row": 20,
+      "code": "B07",
+      "sheet_name": "كنيسة الطاهرة القديمة (قلعة)",
+      "years": [
+        912,
+        1096,
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "B07:1",
+      "canonical": "كنيسة الطاهرة القديمة",
+      "aliases_found": [
+        "كنيسة الطاهرة القديمة"
+      ],
+      "existing_years": [
+        912,
+        1096,
+        1127
+      ]
+    },
+    {
+      "row": 23,
+      "code": "B11/B12",
+      "sheet_name": "كنيسة مار توما (السريان)",
+      "years": [
+        637,
+        912,
+        1096,
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "B11/B12:1",
+      "canonical": "كنيسة مار توما",
+      "aliases_found": [
+        "المعلم المبكر لكنيسة مار توما",
+        "كنيسة مارتوما"
+      ],
+      "existing_years": [
+        912,
+        1096,
+        1127,
+        1906,
+        1919,
+        1944,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 23,
+      "code": "B11/B12",
+      "sheet_name": "كنيسة مار توما (السريان)",
+      "years": [
+        637,
+        912,
+        1096,
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "B11/B12:2",
+      "canonical": "كنيسة مار توما للسريان الكاثوليك",
+      "aliases_found": [
+        "كنيسة مار توما للسريان الكاثوليك",
+        "كنيسة مارتوما للسريان الكاثوليك"
+      ],
+      "existing_years": [
+        637,
+        912,
+        1096,
+        1127,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 26,
+      "code": "I01",
+      "sheet_name": "قلعة باشطابيا والأسوار",
+      "years": [
+        1096,
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "I01:1",
+      "canonical": "قلعة باشطابيا",
+      "aliases_found": [
+        "قلعة باشطابيا"
+      ],
+      "existing_years": [
+        1127,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 31,
+      "code": "A03",
+      "sheet_name": "جامع النوري ومئذنته الحدباء",
+      "years": [
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A03:1",
+      "canonical": "الجامع النوري",
+      "aliases_found": [
+        "الجامع النوري",
+        "الجامع النوري الكبير"
+      ],
+      "existing_years": [
+        1778,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 34,
+      "code": "A04",
+      "sheet_name": "الجامع المجاهدي (جامع الخضر)",
+      "years": [
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A04:1",
+      "canonical": "الجامع المجاهدي",
+      "aliases_found": [
+        "الجامع المجاهدي",
+        "جامع الخضر (المجاهدي)"
+      ],
+      "existing_years": [
+        1778,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 37,
+      "code": "A06",
+      "sheet_name": "جامع ومرقد النبي جرجيس",
+      "years": [
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A06:1",
+      "canonical": "جامع النبي جرجيس",
+      "aliases_found": [
+        "جامع النبي جرجيس",
+        "ضريح النبي جرجيس"
+      ],
+      "existing_years": [
+        1096,
+        1127,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 43,
+      "code": "A21",
+      "sheet_name": "جامع الشهوان (شيخ الشط / الكمالية)",
+      "years": [
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A21:1",
+      "canonical": "جامع شيخ الشط",
+      "aliases_found": [
+        "جامع شيخ الشط"
+      ],
+      "existing_years": [
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 46,
+      "code": "C02",
+      "sheet_name": "مرقد الشيخ فتحي",
+      "years": [
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "C02:1",
+      "canonical": "مرقد الشيخ فتحي",
+      "aliases_found": [
+        "مرقد الشيخ فتحي"
+      ],
+      "existing_years": [
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 49,
+      "code": "C03",
+      "sheet_name": "مرقد الإمام يحيى أبو القاسم",
+      "years": [
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "C03:1",
+      "canonical": "مرقد الامام يحيى ابو القاسم",
+      "aliases_found": [
+        "النواة الأصلية لمشهد الإمام يحيى بن القاسم على ضفة النهر",
+        "مرقد الامام يحيى ابو القاسم",
+        "مرقد يحيى ابن القاسم",
+        "يحيى ابو القاسم"
+      ],
+      "existing_years": [
+        912,
+        1096,
+        1127,
+        1778,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 52,
+      "code": "C07",
+      "sheet_name": "مرقد الإمام عون الدين",
+      "years": [
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "C07:1",
+      "canonical": "مرقد الامام عون الدين",
+      "aliases_found": [
+        "مرقد الامام عون الدين",
+        "مرقد الامام عون الدين ابن الحسن"
+      ],
+      "existing_years": [
+        1096,
+        1127,
+        1778,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 55,
+      "code": "I03",
+      "sheet_name": "قصر قره سراي",
+      "years": [
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "I03:1",
+      "canonical": "قره سراي",
+      "aliases_found": [
+        "قراسراي",
+        "قره سراي",
+        "قلعة قره سراي"
+      ],
+      "existing_years": [
+        1778,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 64,
+      "code": "A09",
+      "sheet_name": "جامع الشيخ عبدال",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A09:1",
+      "canonical": "جامع عبدال",
+      "aliases_found": [
+        "جامع عبدال"
+      ],
+      "existing_years": [
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 67,
+      "code": "A10",
+      "sheet_name": "جامع عمر الأسود (شهر سوق)",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A10:1",
+      "canonical": "جامع عمر الاسود",
+      "aliases_found": [
+        "جامع عمر الاسود"
+      ],
+      "existing_years": [
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 73,
+      "code": "A13",
+      "sheet_name": "جامع الأغوات",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A13:1",
+      "canonical": "جامع الاغوات",
+      "aliases_found": [
+        "جامع الاغوات",
+        "جامع الجسر (الاغوات)"
+      ],
+      "existing_years": [
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 76,
+      "code": "A14",
+      "sheet_name": "جامع الباشا",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A14:1",
+      "canonical": "جامع الباشا",
+      "aliases_found": [
+        "جامع الباشا"
+      ],
+      "existing_years": [
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 79,
+      "code": "A15",
+      "sheet_name": "جامع الإمام الباهر",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A15:1",
+      "canonical": "مشهد الامام الباهر",
+      "aliases_found": [
+        "مرقد الامام الباهر",
+        "مشهد الامام الباهر"
+      ],
+      "existing_years": [
+        1096,
+        1127,
+        1778,
+        1906
+      ]
+    },
+    {
+      "row": 82,
+      "code": "A16",
+      "sheet_name": "جامع الرابعية",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A16:1",
+      "canonical": "جامع الرابعية",
+      "aliases_found": [
+        "جامع الرابعية"
+      ],
+      "existing_years": [
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 85,
+      "code": "A17",
+      "sheet_name": "جامع الزيواني",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A17:1",
+      "canonical": "جامع الزيواني",
+      "aliases_found": [
+        "جامع الزيواني"
+      ],
+      "existing_years": [
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 88,
+      "code": "A18",
+      "sheet_name": "جامع ومرقد النبي شيت",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A18:1",
+      "canonical": "جامع النبي شيت",
+      "aliases_found": [
+        "جامع النبي شيت"
+      ],
+      "existing_years": [
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 94,
+      "code": "D01",
+      "sheet_name": "خان الكمرك الكبير",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "D01:1",
+      "canonical": "خان الكمرك",
+      "aliases_found": [
+        "خان الكمرك"
+      ],
+      "existing_years": [
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 97,
+      "code": "E04",
+      "sheet_name": "حمام عبيد أغا",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "E04:1",
+      "canonical": "حمام عبيد اغا الجليلي",
+      "aliases_found": [
+        "حمام عبيد اغا الجليلي"
+      ],
+      "existing_years": [
+        1906
+      ]
+    },
+    {
+      "row": 100,
+      "code": "I48",
+      "sheet_name": "جامع ومدرسة الرضواني",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "I48:1",
+      "canonical": "جامع الرضواني",
+      "aliases_found": [
+        "جامع الرضواني"
+      ],
+      "existing_years": [
+        1852
+      ]
+    },
+    {
+      "row": 103,
+      "code": "-",
+      "sheet_name": "قشلة الموصل العسكرية",
+      "years": [
+        1838,
+        1852,
+        1906,
+        1919
+      ],
+      "identity": "-:1",
+      "canonical": "القشلة",
+      "aliases_found": [
+        "القشلة",
+        "القشلة العسكرية",
+        "قشلة الخيالة"
+      ],
+      "existing_years": [
+        1852,
+        1906,
+        1919,
+        1944,
+        1966
+      ]
+    },
+    {
+      "row": 106,
+      "code": "A20",
+      "sheet_name": "جامع النعمانية (القطانين)",
+      "years": [
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "A20:1",
+      "canonical": "جامع القطانين",
+      "aliases_found": [
+        "جامع القطانين"
+      ],
+      "existing_years": [
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 109,
+      "code": "B10",
+      "sheet_name": "كنيسة الساعة (الآباء الدومنيكان)",
+      "years": [
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ],
+      "identity": "B10:1",
+      "canonical": "كنيسة الساعة",
+      "aliases_found": [
+        "كنيسة الساعة"
+      ],
+      "existing_years": [
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    }
+  ],
+  "ignored": [
+    {
+      "row": 29,
+      "code": "A36",
+      "sheet_name": "مسجد الشيخ حسان البكري",
+      "years": [
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 40,
+      "code": "A19",
+      "sheet_name": "جامع القلعة",
+      "years": [
+        1127,
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 58,
+      "code": "A07",
+      "sheet_name": "جامع العمرية",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 61,
+      "code": "A08",
+      "sheet_name": "جامع خزام",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 70,
+      "code": "A11",
+      "sheet_name": "جامع السلطان ويس",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 91,
+      "code": "A28",
+      "sheet_name": "جامع الحامدين / المحمودين",
+      "years": [
+        1778,
+        1838,
+        1852,
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 112,
+      "code": "A23",
+      "sheet_name": "جامع حمو القدو",
+      "years": [
+        1906,
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 115,
+      "code": "A25",
+      "sheet_name": "جامع الصابونجي",
+      "years": [
+        1919,
+        1944,
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    },
+    {
+      "row": 118,
+      "code": "A52",
+      "sheet_name": "جامع الصفر (الصفار)",
+      "years": [
+        1966,
+        1988,
+        2003,
+        2020
+      ]
+    }
+  ],
+  "additions": [
+    {
+      "name": "الجامع الأموي",
+      "year": 912,
+      "target": "912_Heritage_Buildings.geojson",
+      "record": 24,
+      "geometry_source_year": 637,
+      "geometry_source_file": "637_Heritage_Buildings.geojson",
+      "geometry_source_record": 1,
+      "workbook_row": 11
+    },
+    {
+      "name": "الجامع الأموي",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 10,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 7,
+      "workbook_row": 11
+    },
+    {
+      "name": "الجامع الأموي",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 1,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 7,
+      "workbook_row": 11
+    },
+    {
+      "name": "الجامع الأموي",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 29,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 7,
+      "workbook_row": 11
+    },
+    {
+      "name": "كنيسة مار إشعيا",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 11,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 35,
+      "workbook_row": 14
+    },
+    {
+      "name": "كنيسة مار إشعيا",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 2,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 35,
+      "workbook_row": 14
+    },
+    {
+      "name": "كنيسة مار إشعيا",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 30,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 35,
+      "workbook_row": 14
+    },
+    {
+      "name": "كنيسة مار إشعيا",
+      "year": 1919,
+      "target": "1919_Heritage_Buidlings.geojson",
+      "record": 40,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 35,
+      "workbook_row": 14
+    },
+    {
+      "name": "كنيسة مار إشعيا",
+      "year": 1944,
+      "target": "1944_Heritage_Buildings.geojson",
+      "record": 39,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 35,
+      "workbook_row": 14
+    },
+    {
+      "name": "كنيسة مار إشعيا",
+      "year": 1966,
+      "target": "1966_Heritage_Building.geojson",
+      "record": 36,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 35,
+      "workbook_row": 14
+    },
+    {
+      "name": "كنيسة مار إشعيا",
+      "year": 1988,
+      "target": "1980_Heritage_Building.geojson",
+      "record": 35,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 35,
+      "workbook_row": 14
+    },
+    {
+      "name": "كنيسة مار إشعيا",
+      "year": 2003,
+      "target": "2003_Heritage_Buildings.geojson",
+      "record": 38,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 35,
+      "workbook_row": 14
+    },
+    {
+      "name": "كنيسة مار إشعيا",
+      "year": 2020,
+      "target": "2020_Heritage_Buildings.geojson",
+      "record": 37,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 35,
+      "workbook_row": 14
+    },
+    {
+      "name": "كنيسة شمعون الصفا",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings_Points.geojson",
+      "record": 5,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 14,
+      "workbook_row": 17
+    },
+    {
+      "name": "كنيسة شمعون الصفا",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 14,
+      "workbook_row": 17
+    },
+    {
+      "name": "كنيسة شمعون الصفا",
+      "year": 1852,
+      "target": "1852_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 14,
+      "workbook_row": 17
+    },
+    {
+      "name": "كنيسة شمعون الصفا",
+      "year": 1906,
+      "target": "1906_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 14,
+      "workbook_row": 17
+    },
+    {
+      "name": "كنيسة شمعون الصفا",
+      "year": 1919,
+      "target": "1919_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 14,
+      "workbook_row": 17
+    },
+    {
+      "name": "كنيسة شمعون الصفا",
+      "year": 1944,
+      "target": "1944_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 14,
+      "workbook_row": 17
+    },
+    {
+      "name": "كنيسة شمعون الصفا",
+      "year": 1966,
+      "target": "1966_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 14,
+      "workbook_row": 17
+    },
+    {
+      "name": "كنيسة شمعون الصفا",
+      "year": 1988,
+      "target": "1988_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 14,
+      "workbook_row": 17
+    },
+    {
+      "name": "كنيسة شمعون الصفا",
+      "year": 2003,
+      "target": "2003_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 14,
+      "workbook_row": 17
+    },
+    {
+      "name": "كنيسة شمعون الصفا",
+      "year": 2020,
+      "target": "2020_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 14,
+      "workbook_row": 17
+    },
+    {
+      "name": "كنيسة الطاهرة القديمة",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings_Points.geojson",
+      "record": 6,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 15,
+      "workbook_row": 20
+    },
+    {
+      "name": "كنيسة الطاهرة القديمة",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings_Points.geojson",
+      "record": 2,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 15,
+      "workbook_row": 20
+    },
+    {
+      "name": "كنيسة الطاهرة القديمة",
+      "year": 1852,
+      "target": "1852_Heritage_Buildings_Points.geojson",
+      "record": 2,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 15,
+      "workbook_row": 20
+    },
+    {
+      "name": "كنيسة الطاهرة القديمة",
+      "year": 1906,
+      "target": "1906_Heritage_Buildings_Points.geojson",
+      "record": 2,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 15,
+      "workbook_row": 20
+    },
+    {
+      "name": "كنيسة الطاهرة القديمة",
+      "year": 1919,
+      "target": "1919_Heritage_Buildings_Points.geojson",
+      "record": 2,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 15,
+      "workbook_row": 20
+    },
+    {
+      "name": "كنيسة الطاهرة القديمة",
+      "year": 1944,
+      "target": "1944_Heritage_Buildings_Points.geojson",
+      "record": 2,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 15,
+      "workbook_row": 20
+    },
+    {
+      "name": "كنيسة الطاهرة القديمة",
+      "year": 1966,
+      "target": "1966_Heritage_Buildings_Points.geojson",
+      "record": 2,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 15,
+      "workbook_row": 20
+    },
+    {
+      "name": "كنيسة الطاهرة القديمة",
+      "year": 1988,
+      "target": "1988_Heritage_Buildings_Points.geojson",
+      "record": 2,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 15,
+      "workbook_row": 20
+    },
+    {
+      "name": "كنيسة الطاهرة القديمة",
+      "year": 2003,
+      "target": "2003_Heritage_Buildings_Points.geojson",
+      "record": 2,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 15,
+      "workbook_row": 20
+    },
+    {
+      "name": "كنيسة الطاهرة القديمة",
+      "year": 2020,
+      "target": "2020_Heritage_Buildings_Points.geojson",
+      "record": 2,
+      "geometry_source_year": 1127,
+      "geometry_source_file": "1127_Heritage_Buildings.geojson",
+      "geometry_source_record": 15,
+      "workbook_row": 20
+    },
+    {
+      "name": "كنيسة مار توما",
+      "year": 637,
+      "target": "637_Heritage_Buildings.geojson",
+      "record": 5,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 26,
+      "workbook_row": 23
+    },
+    {
+      "name": "كنيسة مار توما",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 12,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 26,
+      "workbook_row": 23
+    },
+    {
+      "name": "كنيسة مار توما",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 3,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 26,
+      "workbook_row": 23
+    },
+    {
+      "name": "كنيسة مار توما",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 31,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 26,
+      "workbook_row": 23
+    },
+    {
+      "name": "كنيسة مار توما",
+      "year": 1966,
+      "target": "1966_Heritage_Building.geojson",
+      "record": 37,
+      "geometry_source_year": 1944,
+      "geometry_source_file": "1944_Heritage_Buildings.geojson",
+      "geometry_source_record": 26,
+      "workbook_row": 23
+    },
+    {
+      "name": "كنيسة مار توما",
+      "year": 1988,
+      "target": "1980_Heritage_Building.geojson",
+      "record": 36,
+      "geometry_source_year": 2003,
+      "geometry_source_file": "2003_Heritage_Buildings.geojson",
+      "geometry_source_record": 31,
+      "workbook_row": 23
+    },
+    {
+      "name": "كنيسة مار توما للسريان الكاثوليك",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 13,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 27,
+      "workbook_row": 23
+    },
+    {
+      "name": "كنيسة مار توما للسريان الكاثوليك",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 4,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 27,
+      "workbook_row": 23
+    },
+    {
+      "name": "كنيسة مار توما للسريان الكاثوليك",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 32,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 27,
+      "workbook_row": 23
+    },
+    {
+      "name": "قلعة باشطابيا",
+      "year": 1096,
+      "target": "1096_Heritage_Buildings.geojson",
+      "record": 27,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 11,
+      "workbook_row": 26
+    },
+    {
+      "name": "قلعة باشطابيا",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 14,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 11,
+      "workbook_row": 26
+    },
+    {
+      "name": "قلعة باشطابيا",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 5,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 11,
+      "workbook_row": 26
+    },
+    {
+      "name": "الجامع النوري",
+      "year": 1127,
+      "target": "1127_Heritage_Buildings.geojson",
+      "record": 28,
+      "geometry_source_year": 1778,
+      "geometry_source_file": "1778_Heritage_Buildings.geojson",
+      "geometry_source_record": 3,
+      "workbook_row": 31
+    },
+    {
+      "name": "الجامع النوري",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 6,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 1,
+      "workbook_row": 31
+    },
+    {
+      "name": "الجامع المجاهدي",
+      "year": 1127,
+      "target": "1127_Heritage_Buildings.geojson",
+      "record": 29,
+      "geometry_source_year": 1778,
+      "geometry_source_file": "1778_Heritage_Buildings.geojson",
+      "geometry_source_record": 4,
+      "workbook_row": 34
+    },
+    {
+      "name": "الجامع المجاهدي",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 7,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 21,
+      "workbook_row": 34
+    },
+    {
+      "name": "جامع النبي جرجيس",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 15,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 2,
+      "workbook_row": 37
+    },
+    {
+      "name": "جامع النبي جرجيس",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 8,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 2,
+      "workbook_row": 37
+    },
+    {
+      "name": "جامع شيخ الشط",
+      "year": 1127,
+      "target": "1127_Heritage_Buildings.geojson",
+      "record": 30,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 11,
+      "workbook_row": 43
+    },
+    {
+      "name": "جامع شيخ الشط",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 16,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 11,
+      "workbook_row": 43
+    },
+    {
+      "name": "جامع شيخ الشط",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 9,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 11,
+      "workbook_row": 43
+    },
+    {
+      "name": "جامع شيخ الشط",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 33,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 11,
+      "workbook_row": 43
+    },
+    {
+      "name": "مرقد الشيخ فتحي",
+      "year": 1127,
+      "target": "1127_Heritage_Buildings.geojson",
+      "record": 31,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 31,
+      "workbook_row": 46
+    },
+    {
+      "name": "مرقد الشيخ فتحي",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 17,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 31,
+      "workbook_row": 46
+    },
+    {
+      "name": "مرقد الشيخ فتحي",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 10,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 31,
+      "workbook_row": 46
+    },
+    {
+      "name": "مرقد الشيخ فتحي",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 34,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 31,
+      "workbook_row": 46
+    },
+    {
+      "name": "مرقد الامام يحيى ابو القاسم",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 11,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 12,
+      "workbook_row": 49
+    },
+    {
+      "name": "مرقد الامام عون الدين",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 12,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 9,
+      "workbook_row": 52
+    },
+    {
+      "name": "قره سراي",
+      "year": 1127,
+      "target": "1127_Heritage_Buildings.geojson",
+      "record": 32,
+      "geometry_source_year": 1778,
+      "geometry_source_file": "1778_Heritage_Buildings.geojson",
+      "geometry_source_record": 5,
+      "workbook_row": 55
+    },
+    {
+      "name": "قره سراي",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 13,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 13,
+      "workbook_row": 55
+    },
+    {
+      "name": "جامع عبدال",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 18,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 18,
+      "workbook_row": 64
+    },
+    {
+      "name": "جامع عبدال",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 14,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 18,
+      "workbook_row": 64
+    },
+    {
+      "name": "جامع عبدال",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 35,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 18,
+      "workbook_row": 64
+    },
+    {
+      "name": "جامع عمر الاسود",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 19,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 67
+    },
+    {
+      "name": "جامع عمر الاسود",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 15,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 67
+    },
+    {
+      "name": "جامع عمر الاسود",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 36,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 67
+    },
+    {
+      "name": "جامع الاغوات",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 20,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 5,
+      "workbook_row": 73
+    },
+    {
+      "name": "جامع الاغوات",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 16,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 5,
+      "workbook_row": 73
+    },
+    {
+      "name": "جامع الباشا",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 21,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 6,
+      "workbook_row": 76
+    },
+    {
+      "name": "جامع الباشا",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 17,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 6,
+      "workbook_row": 76
+    },
+    {
+      "name": "مشهد الامام الباهر",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 18,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 30,
+      "workbook_row": 79
+    },
+    {
+      "name": "مشهد الامام الباهر",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 37,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 30,
+      "workbook_row": 79
+    },
+    {
+      "name": "مشهد الامام الباهر",
+      "year": 1919,
+      "target": "1919_Heritage_Buidlings.geojson",
+      "record": 41,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 30,
+      "workbook_row": 79
+    },
+    {
+      "name": "مشهد الامام الباهر",
+      "year": 1944,
+      "target": "1944_Heritage_Buildings.geojson",
+      "record": 40,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 30,
+      "workbook_row": 79
+    },
+    {
+      "name": "مشهد الامام الباهر",
+      "year": 1966,
+      "target": "1966_Heritage_Building.geojson",
+      "record": 38,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 30,
+      "workbook_row": 79
+    },
+    {
+      "name": "مشهد الامام الباهر",
+      "year": 1988,
+      "target": "1980_Heritage_Building.geojson",
+      "record": 37,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 30,
+      "workbook_row": 79
+    },
+    {
+      "name": "مشهد الامام الباهر",
+      "year": 2003,
+      "target": "2003_Heritage_Buildings.geojson",
+      "record": 39,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 30,
+      "workbook_row": 79
+    },
+    {
+      "name": "مشهد الامام الباهر",
+      "year": 2020,
+      "target": "2020_Heritage_Buildings.geojson",
+      "record": 38,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 30,
+      "workbook_row": 79
+    },
+    {
+      "name": "جامع الرابعية",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 22,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 20,
+      "workbook_row": 82
+    },
+    {
+      "name": "جامع الرابعية",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 19,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 20,
+      "workbook_row": 82
+    },
+    {
+      "name": "جامع الرابعية",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 38,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 20,
+      "workbook_row": 82
+    },
+    {
+      "name": "جامع الزيواني",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 23,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 28,
+      "workbook_row": 85
+    },
+    {
+      "name": "جامع الزيواني",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 20,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 28,
+      "workbook_row": 85
+    },
+    {
+      "name": "جامع الزيواني",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 39,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 28,
+      "workbook_row": 85
+    },
+    {
+      "name": "جامع النبي شيت",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 24,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 20,
+      "workbook_row": 88
+    },
+    {
+      "name": "جامع النبي شيت",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 21,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 20,
+      "workbook_row": 88
+    },
+    {
+      "name": "خان الكمرك",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 25,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 9,
+      "workbook_row": 94
+    },
+    {
+      "name": "خان الكمرك",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 22,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 9,
+      "workbook_row": 94
+    },
+    {
+      "name": "خان الكمرك",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 40,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 9,
+      "workbook_row": 94
+    },
+    {
+      "name": "حمام عبيد اغا الجليلي",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 26,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 38,
+      "workbook_row": 97
+    },
+    {
+      "name": "حمام عبيد اغا الجليلي",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 23,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 38,
+      "workbook_row": 97
+    },
+    {
+      "name": "حمام عبيد اغا الجليلي",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 41,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 38,
+      "workbook_row": 97
+    },
+    {
+      "name": "حمام عبيد اغا الجليلي",
+      "year": 1919,
+      "target": "1919_Heritage_Buidlings.geojson",
+      "record": 42,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 38,
+      "workbook_row": 97
+    },
+    {
+      "name": "حمام عبيد اغا الجليلي",
+      "year": 1944,
+      "target": "1944_Heritage_Buildings.geojson",
+      "record": 41,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 38,
+      "workbook_row": 97
+    },
+    {
+      "name": "حمام عبيد اغا الجليلي",
+      "year": 1966,
+      "target": "1966_Heritage_Building.geojson",
+      "record": 39,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 38,
+      "workbook_row": 97
+    },
+    {
+      "name": "حمام عبيد اغا الجليلي",
+      "year": 1988,
+      "target": "1980_Heritage_Building.geojson",
+      "record": 38,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 38,
+      "workbook_row": 97
+    },
+    {
+      "name": "حمام عبيد اغا الجليلي",
+      "year": 2003,
+      "target": "2003_Heritage_Buildings.geojson",
+      "record": 40,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 38,
+      "workbook_row": 97
+    },
+    {
+      "name": "حمام عبيد اغا الجليلي",
+      "year": 2020,
+      "target": "2020_Heritage_Buildings.geojson",
+      "record": 39,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 38,
+      "workbook_row": 97
+    },
+    {
+      "name": "جامع الرضواني",
+      "year": 1778,
+      "target": "1778_Heritage_Buildings.geojson",
+      "record": 27,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 100
+    },
+    {
+      "name": "جامع الرضواني",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 24,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 100
+    },
+    {
+      "name": "جامع الرضواني",
+      "year": 1906,
+      "target": "1906_Heritage_Buildings.geojson",
+      "record": 39,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 100
+    },
+    {
+      "name": "جامع الرضواني",
+      "year": 1919,
+      "target": "1919_Heritage_Buidlings.geojson",
+      "record": 43,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 100
+    },
+    {
+      "name": "جامع الرضواني",
+      "year": 1944,
+      "target": "1944_Heritage_Buildings.geojson",
+      "record": 42,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 100
+    },
+    {
+      "name": "جامع الرضواني",
+      "year": 1966,
+      "target": "1966_Heritage_Building.geojson",
+      "record": 40,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 100
+    },
+    {
+      "name": "جامع الرضواني",
+      "year": 1988,
+      "target": "1980_Heritage_Building.geojson",
+      "record": 39,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 100
+    },
+    {
+      "name": "جامع الرضواني",
+      "year": 2003,
+      "target": "2003_Heritage_Buildings.geojson",
+      "record": 41,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 100
+    },
+    {
+      "name": "جامع الرضواني",
+      "year": 2020,
+      "target": "2020_Heritage_Buildings.geojson",
+      "record": 40,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 19,
+      "workbook_row": 100
+    },
+    {
+      "name": "القشلة",
+      "year": 1838,
+      "target": "1838_Heritage_Buildings.geojson",
+      "record": 25,
+      "geometry_source_year": 1852,
+      "geometry_source_file": "1852_Heritage_Building.geojson",
+      "geometry_source_record": 23,
+      "workbook_row": 103
+    },
+    {
+      "name": "جامع القطانين",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 42,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 3,
+      "workbook_row": 106
+    },
+    {
+      "name": "كنيسة الساعة",
+      "year": 1852,
+      "target": "1852_Heritage_Building.geojson",
+      "record": 43,
+      "geometry_source_year": 1906,
+      "geometry_source_file": "1906_Heritage_Buildings.geojson",
+      "geometry_source_record": 1,
+      "workbook_row": 109
+    }
+  ],
+  "renamed": [
+    {
+      "file": "1906_Heritage_Buildings.geojson",
+      "record": 7,
+      "before": "الجامع الاموي (المصفي)",
+      "after": "الجامع الأموي"
+    },
+    {
+      "file": "1919_Heritage_Buidlings.geojson",
+      "record": 14,
+      "before": "جامع المصفي",
+      "after": "الجامع الأموي"
+    },
+    {
+      "file": "1944_Heritage_Buildings.geojson",
+      "record": 14,
+      "before": "جامع المصفي",
+      "after": "الجامع الأموي"
+    },
+    {
+      "file": "1966_Heritage_Building.geojson",
+      "record": 9,
+      "before": "الجامع الاموي (المصفي)",
+      "after": "الجامع الأموي"
+    },
+    {
+      "file": "1980_Heritage_Building.geojson",
+      "record": 9,
+      "before": "الجامع الاموي (المصفي)",
+      "after": "الجامع الأموي"
+    },
+    {
+      "file": "2003_Heritage_Buildings.geojson",
+      "record": 9,
+      "before": "الجامع الاموي (المصفي)",
+      "after": "الجامع الأموي"
+    },
+    {
+      "file": "2020_Heritage_Buildings.geojson",
+      "record": 9,
+      "before": "الجامع الاموي (المصفي)",
+      "after": "الجامع الأموي"
+    },
+    {
+      "file": "637_Heritage_Buildings.geojson",
+      "record": 1,
+      "before": "الجامع الاموي",
+      "after": "الجامع الأموي"
+    },
+    {
+      "file": "1096_Heritage_Buildings.geojson",
+      "record": 1,
+      "before": "مار إيشوعياب",
+      "after": "كنيسة مار إشعيا"
+    },
+    {
+      "file": "1127_Heritage_Buildings.geojson",
+      "record": 1,
+      "before": "مار إيشوعياب",
+      "after": "كنيسة مار إشعيا"
+    },
+    {
+      "file": "1906_Heritage_Buildings.geojson",
+      "record": 35,
+      "before": "كنيسة مار اشعيا",
+      "after": "كنيسة مار إشعيا"
+    },
+    {
+      "file": "637_Heritage_Buildings.geojson",
+      "record": 2,
+      "before": "كاتدرائية مار إيشوعياب",
+      "after": "كنيسة مار إشعيا"
+    },
+    {
+      "file": "637_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "before": "مار إيشوعياب",
+      "after": "كنيسة مار إشعيا"
+    },
+    {
+      "file": "912_Heritage_Buildings.geojson",
+      "record": 1,
+      "before": "مار إيشوعياب",
+      "after": "كنيسة مار إشعيا"
+    },
+    {
+      "file": "1096_Heritage_Buildings.geojson",
+      "record": 19,
+      "before": "المعلم المبكر لكنيسة مار توما",
+      "after": "كنيسة مار توما"
+    },
+    {
+      "file": "1127_Heritage_Buildings.geojson",
+      "record": 19,
+      "before": "المعلم المبكر لكنيسة مار توما",
+      "after": "كنيسة مار توما"
+    },
+    {
+      "file": "1906_Heritage_Buildings.geojson",
+      "record": 26,
+      "before": "كنيسة مارتوما",
+      "after": "كنيسة مار توما"
+    },
+    {
+      "file": "1919_Heritage_Buidlings.geojson",
+      "record": 31,
+      "before": "كنيسة مارتوما",
+      "after": "كنيسة مار توما"
+    },
+    {
+      "file": "1944_Heritage_Buildings.geojson",
+      "record": 26,
+      "before": "كنيسة مارتوما",
+      "after": "كنيسة مار توما"
+    },
+    {
+      "file": "2003_Heritage_Buildings.geojson",
+      "record": 31,
+      "before": "كنيسة مارتوما",
+      "after": "كنيسة مار توما"
+    },
+    {
+      "file": "2020_Heritage_Buildings.geojson",
+      "record": 30,
+      "before": "كنيسة مارتوما",
+      "after": "كنيسة مار توما"
+    },
+    {
+      "file": "912_Heritage_Buildings.geojson",
+      "record": 20,
+      "before": "المعلم المبكر لكنيسة مار توما",
+      "after": "كنيسة مار توما"
+    },
+    {
+      "file": "1906_Heritage_Buildings.geojson",
+      "record": 27,
+      "before": "كنيسة مارتوما للسريان الكاثوليك",
+      "after": "كنيسة مار توما للسريان الكاثوليك"
+    },
+    {
+      "file": "1919_Heritage_Buidlings.geojson",
+      "record": 32,
+      "before": "كنيسة مارتوما للسريان الكاثوليك",
+      "after": "كنيسة مار توما للسريان الكاثوليك"
+    },
+    {
+      "file": "1944_Heritage_Buildings.geojson",
+      "record": 27,
+      "before": "كنيسة مارتوما للسريان الكاثوليك",
+      "after": "كنيسة مار توما للسريان الكاثوليك"
+    },
+    {
+      "file": "1966_Heritage_Building.geojson",
+      "record": 32,
+      "before": "كنيسة مارتوما للسريان الكاثوليك",
+      "after": "كنيسة مار توما للسريان الكاثوليك"
+    },
+    {
+      "file": "1980_Heritage_Building.geojson",
+      "record": 29,
+      "before": "كنيسة مارتوما للسريان الكاثوليك",
+      "after": "كنيسة مار توما للسريان الكاثوليك"
+    },
+    {
+      "file": "2003_Heritage_Buildings.geojson",
+      "record": 32,
+      "before": "كنيسة مارتوما للسريان الكاثوليك",
+      "after": "كنيسة مار توما للسريان الكاثوليك"
+    },
+    {
+      "file": "2020_Heritage_Buildings.geojson",
+      "record": 31,
+      "before": "كنيسة مارتوما للسريان الكاثوليك",
+      "after": "كنيسة مار توما للسريان الكاثوليك"
+    },
+    {
+      "file": "1906_Heritage_Buildings.geojson",
+      "record": 23,
+      "before": "الجامع النوري الكبير",
+      "after": "الجامع النوري"
+    },
+    {
+      "file": "1852_Heritage_Building.geojson",
+      "record": 21,
+      "before": "جامع الخضر (المجاهدي)",
+      "after": "الجامع المجاهدي"
+    },
+    {
+      "file": "1096_Heritage_Buildings.geojson",
+      "record": 22,
+      "before": "ضريح النبي جرجيس",
+      "after": "جامع النبي جرجيس"
+    },
+    {
+      "file": "1127_Heritage_Buildings.geojson",
+      "record": 22,
+      "before": "ضريح النبي جرجيس",
+      "after": "جامع النبي جرجيس"
+    },
+    {
+      "file": "1096_Heritage_Buildings.geojson",
+      "record": 23,
+      "before": "مرقد يحيى ابن القاسم",
+      "after": "مرقد الامام يحيى ابو القاسم"
+    },
+    {
+      "file": "1127_Heritage_Buildings.geojson",
+      "record": 23,
+      "before": "مرقد يحيى ابن القاسم",
+      "after": "مرقد الامام يحيى ابو القاسم"
+    },
+    {
+      "file": "1778_Heritage_Buildings.geojson",
+      "record": 7,
+      "before": "يحيى ابو القاسم",
+      "after": "مرقد الامام يحيى ابو القاسم"
+    },
+    {
+      "file": "1778_Heritage_Buildings_Points.geojson",
+      "record": 1,
+      "before": "مرقد يحيى ابن القاسم",
+      "after": "مرقد الامام يحيى ابو القاسم"
+    },
+    {
+      "file": "912_Heritage_Buildings.geojson",
+      "record": 22,
+      "before": "النواة الأصلية لمشهد الإمام يحيى بن القاسم على ضفة النهر",
+      "after": "مرقد الامام يحيى ابو القاسم"
+    },
+    {
+      "file": "1906_Heritage_Buildings.geojson",
+      "record": 32,
+      "before": "مرقد الامام عون الدين ابن الحسن",
+      "after": "مرقد الامام عون الدين"
+    },
+    {
+      "file": "1966_Heritage_Building.geojson",
+      "record": 26,
+      "before": "مرقد الامام عون الدين ابن الحسن",
+      "after": "مرقد الامام عون الدين"
+    },
+    {
+      "file": "1980_Heritage_Building.geojson",
+      "record": 33,
+      "before": "مرقد الامام عون الدين ابن الحسن",
+      "after": "مرقد الامام عون الدين"
+    },
+    {
+      "file": "2003_Heritage_Buildings.geojson",
+      "record": 36,
+      "before": "مرقد الامام عون الدين ابن الحسن",
+      "after": "مرقد الامام عون الدين"
+    },
+    {
+      "file": "1852_Heritage_Building.geojson",
+      "record": 13,
+      "before": "قراسراي",
+      "after": "قره سراي"
+    },
+    {
+      "file": "1906_Heritage_Buildings.geojson",
+      "record": 34,
+      "before": "قلعة قره سراي",
+      "after": "قره سراي"
+    },
+    {
+      "file": "1852_Heritage_Building.geojson",
+      "record": 5,
+      "before": "جامع الجسر (الاغوات)",
+      "after": "جامع الاغوات"
+    },
+    {
+      "file": "1906_Heritage_Buildings.geojson",
+      "record": 30,
+      "before": "مرقد الامام الباهر",
+      "after": "مشهد الامام الباهر"
+    },
+    {
+      "file": "1906_Heritage_Buildings.geojson",
+      "record": 25,
+      "before": "قشلة الخيالة",
+      "after": "القشلة"
+    },
+    {
+      "file": "1944_Heritage_Buildings.geojson",
+      "record": 36,
+      "before": "القشلة العسكرية",
+      "after": "القشلة"
+    }
+  ],
+  "existing_outside_range": [
+    {
+      "name": "جامع النبي جرجيس",
+      "year": 1096,
+      "file": "1096_Heritage_Buildings.geojson",
+      "record": 22
+    },
+    {
+      "name": "مرقد الامام يحيى ابو القاسم",
+      "year": 1096,
+      "file": "1096_Heritage_Buildings.geojson",
+      "record": 23
+    },
+    {
+      "name": "مرقد الامام يحيى ابو القاسم",
+      "year": 912,
+      "file": "912_Heritage_Buildings.geojson",
+      "record": 22
+    },
+    {
+      "name": "مرقد الامام عون الدين",
+      "year": 1096,
+      "file": "1096_Heritage_Buildings.geojson",
+      "record": 25
+    },
+    {
+      "name": "مشهد الامام الباهر",
+      "year": 1096,
+      "file": "1096_Heritage_Buildings.geojson",
+      "record": 24
+    },
+    {
+      "name": "مشهد الامام الباهر",
+      "year": 1127,
+      "file": "1127_Heritage_Buildings.geojson",
+      "record": 24
+    },
+    {
+      "name": "القشلة",
+      "year": 1944,
+      "file": "1944_Heritage_Buildings.geojson",
+      "record": 36
+    },
+    {
+      "name": "القشلة",
+      "year": 1966,
+      "file": "1966_Heritage_Building.geojson",
+      "record": 19
+    }
+  ]
+}
