@@ -9,11 +9,27 @@
     <link href="lib/maplibre-gl.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=10.0">
+    <link rel="stylesheet" href="style.css?v=13.0">
 </head>
 
 <body>
-    <div id="map"></div>
+    <dialog id="welcome-dialog" aria-labelledby="welcome-title">
+        <div class="welcome-art" aria-hidden="true"><span>MOSUL<br><em>637 — 2020</em></span></div>
+        <div class="welcome-content">
+            <div class="welcome-top"><span class="atlas-eyebrow" data-guide="eyebrow"></span><button id="welcome-language" class="quiet-button">English</button></div>
+            <h2 id="welcome-title" data-guide="title"></h2>
+            <p class="welcome-intro" data-guide="intro"></p>
+            <ol class="guide-steps">
+                <li><span>01</span><div><h3 data-guide="step1"></h3><p data-guide="detail1"></p></div></li>
+                <li><span>02</span><div><h3 data-guide="step2"></h3><p data-guide="detail2"></p></div></li>
+                <li><span>03</span><div><h3 data-guide="step3"></h3><p data-guide="detail3"></p></div></li>
+            </ol>
+            <p class="gesture-note" data-guide="gestures"></p>
+            <button id="welcome-start" class="primary-button" data-guide="start"></button>
+            <label class="remember-guide"><input id="remember-guide" type="checkbox"><span data-guide="remember"></span></label>
+        </div>
+    </dialog>
+    <div id="map" aria-label="Mosul historical map"></div>
     <div id="map-compare"></div>
 
     <div id="map-a-label" class="map-label" style="display:none;">الخريطة الرئيسية: --</div>
@@ -21,6 +37,8 @@
 
     <!-- Top Right Language Switcher -->
     <div class="top-nav-bar">
+        <button id="share-view" class="lang-toggle-btn" data-atlas="share"></button>
+        <button id="help-button" class="lang-toggle-btn" data-guide="help"></button>
         <button id="lang-toggle-btn" class="lang-toggle-btn" title="Switch Language / تغيير اللغة" aria-label="Switch Language">
             <span class="lang-icon">🌐</span>
             <span id="lang-btn-text">English</span>
@@ -29,6 +47,10 @@
 
     <!-- ═══════════════════════════════════════════ SIDEBAR ═══ -->
     <div id="sidebar">
+        <div class="atlas-mode-switch" role="group" aria-label="Workspace / مساحة العمل">
+            <button id="mode-explore" aria-pressed="true" data-atlas="explore"></button>
+            <button id="mode-research" aria-pressed="false" data-atlas="research"></button>
+        </div>
         <div class="sidebar-header">
             <div class="research-badge" data-i18n="thesisBadge">منصة نظم المعلومات الجغرافية لرسالة الماجستير</div>
             <h1 data-i18n="appTitle">مورفولوجيا مدينة الموصل</h1>
@@ -45,7 +67,7 @@
         <div id="tab-layers" class="tab-panel active" role="tabpanel">
 
             <div style="display:flex;gap:8px;margin-bottom:12px;">
-                <button id="compare-btn" class="mac-btn-modern" style="flex:1;" data-i18n="btnCompare">⇄ مقارنة الحقب</button>
+                <button disabled id="compare-btn" class="mac-btn-modern" style="flex:1;" data-i18n="btnCompare">⇄ مقارنة الحقب</button>
                 <button id="research-meta-btn" class="mac-btn-modern" style="flex:1;" title="View Thesis Citation &amp; Methodology" data-i18n="btnCitation">🎓 توثيق واقتباس</button>
             </div>
 
@@ -56,8 +78,16 @@
                     <button id="compare-next-btn" class="mac-btn-modern" style="flex:1;padding:8px 6px;font-size:0.75rem;margin:0;" data-i18n="compareNext">التالية ►</button>
                 </div>
                 <div class="stat-label" style="font-size:0.65rem;margin-bottom:4px;color:var(--text-muted);" data-i18n="compareSelectYear">أو اختر سنة محددة:</div>
-                <select id="compare-year-select" class="mac-select"></select>
+                <select id="compare-year-select" class="mac-select" aria-label="Comparison year / سنة المقارنة"></select>
+                <div id="comparison-insight" aria-live="polite"></div>
             </div>
+
+        <section id="journey-panel" class="atlas-section" aria-labelledby="journey-heading">
+            <div class="atlas-section-heading"><h2 id="journey-heading" data-atlas="journey"></h2><span id="journey-progress"></span></div>
+            <div id="journey-stops" class="journey-stops"></div>
+            <h3 id="journey-title"></h3>
+            <button id="journey-go" class="atlas-action" data-atlas="visit"></button>
+        </section>
 
             <div class="stats-container" style="grid-template-columns: repeat(2, 1fr);">
                 <div class="stat-card">
@@ -80,7 +110,7 @@
                 </div>
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:0.7rem;color:var(--text-muted);">
                     <span data-i18n="opacityLabel">الشفافية</span>
-                    <input type="range" id="raster-opacity" min="0" max="1" step="0.05" value="0.85" style="flex:1;cursor:pointer;accent-color:var(--accent);">
+                    <input type="range" aria-label="Historical map opacity / شفافية الخريطة التاريخية" id="raster-opacity" min="0" max="1" step="0.05" value="0.85" style="flex:1;cursor:pointer;accent-color:var(--accent);">
                     <span id="raster-opacity-val" style="min-width:28px;text-align:right;font-weight:600;color:var(--text-heading);">85%</span>
                 </div>
             </div>
@@ -100,7 +130,7 @@
                     <span data-i18n="terrainExaggLabel">مبالغة ارتفاع التضاريس</span>
                     <span id="exaggeration-val" style="color:var(--accent);font-weight:600;">1.5x</span>
                 </div>
-                <input type="range" id="terrain-exaggeration" min="0.2" max="3.5" step="0.1" value="1.5" style="width:100%;">
+                <input type="range" aria-label="Terrain height exaggeration / مبالغة ارتفاع التضاريس" id="terrain-exaggeration" min="0.2" max="3.5" step="0.1" value="1.5" style="width:100%;">
             </div>
         </div>
 
@@ -113,29 +143,39 @@
                     <span class="m-icon">🌀</span>
                     <span class="m-title" data-i18n="modeFractal">الكسوري (D_f)</span>
                 </button>
+                <button class="metric-btn" id="mode-syntax-btn" data-mode="syntax"><span class="m-icon" aria-hidden="true">⌘</span><span class="m-title">Space Syntax</span></button>
                 <button class="metric-btn" id="mode-normal-btn" data-mode="normal">
                     <span class="m-icon">🏛</span>
                     <span class="m-title" data-i18n="modeStandard">العرض القياسي</span>
                 </button>
             </div>
 
-            <div id="syntax-legend-container" class="syntax-legend-box" style="margin-top:16px;">
-                <div class="stat-label" id="syntax-legend-title" style="margin-bottom:8px;" data-i18n="fractalLegendTitle">التعقيد الكسوري (D_f)</div>
-                <div class="syntax-legend-bar" style="background: linear-gradient(to right, #312e81, #6366f1, #a855f7, #ec4899, #f43f5e);"></div>
-                <div class="syntax-legend-labels">
-                    <span style="color:#6366f1;" data-i18n="fractalLow">منخفض<br><small>بسيط</small></span>
-                    <span style="color:#a855f7;" data-i18n="fractalMed">متوسط</span>
-                    <span style="color:#ec4899;" data-i18n="fractalHigh">مرتفع</span>
-                    <span style="color:#f43f5e;" data-i18n="fractalPeak">ذروة<br><small>مركز كثيف</small></span>
+            <div id="analysis-controls">
+                <label id="analysis-metric-label" for="analysis-metric"></label>
+                <select id="analysis-metric" class="mac-select"></select>
+                <div id="analysis-network-control"><label id="analysis-network-label" for="analysis-network"></label>
+                    <select id="analysis-network" class="mac-select"><option value="derived">Derived centerlines</option><option value="original">Original mapped lines</option></select>
+                </div>
+                <div id="analysis-scope-control"><label id="analysis-scope-label" for="analysis-scope"></label>
+                    <select id="analysis-scope" class="mac-select"><option value="main">Main connected network</option><option value="all">All components</option></select>
+                </div>
+                <div id="analysis-snap-control"><label id="analysis-snap-label" for="analysis-snap"></label>
+                    <select id="analysis-snap" class="mac-select"><option value="0">0 m</option><option value="5" selected>5 m</option><option value="15">15 m</option></select>
                 </div>
             </div>
-
-            <div class="stat-card" style="margin-top:16px;">
-                <div class="stat-label" data-i18n="morphoAnalysisLabel">التحليل المورفولوجي</div>
-                <div id="syntax-insight-text" class="insight-text" data-i18n="morphoInsight">
-                    تحلل مقاييس البعد الكسوري (D_f) التشابه الذاتي والتعقيد الكثافي للأنسجة الحضرية التاريخية لمدينة الموصل.
-                </div>
+            <div id="analysis-status" role="status" aria-live="polite"></div>
+            <button id="analysis-retry" class="atlas-action" hidden></button>
+            <div id="syntax-legend-container" class="syntax-legend-box">
+                <div id="syntax-legend-title" class="stat-label"></div>
+                <div id="analysis-gradient"></div><div id="analysis-range"></div>
+                <p id="analysis-no-value" class="atlas-note"></p>
             </div>
+            <div id="analysis-summary"></div>
+            <p id="analysis-selected" class="analysis-selected" hidden></p>
+            <div id="syntax-insight-text" class="atlas-note"></div>
+            <details id="analysis-method"><summary id="analysis-method-title"></summary><p id="analysis-method-text"></p>
+                <a href="https://www.spacesyntax.online/overview-2/analysis-of-spatial-relations/" target="_blank" rel="noopener noreferrer">Space Syntax — analysis of spatial relations</a>
+            </details>
         </div>
     </div>
     <!-- Floating Sidebar Toggle Button -->
@@ -165,10 +205,30 @@
     </div>
 
     <!-- Floating Measure Toggle (always visible) -->
-    <button id="measure-open-btn" class="measure-fab" title="فتح أداة القياس المكاني">📐</button>
+    <button disabled id="measure-open-btn" class="measure-fab" title="فتح أداة القياس المكاني">📐</button>
 
+    <aside id="landmark-card" class="atlas-landmark" hidden aria-labelledby="landmark-title">
+        <div class="atlas-section-heading"><span data-atlas="featureRecord"></span><button id="landmark-close" aria-label="Close / إغلاق">×</button></div>
+        <h2 id="landmark-title"></h2><p id="landmark-category"></p>
+        <img id="landmark-image" hidden alt=""><p id="landmark-description"></p><p id="landmark-description-source" class="atlas-note" hidden></p>
+        <h3 data-atlas="recordedYears"></h3><div id="landmark-years"></div>
+        <p id="landmark-source"></p><button id="landmark-source-button" class="atlas-link" data-atlas="sourceDetails"></button>
+    </aside>
+    <details id="map-legend" class="atlas-legend">
+        <summary data-atlas="legend"></summary><div id="legend-items"></div><p class="atlas-note" data-atlas="heightNote"></p>
+    </details>
+    <div id="share-feedback" role="status" aria-live="polite"></div>
+    <dialog id="share-dialog" aria-labelledby="share-title"><h2 id="share-title" data-atlas="share"></h2><p data-atlas="copyFallback"></p><input id="share-url" readonly aria-label="View link"><button id="share-close" data-atlas="close"></button></dialog>
+    <div id="map-status" role="status" aria-live="polite"><span class="status-spinner"></span><span id="map-status-text"></span><button id="retry-map" hidden data-guide="retry"></button></div>
+    <div class="map-view-tools" role="group" aria-label="Map view">
+        <button id="zoom-in" aria-label="Zoom in">+</button>
+        <button id="zoom-out" aria-label="Zoom out">−</button>
+        <button id="view-flat" data-guide="flat" aria-pressed="false"></button>
+        <button id="view-reset" data-guide="reset"></button>
+    </div>
     <!-- Timeline -->
     <div id="timeline-container">
+        <div class="timeline-heading"><span class="atlas-eyebrow" data-guide="timeline"></span><span id="era-position"></span></div>
         <div class="timeline-top-bar">
             <div id="current-year" class="year-display">637</div>
             <div id="current-era-badge" class="era-badge" title="Islamic establishment and Atabeg expansion">العصر الإسلامي والأتابكي</div>
@@ -176,7 +236,8 @@
             <button id="map-source-btn" class="source-info-btn" title="View Archival Source of Current Map" data-i18n="btnMapSource">ℹ️ مصدر الخريطة</button>
         </div>
         <div id="era-groups-container" class="era-groups-container"></div>
-        <input type="range" id="timeline-slider" min="0" max="13" step="1" value="0">
+        <div class="timeline-transport"><button id="era-back" data-guide="previous"></button><button id="era-play" aria-pressed="false" data-guide="play"></button><button id="era-forward" data-guide="next"></button><span data-guide="spacing"></span></div>
+        <input aria-label="Historical era" type="range" id="timeline-slider" min="0" max="13" step="1" value="0">
     </div>
 
     <!-- Era Description Modal Window -->
@@ -299,7 +360,10 @@
 
     <script src="lib/maplibre-gl.js"></script>
     <script src="lib/turf.min.js"></script>
-    <script src="main.js?v=9.2"></script>
+    <script src="main.js?v=13.0"></script>
+    <script src="experience.js?v=14.1"></script>
+    <script src="atlas.js?v=13.0"></script>
+    <script src="analysis.js?v=15.0"></script>
 </body>
 
 </html>

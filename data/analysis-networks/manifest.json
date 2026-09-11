@@ -1,0 +1,554 @@
+{
+  "1944": {
+    "year": 1944,
+    "file": "data/analysis-networks/1944_network.geojson",
+    "prepared_bridges": true,
+    "source_kind": "derived",
+    "paths": 1328,
+    "bridges": 1,
+    "attached_bridges": 1,
+    "bridge_audit": [
+      {
+        "record": "1944_Old_Bridge.geojson:0:0",
+        "name": null,
+        "endpoints": [
+          {
+            "gap_m": 8.581,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "derived/1944_derived_centerlines.geojson:782:0"
+          },
+          {
+            "gap_m": 459.693,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      }
+    ],
+    "approach_limit_m": 50,
+    "source_sha256": {
+      "1944_Building_Blocks.geojson": "6fc6919279be09dee728a671d59c96de2544cc702df627d71885ed742afeffdc",
+      "1944_Heritage_Buildings.geojson": "4a66e607bf2058eb22881f3bab5f3db9ecc85264c75235fed929b407d7c984ae",
+      "derived/1944_derived_centerlines.geojson": "b68dab9d8cae3485d918eb9763ef52d81327ea867ab6ac28c6977134944918f0",
+      "1944_Old_Bridge.geojson": "830a7d814887bc277a08f7feef305aacb8582b33af46a6b81689489fc55c8eb0"
+    },
+    "components": 55,
+    "isolated": 26,
+    "main_file": "data/analysis-networks/1944_main_network.geojson",
+    "largest_component_paths": 1087,
+    "main_bridges": 1
+  },
+  "1966": {
+    "year": 1966,
+    "file": "data/analysis-networks/1966_network.geojson",
+    "prepared_bridges": true,
+    "source_kind": "mapped",
+    "paths": 80,
+    "bridges": 2,
+    "attached_bridges": 2,
+    "bridge_audit": [
+      {
+        "record": "1966_Bridges.geojson:0:0",
+        "name": "الجسر الحديدي",
+        "endpoints": [
+          {
+            "gap_m": 0.645,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "1966_Main_Roads.geojson:0:0"
+          },
+          {
+            "gap_m": 305.126,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "1966_Bridges.geojson:1:0",
+        "name": "الجسر الثاني (الحرية)",
+        "endpoints": [
+          {
+            "gap_m": 3.147,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "1966_Main_Roads.geojson:8:0"
+          },
+          {
+            "gap_m": 381.454,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      }
+    ],
+    "approach_limit_m": 50,
+    "source_sha256": {
+      "1966_Building_Blocks.geojson": "6063343495ab9bf710ea5689361c7a07e8a524953349af51b23dd86b1f870bca",
+      "1966_Heritage_Building.geojson": "aa4d2f415562b9685b0b226a2218c7bb7a5cebeda3703ebd31df899b2a0a7efb",
+      "1966_Main_Roads.geojson": "6a5f1f5b9d8f9b507e3a8329a576b8f357cdb032acadff9a91cf0cab0d108d57",
+      "1966_Secondary_roads.geojson": "06de441d0f6380ef12e6f66c4752ddbe92bf21c8beaf2114eafd4c4a26107a9e",
+      "1966_Bridges.geojson": "40c79e0c283b2e300a0b6e826a6f6d623d253f8166a39a0a6bca678b6a824406"
+    },
+    "components": 6,
+    "isolated": 5,
+    "main_file": "data/analysis-networks/1966_main_network.geojson",
+    "largest_component_paths": 75,
+    "main_bridges": 2
+  },
+  "1988": {
+    "year": 1988,
+    "file": "data/analysis-networks/1988_network.geojson",
+    "prepared_bridges": true,
+    "source_kind": "mapped",
+    "paths": 107,
+    "bridges": 3,
+    "attached_bridges": 3,
+    "bridge_audit": [
+      {
+        "record": "1980_Bridges.geojson:0:0",
+        "name": "الجسر الحديدي",
+        "endpoints": [
+          {
+            "gap_m": 18.146,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "1980_Main_Roads.geojson:38:0"
+          },
+          {
+            "gap_m": 314.62,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "1980_Bridges.geojson:1:0",
+        "name": "الجسر الثاني (الحرية)",
+        "endpoints": [
+          {
+            "gap_m": 3.147,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "1980_Main_Roads.geojson:8:0"
+          },
+          {
+            "gap_m": 381.454,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "1980_Bridges.geojson:2:0",
+        "name": "الجسر الثالث",
+        "endpoints": [
+          {
+            "gap_m": 4.093,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "1980_Main_Roads.geojson:42:0"
+          },
+          {
+            "gap_m": 756.151,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      }
+    ],
+    "approach_limit_m": 50,
+    "source_sha256": {
+      "1980_Building_Blocks.geojson": "c1bf56ec776e35b6d10c826b76518eefb6b496169670da7ba9716b8c6d542376",
+      "1980_Heritage_Building.geojson": "296220904d4940adf340af3e6a8bd044c718da2f7954acdd0595166a30f108e4",
+      "1980_Main_Roads.geojson": "2cb5520547e5a2e09056cba96e3612444f64f69f1a3775b2bcb4b2e66780c9f2",
+      "1980_Secondery_Roads.geojson": "e25d4f018f1151bfa6b9cc9c71488bd11d9770e5962a31c6aab1515390929c5d",
+      "1980_Bridges.geojson": "32c1e8079d0ceb42711b259b35e4445e83d9c0f23861576d63416ec579c8468f"
+    },
+    "components": 9,
+    "isolated": 6,
+    "main_file": "data/analysis-networks/1988_main_network.geojson",
+    "largest_component_paths": 93,
+    "main_bridges": 3
+  },
+  "2003": {
+    "year": 2003,
+    "file": "data/analysis-networks/2003_network.geojson",
+    "prepared_bridges": true,
+    "source_kind": "mapped",
+    "paths": 123,
+    "bridges": 9,
+    "attached_bridges": 7,
+    "bridge_audit": [
+      {
+        "record": "2003_Bridges.geojson:0:0",
+        "name": "الجسر الخامس",
+        "endpoints": [
+          {
+            "gap_m": 1.67,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "2003_Main_Roads.geojson:60:0"
+          },
+          {
+            "gap_m": 1145.259,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2003_Bridges.geojson:1:0",
+        "name": "الجسر الخامس",
+        "endpoints": [
+          {
+            "gap_m": 1.111,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "2003_Main_Roads.geojson:61:0"
+          },
+          {
+            "gap_m": 1070.746,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2003_Bridges.geojson:2:0",
+        "name": null,
+        "endpoints": [
+          {
+            "gap_m": 764.226,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          },
+          {
+            "gap_m": 1229.178,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2003_Bridges.geojson:3:0",
+        "name": null,
+        "endpoints": [
+          {
+            "gap_m": 846,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          },
+          {
+            "gap_m": 1199.439,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2003_Bridges.geojson:4:0",
+        "name": "الجسر الثالث",
+        "endpoints": [
+          {
+            "gap_m": 3.655,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "2003_Main_Roads.geojson:40:0"
+          },
+          {
+            "gap_m": 867.361,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2003_Bridges.geojson:5:0",
+        "name": "الجسر الحديدي (العتيق)",
+        "endpoints": [
+          {
+            "gap_m": 24.419,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "2003_Main_Roads.geojson:36:0"
+          },
+          {
+            "gap_m": 349.291,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2003_Bridges.geojson:6:0",
+        "name": "الجسر الثاني (الحرية)",
+        "endpoints": [
+          {
+            "gap_m": 2.809,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "2003_Main_Roads.geojson:36:0"
+          },
+          {
+            "gap_m": 472.488,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2003_Bridges.geojson:7:0",
+        "name": "الجسر الرابع",
+        "endpoints": [
+          {
+            "gap_m": 0.212,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "2003_Main_Roads.geojson:69:0"
+          },
+          {
+            "gap_m": 780.195,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2003_Bridges.geojson:8:0",
+        "name": "الجسر الرابع",
+        "endpoints": [
+          {
+            "gap_m": 0.419,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "2003_Main_Roads.geojson:71:0"
+          },
+          {
+            "gap_m": 779.644,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      }
+    ],
+    "approach_limit_m": 50,
+    "source_sha256": {
+      "2003_Building_Blocks.geojson": "a2079ac87a4700dafa68fc7f2854083103760e558b172ceee278ec532b72bf5a",
+      "2003_Heritage_Buildings.geojson": "a530f301cbdf7acdd62e430b2b43fb2e5a5a9969c3062cd80fe2157e94dfc5ac",
+      "2003_Main_Roads.geojson": "921684cbfd03a82786a6304a4a207fc71a722baa559429385894605eaad7b775",
+      "2003_Secondery_Roads.geojson": "0faf69d32a4120208aee1daec76c9b1bd31d63713a776601eb0f53a2f1e92a8e",
+      "2003_Bridges.geojson": "138ab21f37c47e671f52f0c8465857b47537ce8feeb1f1e55aa298ff11cd77d3"
+    },
+    "components": 10,
+    "isolated": 8,
+    "main_file": "data/analysis-networks/2003_main_network.geojson",
+    "largest_component_paths": 112,
+    "main_bridges": 7
+  },
+  "2020": {
+    "year": 2020,
+    "file": "data/analysis-networks/2020_network.geojson",
+    "prepared_bridges": true,
+    "source_kind": "mapped",
+    "paths": 35,
+    "bridges": 9,
+    "attached_bridges": 3,
+    "bridge_audit": [
+      {
+        "record": "2020_Bridge.geojson:0:0",
+        "name": "الجسر الخامس",
+        "endpoints": [
+          {
+            "gap_m": 39.716,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "2020-_Big-Roads.geojson:0:0"
+          },
+          {
+            "gap_m": 1181.623,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2020_Bridge.geojson:1:0",
+        "name": "الجسر الخامس",
+        "endpoints": [
+          {
+            "gap_m": 35.621,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "2020-_Big-Roads.geojson:0:0"
+          },
+          {
+            "gap_m": 1117.237,
+            "building_crossing_m": 40.305,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2020_Bridge.geojson:2:0",
+        "name": null,
+        "endpoints": [
+          {
+            "gap_m": 802.273,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          },
+          {
+            "gap_m": 1257.073,
+            "building_crossing_m": 0.399,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2020_Bridge.geojson:3:0",
+        "name": null,
+        "endpoints": [
+          {
+            "gap_m": 883.905,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          },
+          {
+            "gap_m": 1225.653,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2020_Bridge.geojson:4:0",
+        "name": "الجسر الثالث",
+        "endpoints": [
+          {
+            "gap_m": 370.319,
+            "building_crossing_m": 346.539,
+            "accepted": false,
+            "target": null
+          },
+          {
+            "gap_m": 895.931,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2020_Bridge.geojson:5:0",
+        "name": "الجسر الحديدي (العتيق)",
+        "endpoints": [
+          {
+            "gap_m": 10.793,
+            "building_crossing_m": 0,
+            "accepted": true,
+            "target": "2020-Roads.geojson:0:0"
+          },
+          {
+            "gap_m": 308.803,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2020_Bridge.geojson:6:0",
+        "name": "الجسر الثاني (الحرية)",
+        "endpoints": [
+          {
+            "gap_m": 43.293,
+            "building_crossing_m": 17.093,
+            "accepted": false,
+            "target": null
+          },
+          {
+            "gap_m": 257.606,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2020_Bridge.geojson:7:0",
+        "name": "الجسر الرابع",
+        "endpoints": [
+          {
+            "gap_m": 1115.613,
+            "building_crossing_m": 934.617,
+            "accepted": false,
+            "target": null
+          },
+          {
+            "gap_m": 1349.632,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      },
+      {
+        "record": "2020_Bridge.geojson:8:0",
+        "name": "الجسر الرابع",
+        "endpoints": [
+          {
+            "gap_m": 1136.248,
+            "building_crossing_m": 939.088,
+            "accepted": false,
+            "target": null
+          },
+          {
+            "gap_m": 1370.738,
+            "building_crossing_m": 0,
+            "accepted": false,
+            "target": null
+          }
+        ]
+      }
+    ],
+    "approach_limit_m": 50,
+    "source_sha256": {
+      "2020_Buildings_Block.geojson": "000814f29fc1b7d00eb46e4be396867d2d7d8dec18a7189cfad3d5ca070324a1",
+      "2020_Heritage_Buildings.geojson": "3111505b4369d409b3768dc95cf68038399391737afdb76bd5d5ece4ccafeaec",
+      "2020-Roads.geojson": "7e82198367db85e79805607ae869eb967b5de3388e356aa7b92dba4f3536f2cc",
+      "2020-_Big-Roads.geojson": "e7ad1acd29102dadb2511694971edb270ab3001d6329f744432c9e646a80da4c",
+      "2020-_Small_Roads.geojson": "7d4c48325323c6140eff583a66b5c4c5f1f8e1851cd03837e80db11f7dba094b",
+      "2020_Bridge.geojson": "4be450cdeedd06861263c1caf63ecc89e2473ae324ef729a41106dcdaf7bb98a"
+    },
+    "components": 11,
+    "isolated": 8,
+    "main_file": "data/analysis-networks/2020_main_network.geojson",
+    "largest_component_paths": 22,
+    "main_bridges": 3
+  }
+}

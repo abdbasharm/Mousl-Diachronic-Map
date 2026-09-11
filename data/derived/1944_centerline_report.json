@@ -1,0 +1,46 @@
+{
+  "year": 1944,
+  "file": "data/derived/1944_derived_centerlines.geojson",
+  "origin": "derived_polygon_centerline",
+  "working_crs": "EPSG:32638",
+  "output_crs": "EPSG:4326",
+  "grid_m": 1,
+  "simplification_m": 0.6,
+  "short_terminal_spur_threshold_m": 3,
+  "paths": 1327,
+  "junctions_and_ends": 1026,
+  "components": 55,
+  "largest_component_paths": 1086,
+  "length_km": 96.671,
+  "building_crossing_length_m": 0,
+  "outside_corridor_length_m": 0,
+  "mapped_road_area_m2": 1837887.76,
+  "usable_corridor_area_m2": 1828874.89,
+  "grid_width": 3216,
+  "grid_height": 5212,
+  "mask_pixels": 1828751,
+  "skeleton_pixels": 86447,
+  "unsafe_pixel_links_rejected": 92,
+  "terminal_spurs_removed": 78,
+  "source_sha256": {
+    "1944-Roads.geojson": "0cab00432b96a424f556344e288c3ba054f1696deec8d36b5804c338e2fec92a",
+    "1944_Building_Blocks.geojson": "6fc6919279be09dee728a671d59c96de2544cc702df627d71885ed742afeffdc",
+    "1944_Heritage_Buildings.geojson": "4a66e607bf2058eb22881f3bab5f3db9ecc85264c75235fed929b407d7c984ae",
+    "1944_River.geojson": "43f509c8e0851e2d7283fbd13493eabb65a1c1f213fbcc37e8ee8310cd3580b2"
+  },
+  "method": "Zhang skeletonization of a 1 m road-area mask after subtracting building/heritage footprints and river polygons. Adjacent junction pixels consolidated; degree-2 nodes merged. Edges outside the corridor rejected; no gap-bridging is used. Explicit shared endpoints define network connections.",
+  "interpretation": "Automatically inferred paths, not surveyed street axes. Narrow/sub-grid alleys and access through open areas require review. Separate components are retained rather than joined through buildings.",
+  "libraries": {
+    "shapely": "2.1.2",
+    "scikit-image": "0.26.0",
+    "pyproj": "3.8.0",
+    "numpy": "2.5.3"
+  },
+  "main_file": "data/derived/1944_main_network.geojson",
+  "metrics": {
+    "connectivity": "number of directly adjacent path parts",
+    "mean_depth": "mean shortest-path steps to reachable path parts",
+    "integration_1_md": "reciprocal mean depth within the connected component; null when isolated",
+    "component_size": "reachable path parts including self"
+  }
+}

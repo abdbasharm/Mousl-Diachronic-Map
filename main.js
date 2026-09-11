@@ -4,7 +4,9 @@
    ═══════════════════════════════════════════════════════════ */
 
 // ── Language State (Default: Arabic) ─────────────────────────
-let currentLang = localStorage.getItem('mosul_gis_lang') || 'ar';
+let currentLang = 'ar';
+try { currentLang = localStorage.getItem('mosul_gis_lang') === 'en' ? 'en' : 'ar'; } catch (_) {}
+const layerPreferences = new Map();
 
 // ── Timeline years ──────────────────────────────────────────
 const years = [637, 912, 1096, 1127, 1778, 1838, 1852, 1906, 1919, 1944, 1966, 1988, 2003, 2020];
@@ -388,7 +390,7 @@ const I18N_UI = {
         terrainModelLabel: "3D نموذج التضاريس (DEM)",
         terrainExaggLabel: "مبالغة ارتفاع التضاريس",
         morphoTitle: "نمط التحليل المورفولوجي",
-        modeFractal: "الكسوري (D_f)",
+        modeFractal: "مورفولوجيا المباني",
         modeStandard: "العرض القياسي",
         fractalLegendTitle: "التعقيد الكسوري (D_f)",
         fractalLow: "منخفض<br><small>بسيط</small>",
@@ -449,7 +451,7 @@ const I18N_UI = {
         terrainModelLabel: "3D Terrain Elevation (DEM)",
         terrainExaggLabel: "Terrain Exaggeration",
         morphoTitle: "Morphological Analysis Mode",
-        modeFractal: "Fractal Dimension (D_f)",
+        modeFractal: "Building morphology",
         modeStandard: "Standard View",
         fractalLegendTitle: "Fractal Complexity (D_f)",
         fractalLow: "Low<br><small>Simple</small>",
@@ -934,7 +936,7 @@ function getTranslatedPhotoDesc(desc, photoPath) {
 // ── Global Set Language Function ──────────────────────────────
 function setLanguage(lang) {
     currentLang = lang;
-    localStorage.setItem('mosul_gis_lang', lang);
+    try { localStorage.setItem('mosul_gis_lang', lang); } catch (_) {}
 
     document.documentElement.lang = lang;
     document.documentElement.dir = (lang === 'ar' ? 'rtl' : 'ltr');
@@ -985,6 +987,7 @@ function setLanguage(lang) {
     }
 }
 
+let atlasDataReady = false;
 let manifest = null;
 let mapSources = {};
 let loadedLayersData = [];
@@ -1067,218 +1070,6 @@ function getLayerPriority(n) {
     return 10;
 }
 
-// Bounding box helper for fast overlap check
-function bboxOverlap(f1, f2) {
-    if (!f1._bbox) f1._bbox = turf.bbox(f1);
-    if (!f2._bbox) f2._bbox = turf.bbox(f2);
-    const b1 = f1._bbox, b2 = f2._bbox;
-    return !(b1[2] < b2[0] || b1[0] > b2[2] || b1[3] < b2[1] || b1[1] > b2[3]);
-}
-
-// Check if two line features are topologically connected (touching or within 15 meters)
-function roadsIntersectOrClose(line1, line2) {
-    if (!bboxOverlap(line1, line2)) return false;
-    
-    // 1. Check direct line intersection
-    try {
-        const inter = turf.lineIntersect(line1, line2);
-        if (inter && inter.features && inter.features.length > 0) return true;
-    } catch (_) {}
-    
-    // 2. Check distance between endpoints and the other line (account for small GIS drawing gaps)
-    const coords1 = turf.getCoords(line1);
-    const coords2 = turf.getCoords(line2);
-    if (coords1.length === 0 || coords2.length === 0) return false;
-    
-    const ends1 = [coords1[0], coords1[coords1.length - 1]];
-    const ends2 = [coords2[0], coords2[coords2.length - 1]];
-    
-    for (const p of ends1) {
-        try {
-            const pt = turf.point(p);
-            const snapped = turf.nearestPointOnLine(line2, pt);
-            const d = turf.distance(pt, snapped, { units: 'kilometers' });
-            if (d < 0.015) return true; // 15 meters snapping
-        } catch (_) {}
-    }
-    
-    for (const p of ends2) {
-        try {
-            const pt = turf.point(p);
-            const snapped = turf.nearestPointOnLine(line1, pt);
-            const d = turf.distance(pt, snapped, { units: 'kilometers' });
-            if (d < 0.015) return true; // 15 meters snapping
-        } catch (_) {}
-    }
-    
-    return false;
-}
-
-// Calculate space syntax walkability/permeability integration dynamically from the road network connectivity
-function computeSpaceSyntax() {
-    years.forEach(year => {
-        // Find building layers for this year
-        const buildingLayers = loadedLayersData.filter(item => {
-            const nl = item.layerInfo.layer.toLowerCase();
-            const isBld = (nl.includes('building') || nl.includes('block'))
-                       && !nl.includes('heritage') && !nl.includes('photo')
-                       && !nl.includes('point');
-            return isBld && item.layerInfo.years.includes(year);
-        });
-
-        // Find road layers for this year (strictly line layers)
-        const roadLayers = loadedLayersData.filter(item => {
-            const nl = item.layerInfo.layer.toLowerCase();
-            const isRd = (nl.includes('road') || nl.includes('rounds')) && !nl.startsWith('roads_') && !nl.startsWith('roads-');
-            return isRd && item.layerInfo.years.includes(year);
-        });
-
-        if (buildingLayers.length === 0 || roadLayers.length === 0) return;
-
-        // Merge all LineString road features for this year
-        let roadFeatures = [];
-        roadLayers.forEach(rl => {
-            if (rl.data && rl.data.features) {
-                rl.data.features.forEach(f => {
-                    if (!f || !f.geometry) return;
-                    const gtype = f.geometry.type;
-                    if (gtype === 'LineString') {
-                        roadFeatures.push(f);
-                    } else if (gtype === 'MultiLineString') {
-                        try {
-                            const flat = turf.flatten(f);
-                            if (flat && flat.features) {
-                                flat.features.forEach(ff => roadFeatures.push(ff));
-                            }
-                        } catch (_) {
-                            roadFeatures.push(f);
-                        }
-                    }
-                });
-            }
-        });
-
-        // Calculate connectivity (intersections/proximity connections) for each road segment O(N^2)
-        const roadConnectivity = new Array(roadFeatures.length).fill(0);
-        for (let i = 0; i < roadFeatures.length; i++) {
-            const f1 = roadFeatures[i];
-            if (!f1 || !f1.geometry) continue;
-            for (let j = i + 1; j < roadFeatures.length; j++) {
-                const f2 = roadFeatures[j];
-                if (!f2 || !f2.geometry) continue;
-
-                if (roadsIntersectOrClose(f1, f2)) {
-                    roadConnectivity[i]++;
-                    roadConnectivity[j]++;
-                }
-            }
-        }
-
-        // Map road connectivity to building block PermIdx
-        buildingLayers.forEach(bl => {
-            if (!bl.data || !bl.data.features) return;
-            
-            // First pass: assign simulated PermIdx only to features missing research data
-            bl.data.features.forEach(f => {
-                if (!f.geometry) return;
-
-                // Keep original research data if present
-                if (f.properties && f.properties.PermIdx !== undefined && f.properties.PermIdx !== null && !f.properties.isSimulated) {
-                    return;
-                }
-
-                let bldPt;
-                try {
-                    bldPt = turf.centroid(f);
-                } catch (_) {
-                    let coord = [43.128, 36.335];
-                    if (f.geometry.coordinates) {
-                        if (f.geometry.type === 'Polygon' && f.geometry.coordinates[0] && f.geometry.coordinates[0][0]) coord = f.geometry.coordinates[0][0];
-                        else if (f.geometry.type === 'MultiPolygon' && f.geometry.coordinates[0] && f.geometry.coordinates[0][0] && f.geometry.coordinates[0][0][0]) coord = f.geometry.coordinates[0][0][0];
-                    }
-                    bldPt = turf.point(coord);
-                }
-
-                // Find closest road segment
-                let minBldDist = Infinity;
-                let closestRoadIdx = -1;
-
-                roadFeatures.forEach((rf, idx) => {
-                    try {
-                        const snapped = turf.nearestPointOnLine(rf, bldPt);
-                        const d = turf.distance(bldPt, snapped, { units: 'kilometers' });
-                        if (d < minBldDist) {
-                            minBldDist = d;
-                            closestRoadIdx = idx;
-                        }
-                    } catch (_) {}
-                });
-
-                let conn = 0;
-                if (closestRoadIdx !== -1) {
-                    conn = roadConnectivity[closestRoadIdx];
-                }
-
-                // Base PermIdx from closest road connectivity
-                let basePerm = 3000 + conn * 2500;
-
-                // Distance decay: drop permeability if building block is deep inside/isolated (above 200m from roads)
-                const distanceDecay = Math.max(0.2, 1 - (minBldDist / 0.2));
-
-                // Al-Nuri historic core premium (decaying over 1km)
-                const corePt = turf.point([43.128, 36.335]);
-                let distToCore = 1.0;
-                try { distToCore = turf.distance(bldPt, corePt, { units: 'kilometers' }); } catch (_) {}
-                const corePremium = Math.max(0, 12000 * (1 - distToCore / 1.0));
-
-                // Bridge/riverfront corridor premium (decaying over 600m)
-                const bridgePt = turf.point([43.138, 36.338]);
-                let distToBridge = 0.6;
-                try { distToBridge = turf.distance(bldPt, bridgePt, { units: 'kilometers' }); } catch (_) {}
-                const bridgePremium = Math.max(0, 8000 * (1 - distToBridge / 0.6));
-
-                let permIdx = (basePerm + corePremium + bridgePremium) * distanceDecay;
-
-                if (!f.properties) f.properties = {};
-                f.properties.PermIdx = Math.max(1000, Math.min(26000, permIdx));
-                f.properties.isSimulated = true;
-            });
-
-            // Second pass: normalize ALL PermIdx values in this layer to NormPermIdx (0-100)
-            // This ensures both research data and simulated data use the same color scale
-            const allPermVals = bl.data.features
-                .map(f => f.properties && f.properties.PermIdx)
-                .filter(v => typeof v === 'number' && !isNaN(v));
-            
-            if (allPermVals.length > 0) {
-                const pMin = Math.min(...allPermVals);
-                const pMax = Math.max(...allPermVals);
-                const pSpan = pMax > pMin ? pMax - pMin : 1;
-                
-                bl.data.features.forEach(f => {
-                    if (!f.properties) return;
-                    const pv = f.properties.PermIdx;
-                    if (typeof pv === 'number' && !isNaN(pv)) {
-                        f.properties.NormPermIdx = parseFloat(((pv - pMin) / pSpan * 100).toFixed(2));
-                    }
-                });
-            }
-
-            // Push updated geometry back to MapLibre sources
-            const sourceId = `source-${bl.layerInfo.layer}`;
-            if (map.getSource(sourceId)) {
-                map.getSource(sourceId).setData(bl.data);
-            }
-            if (mapCompare && mapCompare.getSource(sourceId)) {
-                mapCompare.getSource(sourceId).setData(bl.data);
-            }
-        });
-    });
-}
-
-// ════════════════════════════════════════════════════════════
-// SPACE SYNTAX — colour expression builders
-// ════════════════════════════════════════════════════════════
 // Normal building colour expression (status-aware)
 let currentAnalysisMode = 'normal'; // 'fractal', 'normal'
 
@@ -1289,57 +1080,6 @@ const BUILDING_COLOR_NORMAL = [
     'Survived',         '#fbbf24',
     '#d97706'
 ];
-
-function getLayerMorphologyColorExpr(layerItem) {
-    if (currentAnalysisMode === 'normal') return BUILDING_COLOR_NORMAL;
-    if (!layerItem || !layerItem.data || !layerItem.data.features) return BUILDING_COLOR_NORMAL;
-
-    if (currentAnalysisMode === 'syntax') {
-        // Check if this layer has any NormPermIdx (research data or post-computed)
-        const hasNorm = layerItem.data.features.some(
-            f => f.properties && typeof f.properties.NormPermIdx === 'number'
-        );
-        if (!hasNorm) return BUILDING_COLOR_NORMAL;
-
-        // Use NormPermIdx (always 0–100) — safe, no ascending order errors
-        return [
-            'case',
-            ['has', 'NormPermIdx'],
-            [
-                'interpolate', ['linear'], ['get', 'NormPermIdx'],
-                0,   '#1e3a5f',  // dark navy — lowest integration (isolated)
-                15,  '#2563eb',  // royal blue
-                30,  '#0ea5e9',  // sky blue — secondary alley
-                50,  '#10b981',  // emerald green — local street
-                70,  '#f59e0b',  // amber — commercial connector
-                85,  '#ef4444',  // red — primary movement artery
-                100, '#7f1d1d'   // deep crimson — peak integration hub
-            ],
-            '#d97706' // fallback: no data
-        ];
-    } else if (currentAnalysisMode === 'fractal') {
-        const hasNorm = layerItem.data.features.some(
-            f => f.properties && typeof f.properties.NormFractalIdx === 'number'
-        );
-        if (!hasNorm) return BUILDING_COLOR_NORMAL;
-
-        return [
-            'case',
-            ['has', 'NormFractalIdx'],
-            [
-                'interpolate', ['linear'], ['get', 'NormFractalIdx'],
-                0,   '#312e81',  // deep indigo — low fractal complexity
-                25,  '#6366f1',  // violet
-                50,  '#a855f7',  // purple / magenta
-                75,  '#ec4899',  // pink
-                100, '#f43f5e'   // rose red — peak structural fractal complexity
-            ],
-            '#8b5cf6' // fallback: no fractal data
-        ];
-    }
-
-    return BUILDING_COLOR_NORMAL;
-}
 
 function getBuildingColorExpr() {
     return BUILDING_COLOR_NORMAL;
@@ -1368,26 +1108,7 @@ function getHeritageHeightExpr() {
 }
 
 function updateBuildingHeatmapColors() {
-    loadedLayersData.forEach(item => {
-        const id = `layer-${item.layerInfo.layer}`;
-        const nl = item.layerInfo.layer.toLowerCase();
-        const isBld = (nl.includes('building') || nl.includes('block'))
-                   && !nl.includes('heritage') && !nl.includes('photo')
-                   && !nl.includes('point');
-        if (!isBld) return;
-
-        const expr = getLayerMorphologyColorExpr(item);
-
-        const mainLayer    = map.getLayer(id);
-        const compareLayer = mapCompare ? mapCompare.getLayer(id) : null;
-
-        if (mainLayer && mainLayer.type === 'fill-extrusion') {
-            map.setPaintProperty(id, 'fill-extrusion-color', expr);
-        }
-        if (compareLayer && compareLayer.type === 'fill-extrusion') {
-            mapCompare.setPaintProperty(id, 'fill-extrusion-color', expr);
-        }
-    });
+    window.mosulAnalysis?.refresh();
 }
 
 // ════════════════════════════════════════════════════════════
@@ -1563,10 +1284,10 @@ function initTimelineUI() {
                     const idx = globalIdx++;
                     const yrSuffix = currentLang === 'ar' ? 'م' : 'CE';
                     return `
-                    <div class="node-cell" data-index="${idx}" data-year="${y}" title="${gFullName} (${y} ${yrSuffix})">
+                    <button type="button" class="node-cell" data-index="${idx}" data-year="${y}" title="${gFullName} (${y} ${yrSuffix})">
                         <div class="node ${idx === 0 ? 'active' : ''}" data-index="${idx}"></div>
                         <span class="year-num ${idx === 0 ? 'active-year' : ''}" data-index="${idx}">${y}</span>
-                    </div>
+                    </button>
                     `;
                 }).join('')}
             </div>
@@ -1614,6 +1335,7 @@ initTimelineUI();
 // MAP LOAD — add sources, layers, terrain
 // ════════════════════════════════════════════════════════════
 map.on('load', async () => {
+    try {
     // Terrain
     map.addSource('terrain-source', {
         type: 'raster-dem',
@@ -1633,15 +1355,14 @@ map.on('load', async () => {
     });
 
     // Historical Base Map Raster Overlays
-    const ts = new Date().getTime();
     try {
-        rasterManifest = await (await fetch(`data/raster_manifest.json?t=${ts}`)).json();
+        rasterManifest = await (await fetch('data/raster_manifest.json')).json();
         for (const [yr, rInfo] of Object.entries(rasterManifest)) {
             const srcId = `raster-source-${yr}`;
             const lyrId = `raster-layer-${yr}`;
             map.addSource(srcId, {
                 type: 'image',
-                url: `${rInfo.url}?t=${ts}`,
+                url: rInfo.url,
                 coordinates: rInfo.coordinates
             });
             map.addLayer({
@@ -1662,14 +1383,14 @@ map.on('load', async () => {
 
     // Manifest + layers + map sources
     await loadMapSources();
-    manifest = await (await fetch(`data/manifest.json?t=${ts}`)).json();
+    manifest = await (await fetch('data/manifest.json')).json();
 
     const rawLayers = [];
     await Promise.all(manifest.layers.map(async info => {
-        const data = await (await fetch(`data/${info.file}?t=${ts}`)).json();
+        const response = await fetch(`data/${info.file}`);
+        if (!response.ok) throw new Error(`Missing map layer: ${info.file}`);
+        const data = await response.json();
 
-        // (Space Syntax PermIdx assignment and normalization handled by computeSpaceSyntax() below,
-        //  after all road layers are also loaded — this avoids incorrect early simulation)
 
         rawLayers.push({ layerInfo: info, data });
         loadedLayersData.push({ layerInfo: info, data });
@@ -1687,10 +1408,15 @@ map.on('load', async () => {
         stats[y].roads     = parseFloat(stats[y].roads.toFixed(2));
     });
 
-    updateYear(0);
-    computeSpaceSyntax(); // Calculate road-network space syntax walkability on-the-fly
+    updateYear(Number(slider.value));
+    atlasDataReady = true;
     updateBuildingHeatmapColors();
     setupMeasureWidget(); // Measurement tool
+    window.dispatchEvent(new CustomEvent('mosul:ready'));
+    } catch (error) {
+        console.error('Map data could not be loaded', error);
+        window.dispatchEvent(new CustomEvent('mosul:failed'));
+    }
 });
 
 // ════════════════════════════════════════════════════════════
@@ -1997,6 +1723,13 @@ function addLayerToMap(targetMap, layerInfo, data) {
         }
     }
 
+    if (isHeritage || isGate || isRoad || isWall) {
+        targetMap.on('click', layerId, event => {
+            if (measureMode !== 'none' || !event.features?.length) return;
+            window.dispatchEvent(new CustomEvent('mosul:feature', { detail: { feature: event.features[0], layerInfo, year: targetMap === mapCompare ? selectedCompareYear : years[Number(slider.value)] } }));
+        });
+    }
+
     // Accumulate stats (buildings & roads) — ONLY for the main map to prevent double-accumulation on compare mode load
     if (targetMap === map) {
         const relevantYears = layerInfo.years || [];
@@ -2035,6 +1768,8 @@ function setCompareLayerVisibility(layerId, vis) {
 // UPDATE YEAR (timeline slider handler)
 // ════════════════════════════════════════════════════════════
 function updateYear(index) {
+    index = Math.max(0, Math.min(years.length - 1, Number(index) || 0));
+    slider.value = index;
     const year = years[index];
     yearDisplay.innerText = formatYearLabel(year);
 
@@ -2052,6 +1787,7 @@ function updateYear(index) {
     document.querySelectorAll('.node').forEach((n) => {
         const i = parseInt(n.dataset.index);
         n.classList.toggle('active', i === index);
+        n.closest('.node-cell')?.setAttribute('aria-pressed', String(i === index));
     });
 
     document.querySelectorAll('.year-num').forEach((s) => {
@@ -2071,10 +1807,13 @@ function updateYear(index) {
 
     if (isCompareModeActive) {
         const currentIdx = index;
-        selectedCompareYear = currentIdx > 0 ? years[currentIdx - 1] : years[currentIdx + 1];
+        if (Number(selectedCompareYear) === Number(year)) selectedCompareYear = currentIdx > 0 ? years[currentIdx - 1] : years[currentIdx + 1];
         populateCompareUI(year);
         updateCompareLayout();
     }
+
+    // The language and timeline are usable while map data is loading.
+    if (!manifest) { window.dispatchEvent(new CustomEvent('mosul:year', { detail: { index, year } })); return; }
 
     // Hide all vector layers
     manifest.layers.forEach(l => setLayerVisibility(`layer-${l.layer}`, 'none'));
@@ -2143,13 +1882,16 @@ function updateYear(index) {
 
         Object.entries(nameGroups).forEach(([name, layers]) => {
             const isEraChange = catName === 'Era Changes';
-            layers.forEach(l => setLayerVisibility(`layer-${l.layer}`, isEraChange ? 'none' : 'visible'));
+            const enabled = layerPreferences.has(name) ? layerPreferences.get(name) : !isEraChange;
+            layers.forEach(l => setLayerVisibility(`layer-${l.layer}`, enabled ? 'visible' : 'none'));
 
-            const item = document.createElement('div');
+            const item = document.createElement('label');
             item.className = 'layer-item';
             const translatedLayerName = getTranslatedLayerName(name, catName);
-            item.innerHTML = `<input type="checkbox" ${isEraChange ? '' : 'checked'}> <span>${translatedLayerName}</span>`;
+            const swatch = { 'Bridges': '#ef4444', 'Historic Photos': '#fb923c', 'Islands': '#e2e8f0' }[name] || { 'Building Blocks': '#d97706', 'Roads': '#fbbf24', 'Waterways & Bridges': '#38bdf8', 'City Walls & Gates': '#f43f5e', 'Heritage & Landmarks': '#c084fc', 'Open Spaces & Cemeteries': '#84cc16', 'Railways': '#e2e8f0', 'Era Changes': '#ef4444' }[catName];
+            item.innerHTML = `<input type="checkbox" ${enabled ? 'checked' : ''}> <span class="layer-swatch" style="background:${swatch}" aria-hidden="true"></span><span>${translatedLayerName}</span>`;
             item.querySelector('input').addEventListener('change', e => {
+                layerPreferences.set(name, e.target.checked);
                 layers.forEach(l => setLayerVisibility(`layer-${l.layer}`, e.target.checked ? 'visible' : 'none'));
             });
             layerToggles.appendChild(item);
@@ -2179,6 +1921,7 @@ function updateYear(index) {
     if (isSpaceSyntaxActive) {
         updateBuildingHeatmapColors();
     }
+    window.dispatchEvent(new CustomEvent('mosul:year', { detail: { index, year } }));
 }
 
 // ════════════════════════════════════════════════════════════
@@ -2190,6 +1933,7 @@ const rasterOpacityVal   = document.getElementById('raster-opacity-val');
 
 if (rasterToggle) {
     rasterToggle.addEventListener('change', (e) => {
+        if (isCompareModeActive) setMapYearLayers(mapCompare, selectedCompareYear);
         const activeYrStr = String(years[parseInt(slider.value)]);
         if (rasterManifest) {
             for (const yr of Object.keys(rasterManifest)) {
@@ -2209,6 +1953,7 @@ if (rasterOpacityInput) {
         if (rasterManifest) {
             for (const yr of Object.keys(rasterManifest)) {
                 const lyrId = `raster-layer-${yr}`;
+                if (mapCompare?.getLayer(lyrId)) mapCompare.setPaintProperty(lyrId, 'raster-opacity', currentRasterOpacity);
                 if (map.getLayer(lyrId)) {
                     map.setPaintProperty(lyrId, 'raster-opacity', currentRasterOpacity);
                 }
@@ -2291,8 +2036,7 @@ slider.addEventListener('input', e => updateYear(parseInt(e.target.value)));
 // ════════════════════════════════════════════════════════════
 async function loadMapSources() {
     try {
-        const ts = new Date().getTime();
-        mapSources = await (await fetch(`data/map_sources.json?t=${ts}`)).json();
+            mapSources = await (await fetch('data/map_sources.json')).json();
     } catch (e) {
         console.warn('Could not load map_sources.json', e);
     }
@@ -2474,35 +2218,15 @@ const modeFractalBtn = document.getElementById('mode-fractal-btn');
 const modeNormalBtn  = document.getElementById('mode-normal-btn');
 
 function setMorphologyMode(mode) {
-    currentAnalysisMode = mode;
-    [modeSyntaxBtn, modeFractalBtn, modeNormalBtn].forEach(btn => {
-        if (btn) btn.classList.remove('active');
+    currentAnalysisMode = ['normal', 'fractal', 'syntax'].includes(mode) ? mode : 'normal';
+    isSpaceSyntaxActive = currentAnalysisMode !== 'normal';
+    [modeSyntaxBtn, modeFractalBtn, modeNormalBtn].forEach(button => {
+        if (!button) return;
+        const active = button.dataset.mode === currentAnalysisMode;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', String(active));
     });
-
-    const legendTitle   = document.getElementById('syntax-legend-title');
-    const legendBox     = document.getElementById('syntax-legend-container');
-    const insightText   = document.getElementById('syntax-insight-text');
-
-    if (mode === 'syntax') {
-        if (modeSyntaxBtn) modeSyntaxBtn.classList.add('active');
-        isSpaceSyntaxActive = true;
-        if (legendTitle) legendTitle.innerText = currentLang === 'ar' ? 'التكامل المكاني Space Syntax (Rₙ)' : 'Space Syntax Integration (Rₙ)';
-        if (legendBox) legendBox.style.display = 'block';
-        if (insightText) insightText.innerText = currentLang === 'ar' ? 'تحلل مقاييس التكامل المكاني (Rₙ) إمكانية حركة المشاة والمركزية التجارية للأنسجة الحضرية للموصل القديمة.' : 'Space Syntax integration metrics (Rₙ) model pedestrian movement potential and commercial centrality across historical Mosul urban fabrics.';
-    } else if (mode === 'fractal') {
-        if (modeFractalBtn) modeFractalBtn.classList.add('active');
-        isSpaceSyntaxActive = true;
-        if (legendTitle) legendTitle.innerText = currentLang === 'ar' ? 'التعقيد الكسوري (D_f)' : 'Fractal Dimension Complexity (D_f)';
-        if (legendBox) legendBox.style.display = 'block';
-        if (insightText) insightText.innerText = currentLang === 'ar' ? 'تحلل مقاييس البعد الكسوري (D_f) التشابه الذاتي والتعقيد الكثافي للبلوكات والمباني التاريخية.' : 'Fractal dimension metrics (D_f) analyze the self-similarity and structural complexity of Mosul\'s dense historical building blocks.';
-    } else {
-        if (modeNormalBtn) modeNormalBtn.classList.add('active');
-        isSpaceSyntaxActive = false;
-        if (legendBox) legendBox.style.display = 'none';
-        if (insightText) insightText.innerText = currentLang === 'ar' ? 'نمط العرض القياسي ثلاثي الأبعاد يعرض ارتفاعات المباني والنسيج العمراني الواقعي.' : 'Standard 3D extrusion mode showing realistic architectural building heights and historical fabric status.';
-    }
-
-    updateBuildingHeatmapColors();
+    window.mosulAnalysis?.refresh();
 }
 
 if (modeSyntaxBtn)  modeSyntaxBtn.addEventListener('click', () => setMorphologyMode('syntax'));
@@ -2514,7 +2238,8 @@ if (modeNormalBtn)  modeNormalBtn.addEventListener('click', () => setMorphologyM
 // ════════════════════════════════════════════════════════════
 document.querySelectorAll('.mac-tab').forEach(btn => {
     btn.addEventListener('click', () => {
-        document.querySelectorAll('.mac-tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.mac-tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+        btn.setAttribute('aria-selected', 'true');
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
         btn.classList.add('active');
         const activePanelId = btn.dataset.tab;
@@ -2598,6 +2323,9 @@ function setMapYearLayers(targetMap, year) {
     if (!targetMap || !manifest || !manifest.layers) return;
     const numYear = Number(year);
     if (isNaN(numYear)) return;
+    for (const yr of Object.keys(rasterManifest)) {
+        if (targetMap.getLayer(`raster-layer-${yr}`)) targetMap.setLayoutProperty(`raster-layer-${yr}`, 'visibility', Number(yr) === numYear && rasterToggle.checked ? 'visible' : 'none');
+    }
 
     const isCompare = (targetMap === mapCompare);
     const setVisFunc = isCompare ? setCompareLayerVisibility : setLayerVisibility;
@@ -2617,6 +2345,8 @@ function setMapYearLayers(targetMap, year) {
 
 function updateCompareLayout() {
     if (!isCompareModeActive) return;
+    compareBtn.setAttribute('aria-pressed', 'true');
+    compareBtn.innerText = currentLang === 'ar' ? '⇄ إنهاء المقارنة' : '⇄ Exit comparison';
     const currentYear = Number(years[parseInt(slider.value)]);
     const currentIdx = years.indexOf(currentYear);
     const prevYear = currentIdx > 0 ? years[currentIdx - 1] : null;
@@ -2648,7 +2378,8 @@ function updateCompareLayout() {
     const mapALabel = document.getElementById('map-a-label');
     const mapBLabel = document.getElementById('map-b-label');
     if (mapALabel) mapALabel.innerText = currentLang === 'ar' ? `الخريطة الرئيسية: ${currentYear} م` : `Primary Map: ${currentYear} CE`;
-    if (mapBLabel) mapBLabel.innerText = currentLang === 'ar' ? `خريطة المقارنة: ${selectedCompareYear} م${relText}` : `Comparison Map: ${selectedCompareYear} CE${relText}`;
+    if (mapBLabel) mapBLabel.innerText = currentLang === 'ar' ? `خريطة المقارنة: ${selectedCompareYear} م` : `Comparison: ${selectedCompareYear} CE`;
+    window.dispatchEvent(new CustomEvent('mosul:compare'));
 }
 
 compareBtn.addEventListener('click', () => {
@@ -2660,6 +2391,9 @@ compareBtn.addEventListener('click', () => {
         compareBtn.innerText = isCompareModeActive ? '⇄ Compare Mode: ON' : '⇄ Compare Eras';
     }
     document.body.classList.toggle('compare-mode', isCompareModeActive);
+    compareBtn.setAttribute('aria-pressed', String(isCompareModeActive));
+    window.dispatchEvent(new CustomEvent('mosul:compare'));
+    map.resize();
 
     if (isCompareModeActive) {
         const currentYear = years[parseInt(slider.value)];
@@ -2757,6 +2491,10 @@ function initCompareMap() {
             });
         }
 
+        for (const [yr, info] of Object.entries(rasterManifest)) {
+            mapCompare.addSource(`raster-source-${yr}`, { type: 'image', url: info.url, coordinates: info.coordinates });
+            mapCompare.addLayer({ id: `raster-layer-${yr}`, type: 'raster', source: `raster-source-${yr}`, layout: { visibility: 'none' }, paint: { 'raster-opacity': currentRasterOpacity } });
+        }
         loadedLayersData.forEach(({ layerInfo, data }) => addLayerToMap(mapCompare, layerInfo, data));
 
         map.resize(); mapCompare.resize();
@@ -2767,37 +2505,6 @@ function initCompareMap() {
 // ════════════════════════════════════════════════════════════
 // SPACE SYNTAX
 // ════════════════════════════════════════════════════════════
-const syntaxToggle   = document.getElementById('syntax-toggle');
-const syntaxLegend   = document.getElementById('syntax-legend-container');
-const syntaxInsight  = document.getElementById('syntax-insight-text');
-
-const SYNTAX_INSIGHTS = [
-    'Integrated corridors connect historical city gates to commercial centres.',
-    'High PermIdx zones align with souqs and main pedestrian arteries.',
-    'Low permeability pockets mark enclosed residential quarters (mahallas).',
-    'The riverside zone maintains consistently high integration across all eras.',
-    'Post-conflict fabric (2020) shows fragmented integration reflecting wartime damage.'
-];
-
-if (syntaxToggle) {
-    syntaxToggle.addEventListener('click', () => {
-        isSpaceSyntaxActive = !isSpaceSyntaxActive;
-        syntaxToggle.classList.toggle('active', isSpaceSyntaxActive);
-        syntaxToggle.innerText = isSpaceSyntaxActive ? '🗺 Walkability Heatmap: ON' : '🗺 Walkability Heatmap: OFF';
-        if (syntaxLegend) syntaxLegend.style.display = isSpaceSyntaxActive ? 'block' : 'none';
-
-        if (syntaxInsight) {
-            if (isSpaceSyntaxActive) {
-                syntaxInsight.innerText = SYNTAX_INSIGHTS[Math.floor(Math.random() * SYNTAX_INSIGHTS.length)];
-            } else {
-                syntaxInsight.innerText = 'Activate the heatmap to reveal spatial patterns. Integrated corridors link historical gates to commercial centres, reflecting the organically-evolved Mosul city core.';
-            }
-        }
-
-        updateBuildingHeatmapColors();
-    });
-}
-
 // ════════════════════════════════════════════════════════════
 // SPATIAL MEASUREMENT TOOL
 // ════════════════════════════════════════════════════════════
